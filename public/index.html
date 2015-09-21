@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Vary Pixel</title>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body ng-controller="HomeController">
     <h1>Here is all the fun you can partake in</h1>
+
     <form>
       <input type="text" ng-model="boardTitleValue" placeholder="name your fun">
       <button ng-click="addBoard(boardTitleValue)" class="btn addBoardBtn">New Board</button>
@@ -18,7 +19,7 @@
         <a ng-href="">{{board.title}}</a>
       </ul>
     </section>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js"></script>
     <script src="homepage.js"></script>
   </body>
 </html>
