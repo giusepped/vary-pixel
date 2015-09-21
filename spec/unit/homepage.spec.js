@@ -1,4 +1,4 @@
-describe('Homepage', function () {
+describe('Homepage', function() {
   beforeEach(module('Homepage'));
 
   var scope, controller;
@@ -10,10 +10,43 @@ describe('Homepage', function () {
     });
   }));
 
-  it('can add a task', function () {
+  var addBoard = function(value) {
+    scope.boardDesc = value;
+    scope.addBoard(scope.boardDesc);
+  }
+
+  it('starts with no board', function () {
     expect(scope.boards.length).toEqual(0);
-    scope.boardTitleValue = 'A crazy day inside a beer can';
-    scope.addBoard(scope.boardTitleValue);
-    expect(scope.boards.length).toEqual(1)
+  });
+
+  it('can add a board', function() {
+    expect(scope.boards.length).toEqual(0);
+    addBoard('hello')
+    expect(scope.boards.length).toEqual(1);
+    expect(scope.boards[0].edit).toEqual(false);
+    expect(scope.boards[0].desc).toEqual('hello');
+  });
+
+  it('can edit a board', function() {
+    addBoard('hello');
+    scope.editDesc(0, 'not hello');
+    expect(scope.boards[0].desc).toEqual('not hello')
+  });
+
+  it('can delete a board', function () {
+    addBoard('halloo');
+    scope.deleteBoard(0);
+    expect(scope.boards.length).toEqual(0);
+  });
+
+  it('cannot create board with empty desc', function () {
+    addBoard('');
+    expect(scope.boards.length).toEqual(0);
+  });
+
+  it('cannot edit and input empty desc', function () {
+    addBoard('bottle');
+    scope.editDesc(0,'');
+    expect(scope.boards[0].desc).toEqual('bottle');
   });
 });
