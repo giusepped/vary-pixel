@@ -1,0 +1,31 @@
+{
+  "name": "vary-pixel",
+  "version": "1.0.0",
+  "description": "VARY-PIXEL PROJECT ==================",
+  "main": "app.js",
+  "scripts": {
+    "test": "karma start spec/unit/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giusepped/vary-pixel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giusepped/vary-pixel/issues"
+  },
+  "homepage": "https://github.com/giusepped/vary-pixel#readme",
+  "dependencies": {
+    "bower": "^1.5.2",
+    "http-server": "^0.8.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18",
+    "protractor": "^2.2.0"
+  }
+}
