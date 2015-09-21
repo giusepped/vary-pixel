@@ -10,13 +10,19 @@
     <h1>Here is all the fun you can partake in</h1>
 
     <form>
-      <input type="text" ng-model="boardTitleValue" placeholder="name your fun">
-      <button ng-click="addBoard(boardTitleValue)" class="btn addBoardBtn">New Board</button>
+      <input type="text" ng-model="boardDesc" placeholder="name your fun">
+      <button ng-click="addBoard(boardDesc)" class="btn-info addBoardBtn">New Board</button>
     </form>
 
     <section>
       <ul ng-repeat="board in boards">
-        <a ng-href="">{{board.title}}</a>
+        <a ng-href="" ng-show="!board.edit">{{board.desc}}</a>
+        <button ng-click="board.edit = true" class="btn-info newDescBtn" ng-show="!board.edit">Edit</button>
+        <form ng-show="board.edit">
+          <input type="text" ng-model="newDescValue">
+          <button ng-click="editDesc($index, newDescValue)" class="btn-primary newDescSubmit">Submit</button>
+          <button ng-click="deleteBoard($index)" class="btn-danger boardDelBtn">Delete</button>
+        </form>
       </ul>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js"></script>
