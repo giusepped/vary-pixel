@@ -4,7 +4,10 @@
   "description": "VARY-PIXEL PROJECT ==================",
   "main": "app.js",
   "scripts": {
-    "test": "karma start spec/unit/karma.conf.js"
+    "test": "karma start spec/unit/karma.conf.js",
+    "start": "http-server",
+    "pro": "protractor spec/e2e/prot.conf.js",
+    "webdriver": "node node_modules/.bin/webdriver-manager update"
   },
   "repository": {
     "type": "git",
