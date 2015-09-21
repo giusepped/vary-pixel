@@ -21,6 +21,7 @@
   "homepage": "https://github.com/giusepped/vary-pixel#readme",
   "dependencies": {
     "bower": "^1.5.2",
+    "express": "^4.13.3",
     "http-server": "^0.8.0"
   },
   "devDependencies": {
