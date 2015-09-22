@@ -1,10 +1,9 @@
 var express = require("express");
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 app.use(express.static('public'));
-
-var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
 
 server.listen(process.env.PORT || 3000);
 
@@ -19,6 +18,6 @@ app.get('/canvas', function(req, res) {
 
 io.on('connection', function(socket) {
   socket.on('coordinates', function(data) {
-    socket.broadcast.emit('coordinates')
+    socket.broadcast.emit('coordinates', data);
   });
 });
