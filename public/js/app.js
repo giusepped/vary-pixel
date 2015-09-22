@@ -7,24 +7,28 @@ $(document).ready(function() {
   var pixelSize = 15;
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
-  var myColor;
+  var pixelColor;
+  var opts = { distance: pixelSize };
 
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
-  var opts = { distance: pixelSize};
+
   new Grid(opts).draw(gridContext);
 
   $(".color").on("change", function() {
-    myColor = $(".color").val();
+    pixelColor = $(".color").val();
   });
-
 
   $(board).click(drawOn);
 
   function drawOn() {
-    boardInterface.createPixel(event.pageX, event.pageY, pixelSize, myColor);
-   socket.emit('test', [event.pageX, event.pageY]);
+    boardInterface.createPixel(event.pageX, event.pageY, pixelSize, pixelColor);
+    socket.emit('coordinates', [event.pageX, event.pageY]);
   }
+
+  socket.on('coordinates', function(data) {
+    boardInterface.createPixel(data[0], data[1], pixelSize, pixelColor);
+  });
 
   $('.toggle-grid').click(function () {
     $('.grid').toggle();
