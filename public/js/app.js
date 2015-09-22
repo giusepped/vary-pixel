@@ -15,8 +15,7 @@ $(document).ready(function() {
   new Grid(opts).draw(gridContext);
 
   $(".color").on("change", function() {
-    myColor = $(".color").val()
-    console.log(myColor)
+    myColor = $(".color").val();
   });
 
 
