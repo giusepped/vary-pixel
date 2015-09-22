@@ -16,7 +16,7 @@
 
     <section>
       <ul ng-repeat="board in boards">
-        <a ng-href="" ng-show="!board.edit">{{board.desc}}</a>
+        <a ng-href="/canvas" ng-show="!board.edit">{{board.desc}}</a>
         <button ng-click="board.edit = true" class="btn-info newDescBtn" ng-show="!board.edit">Edit</button>
         <form ng-show="board.edit">
           <input type="text" ng-model="newDescValue">
