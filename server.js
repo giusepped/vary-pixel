@@ -18,7 +18,7 @@ app.get('/canvas', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-  socket.on('test', function(data) {
-    console.log(data);
+  socket.on('coordinates', function(data) {
+    socket.broadcast.emit('coordinates')
   });
 });

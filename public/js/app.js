@@ -17,7 +17,7 @@ $(document).ready(function() {
 
   function drawOn() {
     boardInterface.createPixel(event.pageX, event.pageY, pixelSize);
-    socket.emit('test', [event.pageX, event.pageY]);
+    socket.emit('coordinates', [event.pageX, event.pageY]);
   }
 
   $('.toggle-grid').click(function () {
