@@ -1,0 +1,8 @@
+canvas {
+  position: absolute;
+  border: 1px solid black;
+}
+.toggle-grid {
+  position: fixed;
+  top: 0px;
+}

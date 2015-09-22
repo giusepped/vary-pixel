@@ -1,0 +1,39 @@
+{
+  "name": "vary-pixel",
+  "version": "1.0.0",
+  "description": "VARY-PIXEL PROJECT ==================",
+  "main": "public/js/app.js",
+  "scripts": {
+    "test": "grunt jasmine",
+    "start": "http-server",
+    "pro": "protractor spec/e2e/prot.conf.js",
+    "webdriver": "node node_modules/.bin/webdriver-manager update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giusepped/vary-pixel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giusepped/vary-pixel/issues"
+  },
+  "homepage": "https://github.com/giusepped/vary-pixel#readme",
+  "dependencies": {
+    "bower": "^1.5.2",
+    "express": "^4.13.3",
+    "http-server": "^0.8.0",
+    "jasmine": "^2.3.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^0.9.1",
+    "jasmine-core": "^2.3.4",
+    "jasmine-node": "^1.14.5",
+    "karma": "^0.13.10",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18",
+    "protractor": "^2.2.0"
+  }
+}
