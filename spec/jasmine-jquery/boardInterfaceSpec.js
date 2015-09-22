@@ -9,9 +9,10 @@ describe("BoardInterface", function() {
     spyOn(ctx, "fillRect");
     bI = new BoardInterface(ctx)
 
-    bI.createPixel(100, 100, 10);
+    bI.createPixel(100, 100, 15);
+    coordinate = Math.floor(100 / 15) * 15
 
-    expect(ctx.fillRect).toHaveBeenCalledWith(85, 90, 10, 10);
+    expect(ctx.fillRect).toHaveBeenCalledWith(coordinate, coordinate, 15, 15);
   });
 
   it("can create a pixel with different colors", function(){
