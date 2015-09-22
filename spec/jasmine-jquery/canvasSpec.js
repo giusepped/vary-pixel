@@ -1,14 +1,19 @@
 describe('Canvas', function() {
 
-  beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = './public';
-    loadFixtures('canvas.html');
-    $.holdReady(false);
-  });
+  // beforeEach(function() {
+  //   jasmine.getFixtures().fixturesPath = './public';
+  //   loadFixtures('canvas.html');
+  //   $.holdReady(false);
+  // });
 
-  // var canvas = document.getElementsByClassName(".board")[0];
+  // it('should initialize with a canvas', function() {
+  //   expect("canvas").toExist();
+  // });
 
-  it('should initialize with a canvas', function() {
-    expect("canvas").toExist();
-  });
-})
+  // it('should respond to clicking on the canvas with a pixel', function() {
+  //   var pixel = new Pixel();
+  //   spyOn(pixel, 'createPixel');
+  //   // $(".board")[0].click();
+  //   expect(pixel.createPixel).toHaveBeenCalled();
+  // });
+});
