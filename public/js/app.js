@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var socket = io();
   var board = $(".board")[0];
   var ctx = board.getContext("2d");
   var boardInterface = new BoardInterface(ctx);
@@ -23,9 +24,10 @@ $(document).ready(function() {
 
   function drawOn() {
     boardInterface.createPixel(event.pageX, event.pageY, pixelSize, myColor);
+   socket.emit('test', [event.pageX, event.pageY]);
   }
 
   $('.toggle-grid').click(function () {
     $('.grid').toggle();
-  })
+  });
 });
