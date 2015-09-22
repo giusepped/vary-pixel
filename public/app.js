@@ -1,37 +1,25 @@
 
 $(document).ready(function() {
   var board = $(".board")[0];
-  board.height = board.width = 1000;
-  var boardInterface = new BoardInterface(board.getContext("2d"));
-
-  $(board).click(drawOn);
-
-  function drawOn(event) {
-    boardInterface.createPixel(event.x, event.y);
-  }
+  var ctx = board.getContext("2d");
+  var boardInterface = new BoardInterface(ctx);
   var boardSize = 1000;
   var pixelSize = 15;
-
-  var ctx = board.getContext("2d");
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d')
 
-  board.height = boardSize;
-  board.width = boardSize;
-  background.height = boardSize;
-  background.width = boardSize;
+  board.height = board.width = boardSize;
+  background.height = background.width = boardSize;
+  var opts = { distance: pixelSize};
+  new Grid(opts).draw(gridContext);
 
-  new Grid().draw(gridContext);
+  $(board).click(drawOn);
 
-  $(board).click(function(event) {
-    var nearestX = Math.floor(event.pageX / 15) * 15;
-    var nearestY = Math.floor(event.pageY / 15) * 15;
-    ctx.fillStyle = "black";
-    ctx.fillRect(nearestX, nearestY, pixelSize, pixelSize);
-  });
+  function drawOn() {
+    boardInterface.createPixel(event.pageX, event.pageY, pixelSize);
+  }
 
   $('.toggle-grid').click(function () {
     $('.grid').toggle();
   })
-
 });
