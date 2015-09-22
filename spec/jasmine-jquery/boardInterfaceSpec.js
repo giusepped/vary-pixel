@@ -12,6 +12,10 @@ describe("BoardInterface", function() {
     bI.createPixel(100, 100, 10);
 
     expect(ctx.fillRect).toHaveBeenCalledWith(85, 90, 10, 10);
-  })
+  });
+
+  it("can create a pixel with different colors", function(){
+
+  });
 
 })

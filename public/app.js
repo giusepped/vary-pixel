@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
   var board = $(".board")[0];
   board.height = board.width = 1000;
@@ -15,6 +14,7 @@ $(document).ready(function() {
   var ctx = board.getContext("2d");
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d')
+  var myColor;
 
   board.height = boardSize;
   board.width = boardSize;
@@ -22,16 +22,21 @@ $(document).ready(function() {
   background.width = boardSize;
 
   new Grid().draw(gridContext);
+  
+  $(".color").on("change", function() {
+    myColor = $(".color").val()
+  });
 
+  
   $(board).click(function(event) {
     var nearestX = Math.floor(event.pageX / 15) * 15;
     var nearestY = Math.floor(event.pageY / 15) * 15;
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#" + myColor;
     ctx.fillRect(nearestX, nearestY, pixelSize, pixelSize);
   });
+
 
   $('.toggle-grid').click(function () {
     $('.grid').toggle();
   })
-
 });
