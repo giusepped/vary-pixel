@@ -1,6 +1,7 @@
 script:
   - npm test --single-run
   - node_modules/.bin/protractor spec/e2e/prot.conf.js --browser=firefox
+  - grunt jasmine
 language: node_js
 node_js:
   - "0.10"
@@ -11,6 +12,9 @@ before_script:
   - npm start > /dev/null &
   - webdriver-manager update
   - sleep 3
+  - npm install -g grunt-cli
+  - npm install grunt-cli
+  - npm install grunt-contrib-jasmine
 
 #whitelist
 branches:

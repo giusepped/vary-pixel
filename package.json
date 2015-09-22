@@ -2,10 +2,9 @@
   "name": "vary-pixel",
   "version": "1.0.0",
   "description": "VARY-PIXEL PROJECT ==================",
-  "main": "app.js",
+  "main": "public/js/app.js",
   "scripts": {
-    "test": "karma start spec/unit/karma.conf.js",
-    "test": "specrunner.html",
+    "test": "grunt jasmine",
     "start": "http-server",
     "pro": "protractor spec/e2e/prot.conf.js",
     "webdriver": "node node_modules/.bin/webdriver-manager update"
@@ -27,6 +26,8 @@
     "jasmine": "^2.3.2"
   },
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^0.9.1",
     "jasmine-core": "^2.3.4",
     "jasmine-node": "^1.14.5",
     "karma": "^0.13.10",
