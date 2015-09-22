@@ -6,3 +6,7 @@ canvas {
   position: fixed;
   top: 0px;
 }
+.colour-picker {
+	position: fixed;
+	bottom: 20px;
+}

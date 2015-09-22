@@ -13,6 +13,10 @@ describe("BoardInterface", function() {
     coordinate = Math.floor(100 / 15) * 15
 
     expect(ctx.fillRect).toHaveBeenCalledWith(coordinate, coordinate, 15, 15);
-  })
+  });
+
+  it("can create a pixel with different colors", function(){
+
+  });
 
 })
