@@ -37,9 +37,7 @@ $(document).ready(function() {
   });
 
   $('.save-canvas').click(function() {
-    console.log('working')
-    $('.save-alert').html("hello world");
-    //saveCanvas(board, "test1225");
+    saveCanvas(board, "test1225");
   });
 
 });

@@ -1,8 +1,8 @@
 describe('ParseCode', function() {
 
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = './public';
-    loadFixtures('canvas.html');
+    jasmine.getFixtures().fixturesPath = '.';
+    loadFixtures('./canvas.html');
     $.holdReady(false);
   });
 
@@ -10,18 +10,13 @@ describe('ParseCode', function() {
     expect('.save-alert').toContainText('');
   });
 
-  it('should display a message when a canvas is saved', function(done) {
-    //var canvas = new canvases();
-    //spyOn(canvas, 'save');
+  xit('should have the correct alert after saving', function(done) {
     $('.save-canvas').click();
-    console.log($('.save-canvas')[0]);
     setTimeout(function() {
-      expect('.save-alert').toContainText('hello world');
-
+      window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+      expect($('.save-alert').html()).toContainText('Your drawing has been saved!');
       done();
-    }, 3000);
-  //expect('.save-alert').toContainText('hello world');
-
+    }, 500);
   });
 
 });
