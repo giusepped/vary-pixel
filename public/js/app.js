@@ -10,7 +10,9 @@ $(document).ready(function() {
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
   var pixelColor;
-  var opts = { distance: pixelSize };
+  var opts = {
+    distance: pixelSize
+  };
 
   var canvasData;
 
@@ -34,10 +36,11 @@ $(document).ready(function() {
     boardInterface.createPixel(data[0], data[1], pixelSize, pixelColor);
   });
 
-  $('.toggle-grid').click(function () {
+  $('.toggle-grid').click(function() {
     $('.grid').toggle();
   });
 
+<<<<<<< HEAD
   function flashMessage(message) {
     message.delay(2000).fadeOut('normal', function() {
       $(this).remove();
@@ -59,4 +62,7 @@ $(document).ready(function() {
     canvas.set("name", "Hello")
     canvas.save();
   });
+=======
+
+>>>>>>> 5c6c28f4e92cd88b65e3b491db54d193d594a826
 });
