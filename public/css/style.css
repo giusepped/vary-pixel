@@ -13,3 +13,8 @@ canvas {
 .save-canvas {
   left: 100px;
 }
+.save-alert {
+  position: fixed;
+  bottom: 20px;
+  left: 200px;
+}

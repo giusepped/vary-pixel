@@ -38,16 +38,25 @@ $(document).ready(function() {
     $('.grid').toggle();
   });
 
+  function flashMessage(message) {
+    message.delay(2000).fadeOut('normal', function() {
+      $(this).remove();
+    });
+  }
+
   $('.save-canvas').click(function() {
     canvasData = board.toDataURL('image/png');
     var canvas = new canvases();
     var file = new Parse.File("canvasData.txt", { base64: canvasData });
     file.save().then(function() {
-      console.log("saved");
+      var message = $('.save-alert').text('Your drawing is saved!');
+      flashMessage(message);
     }, function(error) {
-      console.log("oops!");
+      var message = $('.save-alert').text('Whoops! Something went wrong!');
+      flashMessage(message);
     });
     canvas.set("picture", file);
+    canvas.set("name", "Hello")
     canvas.save();
   });
 });
