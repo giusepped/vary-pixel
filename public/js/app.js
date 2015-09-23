@@ -1,14 +1,18 @@
 $(document).ready(function() {
+  Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
+  var canvases = Parse.Object.extend("canvases");
   var socket = io();
   var board = $(".board")[0];
-  var ctx = board.getContext("2d");
-  var boardInterface = new BoardInterface(ctx);
+  var boardCtx = board.getContext("2d");
+  var boardInterface = new BoardInterface(boardCtx);
   var boardSize = 1000;
   var pixelSize = 15;
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
   var pixelColor;
   var opts = { distance: pixelSize };
+
+  var canvasData;
 
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
@@ -32,5 +36,18 @@ $(document).ready(function() {
 
   $('.toggle-grid').click(function () {
     $('.grid').toggle();
+  });
+
+  $('.save-canvas').click(function() {
+    canvasData = board.toDataURL('image/png');
+    var canvas = new canvases();
+    var file = new Parse.File("canvasData.txt", { base64: canvasData });
+    file.save().then(function() {
+      console.log("saved");
+    }, function(error) {
+      console.log("oops!");
+    });
+    canvas.set("picture", file);
+    canvas.save();
   });
 });

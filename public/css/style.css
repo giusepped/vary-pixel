@@ -2,11 +2,14 @@ canvas {
   position: absolute;
   border: 1px solid black;
 }
-.toggle-grid {
+.toggle-grid, .save-canvas{
   position: fixed;
   top: 0px;
 }
 .colour-picker {
 	position: fixed;
 	bottom: 20px;
+}
+.save-canvas {
+  left: 100px;
 }
