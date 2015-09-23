@@ -9,6 +9,8 @@ $(document).ready(function() {
   var pixelSize = 15;
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
+  var paletteCanvas = $('.colour-palette')[0];
+  var paletteCtx = paletteCanvas.getContext('2d');
   var pixelColor;
   var opts = {
     distance: pixelSize
@@ -21,11 +23,18 @@ $(document).ready(function() {
 
   new Grid(opts).draw(gridContext);
 
-  $(".color").on("change", function() {
-    pixelColor = $(".color").val();
-  });
+  // $(".color").on("change", function() {
+  //   pixelColor = $(".color").val();
+  // });
 
   $(board).click(drawOn);
+
+  var colourPaletteImg = new Image();
+  colourPaletteImg.onload = function() {
+    paletteCanvas.width = paletteCanvas.height = 300;
+    paletteCtx.drawImage(colourPaletteImg, 0, 0, 300, 300);
+  }
+  colourPaletteImg.src = 'images/ColorWheel-Base.png'
 
   function drawOn() {
     boardInterface.createPixel(event.pageX, event.pageY, pixelSize, pixelColor);
@@ -43,16 +52,19 @@ $(document).ready(function() {
   $('.colour-palette').hide();
 
   $('.colour-palette-toggle').click(function() {
-    $('.colour-palette').fadeToggle('fast')
-    $('.colour-palette-toggle').fadeToggle('fast')
+    $('.colour-palette').fadeToggle('fast');
+    $('.colour-palette-toggle').fadeToggle('fast');
   })
 
   $('.colour-palette').click(function() {
-    $('.colour-palette').fadeToggle('fast')
-    $('.colour-palette-toggle').fadeToggle('fast')
+    var x = event.offsetX;
+    var y = event.offsetY;
+    pixelColor = WhatColour.pickColour(paletteCtx, x, y);
+    console.log(x + '  ' + y);
+    console.log(pixelColor);
+    $('.colour-palette').fadeToggle('fast');
+    $('.colour-palette-toggle').fadeToggle('fast');
   })
-
-
 
   function flashMessage(message) {
     message.delay(2000).fadeOut('normal', function() {
@@ -63,7 +75,9 @@ $(document).ready(function() {
   $('.save-canvas').click(function() {
     canvasData = board.toDataURL('image/png');
     var canvas = new canvases();
-    var file = new Parse.File("canvasData.txt", { base64: canvasData });
+    var file = new Parse.File("canvasData.txt", {
+      base64: canvasData
+    });
     file.save().then(function() {
       var message = $('.save-alert').text('Your drawing is saved!');
       flashMessage(message);
