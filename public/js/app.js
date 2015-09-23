@@ -40,7 +40,6 @@ $(document).ready(function() {
     $('.grid').toggle();
   });
 
-<<<<<<< HEAD
   function flashMessage(message) {
     message.delay(2000).fadeOut('normal', function() {
       $(this).remove();
@@ -62,7 +61,5 @@ $(document).ready(function() {
     canvas.set("name", "Hello")
     canvas.save();
   });
-=======
 
->>>>>>> 5c6c28f4e92cd88b65e3b491db54d193d594a826
 });
