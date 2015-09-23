@@ -16,8 +16,6 @@ $(document).ready(function() {
     distance: pixelSize
   };
 
-  var canvasData;
-
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
 
@@ -49,43 +47,8 @@ $(document).ready(function() {
     $('.grid').toggle();
   });
 
-  $('.colour-palette').hide();
-
-  $('.colour-palette-toggle').click(function() {
-    $('.colour-palette').fadeToggle('fast');
-    $('.colour-palette-toggle').fadeToggle('fast');
-  })
-
-  $('.colour-palette').click(function() {
-    var x = event.offsetX;
-    var y = event.offsetY;
-    pixelColor = WhatColour.pickColour(paletteCtx, x, y);
-    $('.colour-palette').fadeToggle('fast');
-    $('.colour-palette-toggle').fadeToggle('fast');
-  })
-
-  function flashMessage(message) {
-    message.delay(2000).fadeOut('normal', function() {
-      $(this).remove();
-    });
-  }
-
   $('.save-canvas').click(function() {
-    canvasData = board.toDataURL('image/png');
-    var canvas = new canvases();
-    var file = new Parse.File("canvasData.txt", {
-      base64: canvasData
-    });
-    file.save().then(function() {
-      var message = $('.save-alert').text('Your drawing is saved!');
-      flashMessage(message);
-    }, function(error) {
-      var message = $('.save-alert').text('Whoops! Something went wrong!');
-      flashMessage(message);
-    });
-    canvas.set("picture", file);
-    canvas.set("name", "Hello")
-    canvas.save();
+    saveCanvas(board, "test1225");
   });
 
 });
