@@ -8,7 +8,9 @@ $(document).ready(function() {
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
   var pixelColor;
-  var opts = { distance: pixelSize };
+  var opts = {
+    distance: pixelSize
+  };
 
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
@@ -30,7 +32,9 @@ $(document).ready(function() {
     boardInterface.createPixel(data[0], data[1], pixelSize, pixelColor);
   });
 
-  $('.toggle-grid').click(function () {
+  $('.toggle-grid').click(function() {
     $('.grid').toggle();
   });
+
+
 });
