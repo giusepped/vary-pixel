@@ -6,7 +6,7 @@ function saveCanvas(board, title) {
   var canvas = new canvases();
   var file = new Parse.File("canvasData.txt", { base64: canvasData });
   file.save().then(function() {
-    var message = $('.save-alert').text('Your drawing is saved!');
+    var message = $('.save-alert').text('Your drawing has been saved!');
     hideFlashMessage(message);
   }, function(error) {
     var message = $('.save-alert').text('Whoops! Something went wrong!');
