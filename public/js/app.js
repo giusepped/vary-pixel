@@ -28,6 +28,8 @@ $(document).ready(function() {
   // });
 
   $(board).mousedown(function() {
+    $('.colour-palette').fadeOut('slow');
+    $('.colour-palette-toggle').fadeIn('slow');
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()
@@ -69,16 +71,16 @@ $(document).ready(function() {
   $('.colour-palette').hide();
 
   $('.colour-palette-toggle').click(function() {
-    $('.colour-palette').fadeToggle('fast');
-    $('.colour-palette-toggle').fadeToggle('fast');
+    $('.colour-palette').fadeToggle('slow');
+    $('.colour-palette-toggle').fadeToggle('slow');
   })
 
   $('.colour-palette').click(function() {
     var x = event.offsetX;
     var y = event.offsetY;
     pixelColor = WhatColour.pickColour(paletteCtx, x, y);
-    $('.colour-palette').fadeToggle('fast');
-    $('.colour-palette-toggle').fadeToggle('fast');
+    $('.colour-palette').fadeToggle('slow');
+    $('.colour-palette-toggle').fadeToggle('slow');
   })
 
   function flashMessage(message) {
