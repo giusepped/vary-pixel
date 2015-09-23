@@ -14,8 +14,8 @@
 
   var defaults = {
     distance: 15,
-    lineWidth: 0.4,
-    gridColor: "#1da5de",
+    lineWidth: 0.2,
+    gridColor: "rgb(131, 154, 255)",
     caption: false,
     font: "10px Verdana",
     verticalLines: true,
