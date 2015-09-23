@@ -3,7 +3,6 @@ describe("BoardInterface", function() {
   var bI;
   var ctx = {
     fillRect: function() {},
-    getImageData: function() {}
   };
 
   it("creates a pixel at a given location on the board", function() {
