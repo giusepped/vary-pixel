@@ -10,10 +10,8 @@ BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {
 
   if (PixelGenerator.createDot(this.context, x, y, size, pixelColor)) {
     this.userLimit--;
-    console.log(this.userLimit);
   } else {
     this.userLimit++;
-    console.log(this.userLimit);
   };
 };
 

@@ -32,7 +32,7 @@ $(document).ready(function() {
   var colourPaletteImg = new Image();
   colourPaletteImg.onload = function() {
     paletteCanvas.width = paletteCanvas.height = 300;
-    paletteCtx.drawImage(colourPaletteImg, 0, 0, 300, 300);
+    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
   }
   colourPaletteImg.src = 'images/ColorWheel-Base.png'
 
@@ -60,8 +60,6 @@ $(document).ready(function() {
     var x = event.offsetX;
     var y = event.offsetY;
     pixelColor = WhatColour.pickColour(paletteCtx, x, y);
-    console.log(x + '  ' + y);
-    console.log(pixelColor);
     $('.colour-palette').fadeToggle('fast');
     $('.colour-palette-toggle').fadeToggle('fast');
   })
