@@ -27,7 +27,24 @@ $(document).ready(function() {
   //   pixelColor = $(".color").val();
   // });
 
-  $(board).click(drawOn);
+  $(board).mousedown(function() {
+    var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
+    var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
+    drawOn()
+    $(board).mousemove(function(e) {
+      x = Math.floor(event.offsetX / pixelSize) * pixelSize;
+      y = Math.floor(event.offsetY / pixelSize) * pixelSize;
+      if (Math.abs(prevX - x) > 14 || Math.abs(prevY - y) > 14) {
+        drawOn();
+        prevX = x;
+        prevY = y;
+      };
+    })
+  })
+
+  $(board).mouseup(function() {
+    $(board).off("mousemove");
+  })
 
   var colourPaletteImg = new Image();
   colourPaletteImg.onload = function() {
@@ -37,8 +54,8 @@ $(document).ready(function() {
   colourPaletteImg.src = 'images/ColorWheel-Base.png'
 
   function drawOn() {
-    boardInterface.createPixel(event.pageX, event.pageY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.pageX, event.pageY]);
+    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
+    socket.emit('coordinates', [event.offsetX, event.offsetY]);
   }
 
   socket.on('coordinates', function(data) {
