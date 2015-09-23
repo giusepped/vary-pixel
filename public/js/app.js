@@ -40,9 +40,19 @@ $(document).ready(function() {
     $('.grid').toggle();
   });
 
+  $('.colour-palette').hide();
+
   $('.colour-palette-toggle').click(function() {
     $('.colour-palette').fadeToggle('fast')
+    $('.colour-palette-toggle').fadeToggle('fast')
   })
+
+  $('.colour-palette').click(function() {
+    $('.colour-palette').fadeToggle('fast')
+    $('.colour-palette-toggle').fadeToggle('fast')
+  })
+
+
 
   function flashMessage(message) {
     message.delay(2000).fadeOut('normal', function() {

@@ -13,6 +13,14 @@ canvas {
 	bottom: 20px;
   left: 20px;
 }
+
+.colour-palette {
+  left: 50px;
+  position: fixed;
+  height: 300px;
+  width: 300px;
+  bottom: 50px;
+}
 .save-canvas {
   left: 100px;
 }
