@@ -5,7 +5,7 @@ $(document).ready(function() {
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
   var boardInterface = new BoardInterface(boardCtx);
-  var boardSize = 1000;
+  var boardSize = 1500;
   var pixelSize = 15;
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
@@ -39,6 +39,10 @@ $(document).ready(function() {
   $('.toggle-grid').click(function() {
     $('.grid').toggle();
   });
+
+  $('.colour-palette-toggle').click(function() {
+    $('.colour-palette').fadeToggle('fast')
+  })
 
   function flashMessage(message) {
     message.delay(2000).fadeOut('normal', function() {
