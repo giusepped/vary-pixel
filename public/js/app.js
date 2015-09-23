@@ -18,7 +18,7 @@ $(document).ready(function() {
   new Grid(opts).draw(gridContext);
 
   $(".color").on("change", function() {
-    var myColor = $(".color").val();
+    pixelColor = $(".color").val();
   });
 
   $(board).click(drawOn);
