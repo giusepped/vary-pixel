@@ -12,7 +12,7 @@ function saveCanvas(board, title) {
     hideFlashMessage(message);
   });
   canvas.set("picture", file);
-  canvas.set("name", title)
+  canvas.set("description", title)
   canvas.save();
 }
 

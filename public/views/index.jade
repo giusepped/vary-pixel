@@ -28,13 +28,9 @@ block content
       input(type='text', ng-model='boardDesc', placeholder='name your fun')
       button.btn-info.addBoardBtn(ng-click='addBoard(boardDesc)') New Board
     section
-      ul(ng-repeat='board in boards')
-        a(ng-href='', ng-show='!board.edit') {{board.desc}}
-        button.btn-info.newDescBtn(ng-click='board.edit = true', ng-show='!board.edit') Edit
-        form(ng-show='board.edit')
-          input(type='text', ng-model='newDescValue')
-          button.btn-primary.newDescSubmit(ng-click='editDesc($index, newDescValue)') Submit
-          button.btn-danger.boardDelBtn(ng-click='deleteBoard($index)') Delete
+      ul
+        li(ng-repeat='board in boards')
+          p {{ board.id }}
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js')
     script(src='js/angular/homepage.js')
     script(src='js/angular/controller/homepageController.js')
