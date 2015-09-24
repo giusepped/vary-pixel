@@ -11,4 +11,25 @@ html(lang='en', ng-app='Homepage')
       Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
     block scripts
   body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') VARY-PIXEL
+        div
+          ul.nav.navbar-nav
+            li.active
+              a(href='#') Home
+            li
+              a(href='#') Log in
+            li
+              a(href='#') Log out
+            li
+              a(href='#') Sign up
+            li
+              form.searchbox(action='')
+                input.search(type='text', placeholder='Type here')
+                input.submit(type='submit', value='Search')
+
+
+
     block content
