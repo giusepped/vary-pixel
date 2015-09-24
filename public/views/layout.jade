@@ -12,11 +12,13 @@ html(lang='en', ng-app='Homepage')
     link(href='css/layout.css', rel='stylesheet')
     block scripts
   body
-    nav
-          a(href='#') VARY-PIXEL
+    nav.navbar.navbar-inverse
+     .container-fluid
+       .navbar-header
+          a.navbar-brand(href='#') VARY-PIXEL
         div
-          ul
-            li
+          ul.nav.navbar-nav
+            li.active
               a(href='#') Home
             li
               a(href='#') Log in
@@ -24,7 +26,7 @@ html(lang='en', ng-app='Homepage')
               a(href='#') Log out
             li
               a(href='#') Sign up
-            li
+            li.col-md-3.col-md-push-6
               form.searchbox(action='')
                 input.search(type='text', placeholder='Type here')
                 input.submit(type='submit', value='Search')
