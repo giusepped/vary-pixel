@@ -27,4 +27,10 @@ homepage.controller('UserController', ['$scope', function($scope) {
     });
   }
 
+  $scope.signOutUser = function(username, password) {
+    Parse.User.logOut();
+    console.log('I have signed out');
+    console.log(Parse.User.current());
+  }
+
 }]);
