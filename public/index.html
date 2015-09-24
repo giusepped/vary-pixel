@@ -5,10 +5,26 @@
     <title>Vary Pixel</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://www.parsecdn.com/js/parse-1.6.2.min.js"></script>
+    <script type="text/javascript">
+        Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
+    </script>
   </head>
 
   <body ng-controller="HomeController">
     <h1>Here is all the fun you can partake in</h1>
+    <section ng-controller="UserController">
+      <form>
+        <label>Username: </label>
+        <input type="text" name="username" placeholder="your username" ng-model="username">
+        <label>Email: </label>
+        <input type="email" name="email" placeholder="your email address" ng-model="email">
+        <label>Password: </label>
+        <input type="password" name="password" placeholder="password" ng-model="password">
+        <label>Password Confirmation: </label>
+        <input type="password" name="password-confirmation" placeholder="password confirmation" ng-model="passwordConfirmation">
+        <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
+      </form>
+    </section>
 
     <form>
       <input type="text" ng-model="boardDesc" placeholder="name your fun">
@@ -29,5 +45,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js"></script>
     <script src="js/angular/homepage.js"></script>
     <script src="js/angular/controller/homepageController.js"></script>
+    <script src="js/angular/controller/userController.js"></script>
   </body>
 </html>
