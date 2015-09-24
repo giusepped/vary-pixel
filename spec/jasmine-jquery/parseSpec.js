@@ -1,9 +1,10 @@
 describe('ParseCode', function() {
 
+// jasmine.getFixtures().fixturesPath = 'spec/test/fixtures';
+
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = './public';
     loadFixtures('canvas.html');
-    $.holdReady(false);
+  $.holdReady(false);
   });
 
   it('should have an empty alert at the start', function() {
@@ -14,12 +15,11 @@ describe('ParseCode', function() {
     //var canvas = new canvases();
     //spyOn(canvas, 'save');
     $('.save-canvas').click();
-    console.log($('.save-canvas')[0]);
     setTimeout(function() {
       expect('.save-alert').toContainText('hello world');
 
       done();
-    }, 3000);
+    }, 1000);
   //expect('.save-alert').toContainText('hello world');
 
   });

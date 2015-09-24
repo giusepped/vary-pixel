@@ -1,7 +1,7 @@
 describe('Canvas', function() {
-
+jasmine.getFixtures().fixturesPath = 'public';
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = './public';
+
     loadFixtures('canvas.html');
     $.holdReady(false);
   });
