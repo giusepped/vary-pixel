@@ -15,10 +15,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'http://www.parsecdn.com/js/parse-1.6.2.min.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'spec/unit/*.spec.js',
-      'public/js/homepage.js'
+      'public/js/angular/homepage.js',
+      'public/js/angular/controller/homepageController.js'
     ],
 
 
