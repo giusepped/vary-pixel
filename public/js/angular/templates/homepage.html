@@ -1,0 +1,44 @@
+<body ng-controller="HomeController">
+  <h1>Here is all the fun you can partake in</h1>
+  <section ng-controller="UserController">
+    <form class="sign-up">
+      <label>Username:
+      </label>
+      <input name="username" ng-model="username" placeholder="your username" type="text">
+      <label>Email:
+      </label>
+      <input name="email" ng-model="email" placeholder="your email address" type="email">
+      <label>Password:
+      </label>
+      <input name="password" ng-model="password" placeholder="password" type="password">
+      <label>Password Confirmation:
+      </label>
+      <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password confirmation" type="password">
+      <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
+    </form>
+    <form class="sign-in">
+      <label>Email:
+      </label>
+      <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
+      <label>Password:
+      </label>
+      <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
+      <input ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
+    </form>
+    <button ng-click="signOutUser()">Sign out</button>
+  </section>
+
+  <form>
+    <input ng-model="boardDesc" placeholder="name your fun" type="text">
+    <button class="btn-info addBoardBtn" ng-click="addBoard(boardDesc)">New Board</button>
+  </form>
+
+    <section>
+      <ul class="board-list">
+        <li ng-repeat="board in boards">
+          <img class="img-thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
+          <a ui-sref="canvas" ng-model="currentCanvas" ng-click="setCurrent($index)">{{ board.id }}</a>
+        </li>
+      </ul>
+    </section>
+</body>
