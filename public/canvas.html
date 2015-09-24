@@ -4,7 +4,6 @@
     <title>Vary Pixel</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <script type="text/javascript" src="../jscolor/jscolor.js"></script>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
@@ -18,12 +17,11 @@
   <body>
     <canvas class="grid"></canvas>
     <canvas class="board"></canvas>
+    <canvas class="colour-palette"></canvas>
     <button class="btn toggle-grid" type="button">Toggle Grid</button>
     <button class="btn save-canvas" type="button">Save Drawing</button>
     <p class="save-alert"></p>
-    <div class="colour-picker">
-      <input class="color">
-    </div>
+    <img src="images/ColorWheel-Base.png" alt="colour palette toggle" class="colour-palette-toggle" />
   </body>
 </html>
 

@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-app.use(express.static('.'));
+app.use(express.static('./public'));
 
 server.listen(process.env.PORT || 3000);
 
@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 
 // check out why it does not work when using just 'canvas.html' without public
 app.get('/canvas', function(req, res) {
-  res.sendfile('canvas.html');
+  res.sendfile('public/canvas.html');
 });
 
 io.on('connection', function(socket) {
