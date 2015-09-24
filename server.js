@@ -4,16 +4,17 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 app.use(express.static('./public'));
+app.set('views', __dirname + '/public/views');
+app.set('view engine', 'jade');
 
 server.listen(process.env.PORT || 3000);
 
 app.get('/', function(req, res) {
-  res.sendfile('index.html');
+  res.render('index.jade');
 });
 
-// check out why it does not work when using just 'canvas.html' without public
 app.get('/canvas', function(req, res) {
-  res.sendfile('public/canvas.html');
+  res.render('canvas.jade');
 });
 
 io.on('connection', function(socket) {
