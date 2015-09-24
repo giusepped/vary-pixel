@@ -53,11 +53,11 @@ $(document).ready(function() {
 
   function drawOn() {
     boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY]);
+    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor]);
   }
 
   socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, pixelColor);
+    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
   });
 
   $('.toggle-grid').click(function() {
