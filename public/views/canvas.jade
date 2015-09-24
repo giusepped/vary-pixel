@@ -1,0 +1,18 @@
+extends ./layout.jade
+
+block scripts
+    script(src='js/app.js')
+    script(src='js/pixel.js')
+    script(src='js/grid.js')
+    script(src='js/saveCanvas.js')
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='css/reset.css')
+
+block content
+    canvas.grid
+    canvas.board
+    canvas.colour-palette
+    button.btn.toggle-grid(type='button') Toggle Grid
+    button.btn.save-canvas(type='button') Save Drawing
+    p.save-alert
+    img.colour-palette-toggle(src='images/ColorWheel-Base.png', alt='colour palette toggle')

@@ -1,0 +1,41 @@
+extends ./layout.jade
+
+block scripts
+  link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', rel='stylesheet')
+
+block content
+  section(ng-controller='HomeController')
+    h1 Here is all the fun you can partake in
+    section(ng-controller='UserController')
+      form.sign-up
+        label Username:
+        input(type='text', name='username', placeholder='your username', ng-model='username')
+        label Email:
+        input(type='email', name='email', placeholder='your email address', ng-model='email')
+        label Password:
+        input(type='password', name='password', placeholder='password', -model='password')
+        label Password Confirmation:
+        input(type='password', name='password-confirmation', placeholder='password confirmation', ng-model='passwordConfirmation')
+        input(ng-click='saveUser(username, email, password, passwordConfirmation)', type='submit', value='submit')
+      form.sign-in
+        label Email:
+        input(type='text', name='username', placeholder='your username', ng-model='usernameLogIn')
+        label Password:
+        input(type='password', name='password', placeholder='password', ng-model='passwordLogIn')
+        input(ng-click='signInUser(usernameLogIn, passwordLogIn)', type='submit', value='submit')
+      button(ng-click='signOutUser()') Sign out
+    form
+      input(type='text', ng-model='boardDesc', placeholder='name your fun')
+      button.btn-info.addBoardBtn(ng-click='addBoard(boardDesc)') New Board
+    section
+      ul(ng-repeat='board in boards')
+        a(ng-href='', ng-show='!board.edit') {{board.desc}}
+        button.btn-info.newDescBtn(ng-click='board.edit = true', ng-show='!board.edit') Edit
+        form(ng-show='board.edit')
+          input(type='text', ng-model='newDescValue')
+          button.btn-primary.newDescSubmit(ng-click='editDesc($index, newDescValue)') Submit
+          button.btn-danger.boardDelBtn(ng-click='deleteBoard($index)') Delete
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js')
+    script(src='js/angular/homepage.js')
+    script(src='js/angular/controller/homepageController.js')
+    script(src='js/angular/controller/userController.js')
