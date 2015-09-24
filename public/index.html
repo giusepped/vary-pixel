@@ -12,17 +12,17 @@
 
   <body ng-controller="HomeController">
     <h1>Here is all the fun you can partake in</h1>
-    <section>
+    <section ng-controller="UserController">
       <form>
         <label>Username: </label>
-        <input type="text" name="username" placeholder="your username">
+        <input type="text" name="username" placeholder="your username" ng-model="username">
         <label>Email: </label>
-        <input type="email" name="email" placeholder="your email address">
+        <input type="email" name="email" placeholder="your email address" ng-model="email">
         <label>Password: </label>
-        <input type="password" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password" ng-model="password">
         <label>Password Confirmation: </label>
-        <input type="password" name="password-confirmation" placeholder="password confirmation">
-        <input ng-click="" type="submit" value="submit">
+        <input type="password" name="password-confirmation" placeholder="password confirmation" ng-model="passwordConfirmation">
+        <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
       </form>
     </section>
 
@@ -46,5 +46,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js"></script>
     <script src="js/angular/homepage.js"></script>
     <script src="js/angular/controller/homepageController.js"></script>
+    <script src="js/angular/controller/userController.js"></script>
   </body>
 </html>
