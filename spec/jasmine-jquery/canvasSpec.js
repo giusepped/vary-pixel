@@ -1,8 +1,7 @@
 describe('Canvas', function() {
-
+jasmine.getFixtures().fixturesPath = 'spec/test/fixtures';
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = '.';
-    loadFixtures('canvas.html');
+    loadFixtures('canvasfixture.html');
     $.holdReady(false);
   });
 

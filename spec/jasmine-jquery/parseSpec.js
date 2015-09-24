@@ -1,8 +1,9 @@
 describe('ParseCode', function() {
 
+  jasmine.getFixtures().fixturesPath = 'spec/test/fixtures';
+
   beforeEach(function() {
-    jasmine.getFixtures().fixturesPath = '.';
-    loadFixtures('./canvas.html');
+    loadFixtures('canvasfixture.html');
     $.holdReady(false);
   });
 
@@ -12,11 +13,8 @@ describe('ParseCode', function() {
 
   xit('should have the correct alert after saving', function(done) {
     $('.save-canvas').click();
-    setTimeout(function() {
-      window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-      expect($('.save-alert').html()).toContainText('Your drawing has been saved!');
-      done();
-    }, 500);
+    expect($('.save-alert').text()).toContainText('Your drawing has been saved!');
+    done();
   });
 
 });
