@@ -21,12 +21,6 @@ describe("BoardInterface", function() {
     expect(ctx.fillRect).toHaveBeenCalledWith(coordinate, coordinate, 15, 15);
   });
 
-  //
-  // it("can create a pixel with different colors", function() {
-  //
-  // });
-  //
-
   it('decreases the user limit count after painting', function() {
     spyOn(ctx, "getImageData").and.returnValue({data: [0,0,0,0]});
 

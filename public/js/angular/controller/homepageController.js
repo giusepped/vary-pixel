@@ -1,14 +1,17 @@
 homepage.controller('HomeController', ['$scope', function($scope) {
-  $scope.boards = [];
 
-  $scope.addBoard = function(title) {
-    if (title.length > 0) {
-      $scope.boards.push({
-        'desc': title,
-        'edit': false
-      });
-      $scope.boardDesc = '';
-    };
+  function saveToParse(object, description) {
+    object.save({
+      picture: null,
+      name: description
+    }, {
+      success: function(canvas) {
+        console.log('saved');
+      },
+      error: function(canvas, error) {
+        console.log('failed');
+      }
+    });
   }
 
   $scope.editDesc = function(index, newDesc) {
@@ -22,29 +25,12 @@ homepage.controller('HomeController', ['$scope', function($scope) {
     $scope.boards.splice(index, 1);
   }
 
-  $scope.testParse = function() {
+  $scope.addBoard = function(description) {
     var canvases = Parse.Object.extend("canvases");
-    var canvas = new canvases();
-
-    saveToParse.saving(canvas, $scope.boardDesc);
+    var object = new canvases();
+    if (description.length > 0) {
+      saveToParse(object, description);
+    };
+    $scope.boardDesc = ''
   };
 }]);
-
-var saveToParse = (function() {
-  function saving(object, description) {
-    object.save({
-      picture: null,
-      name: description
-    }, {
-      success: function(canvas) {
-        alert('New object created with objectId: ' + canvas.id);
-      },
-      error: function(canvas, error) {
-        alert('Failed to create new object, with error code: ' + error.message);
-      }
-    })
-  }
-  return {
-    saving: saving
-  }
-})();
