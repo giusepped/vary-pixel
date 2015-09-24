@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(ng-app='Homepage' lang='en')
   head
     meta(charset='utf-8')
     title Vary Pixel
@@ -24,7 +24,7 @@ html(lang='en')
       Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
     link(href='css/layout.css', rel='stylesheet')
     block scripts
-  body
+  body(ng-controller='UserController')
     nav.navbar.navbar-inverse
      .container-fluid
        .navbar-header
@@ -34,13 +34,13 @@ html(lang='en')
             li.active
               a(href='/') Home
             li
-              a(href='' ng-click='showLogIn=true' ng-show='!loggedIn') Log in
+              a(ng-click='showLogIn=true') Log in
               script.
                 console.log(Parse.User.current());
             li
-              a(href='' ng-click='showSignOut=true' ng-show='loggedIn') Log out
+              a(ng-click='showSignOut=true') Log out
             li
-              a(href='' ng-click='showSignUp=true' ng-show='!loggedIn') Sign up
+              a(ng-click='showSignUp=true') Sign up
           ul.nav.navbar-nav.navbar-right
             li.active
               form.searchbox(action='')
