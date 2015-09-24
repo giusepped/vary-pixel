@@ -2,14 +2,17 @@
   position: absolute;
   border: 1px solid black;
 }
+
 .board {
   position: absolute;
   border: 1px solid black;
 }
+
 .toggle-grid, .save-canvas {
   position: fixed;
   top: 0px;
 }
+
 .colour-palette-toggle {
   width: 50px;
   height: 50px;
@@ -17,14 +20,17 @@
   bottom: 20px;
   left: 20px;
 }
+
 .colour-palette {
   left: 50px;
   position: fixed;
   bottom: 50px;
 }
+
 .save-canvas {
   left: 100px;
 }
+
 .save-alert {
   position: fixed;
   bottom: 20px;
