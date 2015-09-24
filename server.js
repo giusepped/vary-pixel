@@ -13,10 +13,6 @@ app.get('/', function(req, res) {
   res.sendfile('views/index.jade');
 });
 
-// app.get('/canvas', function(req, res) {
-//   res.render('canvas.jade');
-// });
-
 io.on('connection', function(socket) {
   socket.on('coordinates', function(data) {
     socket.broadcast.emit('coordinates', data);

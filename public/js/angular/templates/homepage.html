@@ -32,11 +32,12 @@
     <input ng-model="boardDesc" placeholder="name your fun" type="text">
     <button class="btn-info addBoardBtn" ng-click="addBoard(boardDesc)">New Board</button>
   </form>
-  
+
     <section>
       <ul class="board-list">
-        <li ng-repeat="board in boards"><img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
-          <p>{{ board.get("description") }}</p>
+        <li ng-repeat="board in boards">
+          <!-- <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/> -->
+          <a ui-sref="canvas">{{ board.id }}</a>
         </li>
       </ul>
     </section>

@@ -1,8 +1,8 @@
-homepage.controller('HomeController', ['$scope', '$q', function($scope, $q) {
+homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', function($scope, $q, AllCanvas) {
 
   var canvases = Parse.Object.extend("canvases");
 
-  function getBoards() {
+  var getBoard = function() {
     var deferred = $q.defer();
     var query = new Parse.Query(canvases);
 
@@ -17,11 +17,13 @@ homepage.controller('HomeController', ['$scope', '$q', function($scope, $q) {
     return deferred.promise;
   }
 
-  getBoards();
-  var promise = getBoards();
+  var promise = getBoard();
   promise.then(function(boards) {
+    AllCanvas.setBoard(boards);
     $scope.boards = boards;
   });
+
+  console.log(AllCanvas.allBoards());
 
   function saveToParse(object, description) {
     object.save({

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+homepage.controller('CanvasController', ['$scope', function($scope) {
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
@@ -78,5 +78,4 @@ $(document).ready(function() {
   $('.save-canvas').click(function() {
     saveCanvas(board, "hello");
   });
-
-});
+}])
