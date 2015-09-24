@@ -1,0 +1,13 @@
+.thumbnail {
+  height: 300px;
+  width: 300px;
+}
+
+.board-list {
+  list-style-type: none;
+}
+
+.board-list li {
+  display: inline-block;
+  margin: 50px;
+}

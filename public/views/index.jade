@@ -2,6 +2,7 @@ extends ./layout.jade
 
 block scripts
   link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', rel='stylesheet')
+  link(href='css/index.css', rel='stylesheet')
 
 block content
   section(ng-controller='HomeController')
@@ -28,9 +29,10 @@ block content
       input(type='text', ng-model='boardDesc', placeholder='name your fun')
       button.btn-info.addBoardBtn(ng-click='addBoard(boardDesc)') New Board
     section
-      ul
+      ul(class='board-list')
         li(ng-repeat='board in boards')
-          p {{ board.id }}
+          img(ng-src='{{ board.get("picture").url()}}' class='thumbnail')
+          p {{ board.get("description") }}
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js')
     script(src='js/angular/homepage.js')
     script(src='js/angular/controller/homepageController.js')
