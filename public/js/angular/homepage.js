@@ -1,3 +1,12 @@
-var homepage = angular.module('Homepage', []);
+var homepage = angular.module('Homepage', ['ui.router']);
 
-Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
+homepage.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("/");
+
+  $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: "/js/angular/templates/homepage.html",
+      controller: "HomeController"
+    })
+}])
