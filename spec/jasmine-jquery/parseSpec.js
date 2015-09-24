@@ -13,8 +13,11 @@ describe('ParseCode', function() {
 
   xit('should have the correct alert after saving', function(done) {
     $('.save-canvas').click();
-    expect($('.save-alert').text()).toContainText('Your drawing has been saved!');
-    done();
+    setTimeout(function() {
+      expect($('.save-alert').text()).toContainText('Your drawing has been saved!');
+      done();
+    }, 3000);
+
   });
 
 });
