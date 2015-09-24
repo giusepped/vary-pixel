@@ -5,9 +5,9 @@ block scripts
   link(href='css/index.css', rel='stylesheet')
 
 block content
-  section(ng-controller='HomeController')
+  section(ng-controller='HomeController' class='overlay')
     h1 Here is all the fun you can partake in
-    section(ng-controller='UserController')
+    section
       div(class='user-reg' ng-show='showSignUp')
         form.sign-up
           label Username:
@@ -15,18 +15,20 @@ block content
           label Email:
           input(type='email', name='email', placeholder='your email address', ng-model='email')
           label Password:
-          input(type='password', name='password', placeholder='password', -model='password')
+          input(type='password', name='password', placeholder='password', ng-model='password')
           label Password Confirmation:
-          input(type='password', name='password-confirmation', placeholder='password confirmation', ng- model='passwordConfirmation')
-          input(ng-click='saveUser(username, email, password, passwordConfirmation)', type='submit',  value='submit')
+          input(type='password', name='password-confirmation', placeholder='password confirmation', ng-model='passwordConfirmation')
+          input(ng-click='saveUser(username, email, password, passwordConfirmation); showSignUp=false', type='submit',  value='submit')
       div(class='user-reg' ng-show='showLogIn')
         form.sign-in
           label Email:
           input(type='text', name='username', placeholder='your username', ng-model='usernameLogIn')
           label Password:
           input(type='password', name='password', placeholder='password', ng-model='passwordLogIn')
-          input(ng-click='signInUser(usernameLogIn, passwordLogIn)', type='submit', value='submit')
-        button(ng-click='signOutUser()') Sign out
+          input(ng-click='signInUser(usernameLogIn, passwordLogIn); showLogIn=false', type='submit', value='submit')
+      div(class='user-reg' ng-show='showSignOut')
+        p Are you sure you're ready to sign out?
+        button(ng-click='signOutUser(); showSignOut=false') Sign out
     form
       input(type='text', ng-model='boardDesc', placeholder='name your fun')
       button.btn-info.addBoardBtn(ng-click='addBoard(boardDesc)') New Board

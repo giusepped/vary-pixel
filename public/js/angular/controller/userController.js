@@ -1,5 +1,4 @@
 homepage.controller('UserController', ['$scope', function($scope) {
-
   $scope.saveUser = function(username, email, password) {
     var user = new Parse.User();
     user.set("username", username);
@@ -30,7 +29,11 @@ homepage.controller('UserController', ['$scope', function($scope) {
   $scope.signOutUser = function(username, password) {
     Parse.User.logOut();
     console.log('I have signed out');
-    console.log(Parse.User.current());
   }
 
+  $scope.loggedIn = false;
+
+  $scope.currentUser = function() {
+    $scope.loggedIn = Parse.User.current() ? true : false
+  }
 }]);
