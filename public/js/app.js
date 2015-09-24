@@ -19,10 +19,6 @@ $(document).ready(function() {
 
   new Grid(opts).draw(gridContext);
 
-  // $(".color").on("change", function() {
-  //   pixelColor = $(".color").val();
-  // });
-
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
@@ -80,8 +76,8 @@ $(document).ready(function() {
   })
 
   $('.save-canvas').click(function() {
-    //$('save-alert').text('Your drawing has been saved!');
-    saveCanvas(board, "hello");
+    updateCanvas(board);
+    // saveCanvas(board, "hello");
   });
 
 });
