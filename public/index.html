@@ -13,7 +13,7 @@
   <body ng-controller="HomeController">
     <h1>Here is all the fun you can partake in</h1>
     <section ng-controller="UserController">
-      <form>
+      <form class="sign-up">
         <label>Username: </label>
         <input type="text" name="username" placeholder="your username" ng-model="username">
         <label>Email: </label>
@@ -23,6 +23,13 @@
         <label>Password Confirmation: </label>
         <input type="password" name="password-confirmation" placeholder="password confirmation" ng-model="passwordConfirmation">
         <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
+      </form>
+      <form class="sign-in">
+        <label>Email: </label>
+        <input type="text" name="username" placeholder="your username" ng-model="usernameLogIn">
+        <label>Password: </label>
+        <input type="password" name="password" placeholder="password" ng-model="passwordLogIn">
+        <input ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
       </form>
     </section>
 
