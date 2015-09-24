@@ -4,43 +4,6 @@ block scripts
 
 block content
 
-  section(ng-controller='HomeController' class='overlay')
-    h1 Here is all the fun you can partake in
-    section
-      div(class='user-reg' ng-show='showSignUp')
-        form.sign-up
-          label Username:
-          input(type='text', name='username', placeholder='your username', ng-model='username')
-          label Email:
-          input(type='email', name='email', placeholder='your email address', ng-model='email')
-          label Password:
-          input(type='password', name='password', placeholder='password', ng-model='password')
-          label Password Confirmation:
-          input(type='password', name='password-confirmation', placeholder='password confirmation', ng-model='passwordConfirmation')
-          input(ng-click='saveUser(username, email, password, passwordConfirmation); showSignUp=false', type='submit',  value='submit')
-      div(class='user-reg' ng-show='showLogIn')
-        form.sign-in
-          label Email:
-          input(type='text', name='username', placeholder='your username', ng-model='usernameLogIn')
-          label Password:
-          input(type='password', name='password', placeholder='password', ng-model='passwordLogIn')
-          input(ng-click='signInUser(usernameLogIn, passwordLogIn); showLogIn=false', type='submit', value='submit')
-      div(class='user-reg' ng-show='showSignOut')
-        p Are you sure you're ready to sign out?
-        button(ng-click='signOutUser(); showSignOut=false') Sign out
-    form
-      input(type='text', ng-model='boardDesc', placeholder='name your fun')
-      button.btn-info.addBoardBtn(ng-click='addBoard(boardDesc)') New Board
-    section
-      ul(class='board-list')
-        li(ng-repeat='board in boards')
-          img(ng-src='{{ board.get("picture").url()}}' class='thumbnail')
-          p {{ board.get("description") }}
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js')
-    script(src='js/angular/homepage.js')
-    script(src='js/angular/controller/homepageController.js')
-    script(src='js/angular/controller/userController.js')
-=======
   div(ng-app='Homepage')
     div(ui-view)
->>>>>>> 3201307e2495c78c6eb48811ede305c2df048088
+
