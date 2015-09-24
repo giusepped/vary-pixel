@@ -8,5 +8,9 @@ homepage.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
       url: '/',
       templateUrl: "/js/angular/templates/homepage.html",
       controller: "HomeController"
+    }),
+    .state('game' {
+      url: '/',
+      template
     })
 }])
