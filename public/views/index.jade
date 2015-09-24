@@ -1,10 +1,9 @@
 extends ./layout.jade
 
 block scripts
-  link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', rel='stylesheet')
-  link(href='css/index.css', rel='stylesheet')
 
 block content
+
   section(ng-controller='HomeController' class='overlay')
     h1 Here is all the fun you can partake in
     section
@@ -41,3 +40,7 @@ block content
     script(src='js/angular/homepage.js')
     script(src='js/angular/controller/homepageController.js')
     script(src='js/angular/controller/userController.js')
+=======
+  div(ng-app='Homepage')
+    div(ui-view)
+>>>>>>> 3201307e2495c78c6eb48811ede305c2df048088

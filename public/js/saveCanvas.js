@@ -21,3 +21,20 @@ function hideFlashMessage(message) {
     $(this).remove();
   });
 }
+
+function updateCanvas(board) {
+  var canvasData = board.toDataURL('image/png');
+  var query = new Parse.Query(canvases);
+  var file = new Parse.File("canvasData.txt", { base64: canvasData });
+  query.get("a1QeV19MW5", {
+    success:function(currentCanvas) {
+      currentCanvas.set("picture", file);
+      currentCanvas.save();
+      var message = $('.save-alert').text('Your drawing has been updated!');
+      hideFlashMessage(message);
+    },
+    error: function(currentCanvas) {
+      console.log("Could not find the canvas");
+    }
+  });
+}

@@ -1,0 +1,51 @@
+<body ng-controller="UserController">
+  <h1>Here is all the fun you can partake in</h1>
+  <section ng-controller="Home">
+    <div class="user-reg" ng-show="showSignUp">
+      <form class="sign-up">
+        <label>Username:
+          <input name="username" ng-model="username" placeholder="your username" type="text">
+        </label>
+        <label>Email:
+          <input name="email" ng-model="email" placeholder="your email address" type="email">
+        </label>
+        <label>Password:
+          <input name="password" ng-model="password" placeholder="password" type="password">
+        </label>
+        <label>Password Confirmation:
+          <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
+        </label>
+        <input ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
+      </form>
+    </div>
+    <div class="user-reg" ng-show="showLogIn">
+      <form class="sign-in">
+        <label>Email:
+          <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
+        </label>
+        <label>Password:
+          <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
+        </label>
+        <input ng-click="signInUser(usernameLogIn, passwordLogIn); showLogIn=false" type="submit" value="submit">
+      </form>
+    </div>
+    <div class="user-reg" ng-show="showSignOut">
+      <p> Are you sure you're ready to sign out?</p>
+      <button ng-click="signOutUser(); showSignOut=false">Sign out</button>
+    </div>
+  </section>
+
+  <form>
+    <input ng-model="boardDesc" placeholder="name your fun" type="text">
+    <button class="btn-info addBoardBtn" ng-click="addBoard(boardDesc)">New Board</button>
+  </form>
+
+    <section>
+      <ul class="board-list">
+        <li ng-repeat="board in boards">
+          <img class="img-thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
+          <a ui-sref="canvas" ng-model="currentCanvas" ng-click="setCurrent($index)">{{ board.id }}</a>
+        </li>
+      </ul>
+    </section>
+</body>

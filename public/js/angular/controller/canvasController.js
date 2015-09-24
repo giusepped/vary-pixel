@@ -1,4 +1,4 @@
-$(document).ready(function() {
+homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope, AllCanvas) {
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
@@ -13,6 +13,18 @@ $(document).ready(function() {
   var opts = {
     distance: pixelSize
   };
+
+  var index = AllCanvas.getCurrent();
+  var imgUrl = AllCanvas.allBoards()[index].attributes.picture.url();
+
+  var drawChosenCanvas = new Image();
+
+  drawChosenCanvas.crossOrigin = "Anonymous"
+  drawChosenCanvas.src = imgUrl;
+
+  drawChosenCanvas.onload = function() {
+    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
+  }
 
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
@@ -76,8 +88,6 @@ $(document).ready(function() {
   })
 
   $('.save-canvas').click(function() {
-    updateCanvas(board);
-    // saveCanvas(board, "hello");
+    saveCanvas(board, "hello");
   });
-
-});
+}])
