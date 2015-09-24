@@ -15,7 +15,7 @@ describe('Homepage', function() {
     scope.addBoard(scope.boardDesc);
   }
 
-  it('starts with no board', function () {
+  it('starts with no board', function() {
     expect(scope.boards.length).toEqual(0);
   });
 
@@ -33,20 +33,24 @@ describe('Homepage', function() {
     expect(scope.boards[0].desc).toEqual('not hello')
   });
 
-  it('can delete a board', function () {
+  it('can delete a board', function() {
     addBoard('halloo');
     scope.deleteBoard(0);
     expect(scope.boards.length).toEqual(0);
   });
 
-  it('cannot create board with empty desc', function () {
+  it('cannot create board with empty desc', function() {
     addBoard('');
     expect(scope.boards.length).toEqual(0);
   });
 
-  it('cannot edit and input empty desc', function () {
+  it('cannot edit and input empty desc', function() {
     addBoard('bottle');
-    scope.editDesc(0,'');
+    scope.editDesc(0, '');
     expect(scope.boards[0].desc).toEqual('bottle');
+  });
+
+  xit('can save a board', function() {
+    spyOn(scope.testParse);
   });
 });
