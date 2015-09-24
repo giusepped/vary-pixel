@@ -12,17 +12,17 @@ describe('homepage', function() {
   var editBtn = element(by.className('newDescBtn'));
   var delBtn = element(by.className('boardDelBtn'));
 
-  it('should have a title', function() {
+  xit('should have a title', function() {
     expect(browser.getTitle()).toEqual('Vary Pixel');
   });
 
-  it('should have list of all boards', function() {
+  xit('should have list of all boards', function() {
     boardTitle.sendKeys('test');
     addBoardBtn.click();
     expect(board.get(0).getText()).toContain('test');
   });
 
-  it('edit a board desc', function () {
+  xit('edit a board desc', function () {
     boardTitle.sendKeys('test');
     addBoardBtn.click();
     editBtn.click();
@@ -31,7 +31,7 @@ describe('homepage', function() {
     expect(board.get(0).getText()).toContain('test2')
   });
 
-  it('can delete a board', function () {
+  xit('can delete a board', function () {
     boardTitle.sendKeys('test');
     addBoardBtn.click();
     editBtn.click();
