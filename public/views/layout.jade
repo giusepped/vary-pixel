@@ -19,13 +19,13 @@ html(lang='en', ng-app='Homepage')
         div
           ul.nav.navbar-nav
             li.active
-              a(href='#') Home
+              a(href='/') Home
             li
-              a(href='#') Log in
+              a(href='' ng-click='showLogIn=true') Log in
             li
-              a(href='#') Log out
+              a(href='') Log out
             li
-              a(href='#') Sign up
+              a(href='' ng-click='showSignUp=true') Sign up
           ul.nav.navbar-nav.navbar-right
             li.active
               form.searchbox(action='')
