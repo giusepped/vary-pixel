@@ -76,7 +76,8 @@ $(document).ready(function() {
   })
 
   $('.save-canvas').click(function() {
-    saveCanvas(board, "hello");
+    updateCanvas(board);
+    // saveCanvas(board, "hello");
   });
 
 });

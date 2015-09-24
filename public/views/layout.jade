@@ -19,7 +19,27 @@ html(lang='en')
     script(src='js/angular/providers/allBoardService.js')
     script(type='text/javascript').
       Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
+    link(href='css/layout.css', rel='stylesheet')
     block scripts
   body
+    nav.navbar.navbar-inverse
+     .container-fluid
+       .navbar-header
+          a.navbar-brand(href='#') VARY-PIXEL
+        div
+          ul.nav.navbar-nav
+            li.active
+              a(href='#') Home
+            li
+              a(href='#') Log in
+            li
+              a(href='#') Log out
+            li
+              a(href='#') Sign up
+          ul.nav.navbar-nav.navbar-right
+            li.active
+              form.searchbox(action='')
+                input.search(type='text', placeholder='Type here')
+                input.submit(type='submit', value='Search')
+
     block content
-    

@@ -19,7 +19,7 @@ var PixelGenerator = (function() {
 
   function createDot(ctx, x, y, size, pixelColor) {
     if (WhatColour.pickColour(ctx, x, y) === 'rgba(0,0,0,0)') {
-      ctx.fillStyle = pixelColor
+      ctx.fillStyle = pixelColor;
       ctx.fillRect(x, y, size, size);
       return true
     } else {
