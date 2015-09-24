@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
-  var canvases = Parse.Object.extend("canvases");
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
