@@ -43,7 +43,7 @@
     <section>
       <ul class="board-list">
         <li ng-repeat="board in boards">
-          <img class="img-thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
+          <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
           <a ui-sref="canvas" ng-model="currentCanvas" ng-click="setCurrent($index)">{{ board.id }}</a>
         </li>
       </ul>
