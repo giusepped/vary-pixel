@@ -2,7 +2,6 @@ homepage.controller('HomeController', ['$scope', '$q', function($scope, $q) {
 
   var canvases = Parse.Object.extend("canvases");
 
-
   function getBoards() {
     var deferred = $q.defer();
     var query = new Parse.Query(canvases);
@@ -18,6 +17,7 @@ homepage.controller('HomeController', ['$scope', '$q', function($scope, $q) {
     return deferred.promise;
   }
 
+  getBoards();
   var promise = getBoards();
   promise.then(function(boards) {
     $scope.boards = boards;
