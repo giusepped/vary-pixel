@@ -10,7 +10,7 @@ app.set('view engine', 'jade');
 server.listen(process.env.PORT || 3000);
 
 app.get('/', function(req, res) {
-  res.sendfile('views/index.jade');
+  res.render('views/index.jade');
 });
 
 io.on('connection', function(socket) {

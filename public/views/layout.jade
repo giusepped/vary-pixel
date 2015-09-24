@@ -4,8 +4,11 @@ html(lang='en')
     meta(charset='utf-8')
     title Vary Pixel
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', rel='stylesheet')
-    link(rel='stylesheet', type='text/css', href='css/style.css')
     link(rel='stylesheet', type='text/css', href='css/reset.css')
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='css/layout.css')
+    link(rel='stylesheet', type='text/css', href='css/index.css')
+
     script(type='text/javascript', src='/socket.io/socket.io.js')
     script(src='https://code.jquery.com/jquery-2.1.4.min.js')
     script(src='https://cdn.socket.io/socket.io-1.3.5.js')
@@ -29,13 +32,15 @@ html(lang='en')
         div
           ul.nav.navbar-nav
             li.active
-              a(href='#') Home
+              a(href='/') Home
             li
-              a(href='#') Log in
+              a(href='' ng-click='showLogIn=true' ng-show='!loggedIn') Log in
+              script.
+                console.log(Parse.User.current());
             li
-              a(href='#') Log out
+              a(href='' ng-click='showSignOut=true' ng-show='loggedIn') Log out
             li
-              a(href='#') Sign up
+              a(href='' ng-click='showSignUp=true' ng-show='!loggedIn') Sign up
           ul.nav.navbar-nav.navbar-right
             li.active
               form.searchbox(action='')
