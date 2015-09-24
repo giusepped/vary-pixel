@@ -1,4 +1,27 @@
-homepage.controller('HomeController', ['$scope', function($scope) {
+homepage.controller('HomeController', ['$scope', '$q', function($scope, $q) {
+
+  var canvases = Parse.Object.extend("canvases");
+
+
+  function getBoards() {
+    var deferred = $q.defer();
+    var query = new Parse.Query(canvases);
+
+    query.find({
+      success: function(results) {
+        deferred.resolve(results);
+      },
+      error: function(error) {
+        deferred.reject(error.message);
+      }
+    });
+    return deferred.promise;
+  }
+
+  var promise = getBoards();
+  promise.then(function(boards) {
+    $scope.boards = boards;
+  });
 
   function saveToParse(object, description) {
     object.save({
@@ -14,19 +37,7 @@ homepage.controller('HomeController', ['$scope', function($scope) {
     });
   }
 
-  $scope.editDesc = function(index, newDesc) {
-    if (newDesc.length > 0) {
-      $scope.boards[index].desc = newDesc;
-    };
-    $scope.boards[index].edit = false;
-  }
-
-  $scope.deleteBoard = function(index) {
-    $scope.boards.splice(index, 1);
-  }
-
   $scope.addBoard = function(description) {
-    var canvases = Parse.Object.extend("canvases");
     var object = new canvases();
     if (description.length > 0) {
       saveToParse(object, description);
