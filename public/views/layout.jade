@@ -34,11 +34,11 @@ html(ng-app='Homepage' lang='en')
             li.active
               a(href='/') Home
             li
-              a(ng-click='showLogIn=true' ng-show=!'isLoggedIn()') Log in
+              a(ng-click='showLogIn=true; showSignUp=false; showSignOut=false') Log in
             li
-              a(ng-click='showSignUp=true' ng-show=!'isLoggedIn()') Sign up
+              a(ng-click='showSignUp=true') Sign up
             li
-              a(ng-click='showSignOut=true' ng-show='isLoggedIn()') Log out
+              a(ng-click='showSignOut=true') Log out
           ul.nav.navbar-nav.navbar-right
             li.active
               form.searchbox(action='')
