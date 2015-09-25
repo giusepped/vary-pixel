@@ -45,4 +45,5 @@ homepage.controller('UserController', ['$scope', function($scope) {
   $scope.currentUser = {
     name: $scope.username
   }
+
 }]);
