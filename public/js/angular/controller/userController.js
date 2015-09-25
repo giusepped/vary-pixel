@@ -35,5 +35,6 @@ homepage.controller('UserController', ['$scope', function($scope) {
 
   $scope.currentUser = function() {
     $scope.loggedIn = Parse.User.current() ? true : false
+    console.log($scope.loggedIn);
   }
 }]);

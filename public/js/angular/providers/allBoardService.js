@@ -10,8 +10,8 @@ homepage.service('AllCanvas', function() {
     return Boards;
   }
 
-  var setCurrent = function (index) {
-    current = index;
+  var setCurrent = function (id) {
+    current = id;
   }
 
   var getCurrent = function () {
