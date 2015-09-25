@@ -29,16 +29,16 @@ html(ng-app='Homepage' lang='en')
      .container-fluid
        .navbar-header
           a.navbar-brand(href='#') VARY-PIXEL
-        div
+        div.
           ul.nav.navbar-nav
             li.active
               a(href='/') Home
             li
-              a(ng-click='showLogIn=true; showSignUp=false; showSignOut=false') Log in
+              a(ng-click='showLogIn=!showLogIn;') Log in
             li
-              a(ng-click='showSignUp=true; showLogIn=false; showSignOut=false;') Sign up
+              a(ng-click='showSignUp=!showSignUp;') Sign up
             li
-              a(ng-click='showSignOut=true; showLogIn=false; showSignUp=false;') Log out
+              a(ng-click='showSignOut=!showSignOut;') Log out
           ul.nav.navbar-nav.navbar-right
             li.active
               form.searchbox(action='')
