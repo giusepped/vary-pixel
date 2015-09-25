@@ -15,11 +15,17 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
   };
 
   var imgID = AllCanvas.getCurrent();
-  console.log(imgID);
-  var imgUrl = function(array) {
-    array = AllCanvas.allBoards();
+  var imgUrl = function() {
+    var array = AllCanvas.allBoards();
     for (var i = 0; i < array.length; i++) {
       if (array[i].id === imgID) return array[i].attributes.picture.url();
+    }
+  }
+
+  var imgDesc = function() {
+    var array = AllCanvas.allBoards();
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].id === imgID) return array[i].attributes.description;
     }
   }
 
@@ -94,6 +100,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
   })
 
   $('.save-canvas').click(function() {
-    saveCanvas(board, "hello");
+    saveCanvas(board, imgDesc());
   });
 }])

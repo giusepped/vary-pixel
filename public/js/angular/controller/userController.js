@@ -31,10 +31,12 @@ homepage.controller('UserController', ['$scope', function($scope) {
     console.log('I have signed out');
   }
 
-  $scope.loggedIn = false;
-
-  $scope.currentUser = function() {
-    $scope.loggedIn = Parse.User.current() ? true : false
-    console.log($scope.loggedIn);
+  function isLoggedIn () {
+    if (Parse.User.current()) {
+      return true;
+    } else {
+      return false;
+    };
   }
+
 }]);
