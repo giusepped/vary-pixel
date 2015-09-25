@@ -34,11 +34,11 @@ html(lang='en')
             li.active
               a(href='/') Home
             li
-              a.logInButton(ng-click='showLogIn=true;') Log in
+              a.logInButton(ng-click='showLogIn=true;' ng-show="username === 'Logged out'") Log in
             li
-              a.logOutButton(ng-click='showSignOut=true;') Log out
+              a.logOutButton(ng-click='showSignOut=true;' ng-hide="username === 'Logged out'") Log out
             li
-              a.signUpButton(ng-click='showSignUp=true;') Sign up
+              a.signUpButton(ng-click='showSignUp=true;' ng-show="username === 'Logged out'") Sign up
             li
               p(class='username') {{ username }}
           ul.nav.navbar-nav.navbar-right
