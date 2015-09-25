@@ -1,8 +1,8 @@
-<body ng-controller="UserController">
+<body class="home" ng-controller="UserController">
   <h1>Here is all the fun you can partake in</h1>
   <section ng-controller="HomeController">
-    <div class="user-reg" ng-show="showSignUp">
-      <form class="sign-up">
+    <div class="user-reg" ng-show="navStatus">
+      <form class="sign-up" ng-show="navStatus === 'signUp'">
         <label>Username:
           <input name="username" ng-model="username" placeholder="your username" type="text">
         </label>
@@ -15,23 +15,22 @@
         <label>Password Confirmation:
           <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
         </label>
-        <input ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
+        <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
       </form>
-    </div>
-    <div class="user-reg" ng-show="showLogIn">
-      <form class="sign-in">
+      <form class="sign-in" ng-show="navStatus === 'login'">
         <label>Email:
           <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
         </label>
         <label>Password:
           <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
         </label>
-        <input ng-click="signInUser(usernameLogIn, passwordLogIn); showLogIn=false" type="submit" value="submit">
+        <input ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
       </form>
-    </div>
-    <div class="user-reg" ng-show="showSignOut">
-      <p> Are you sure you're ready to sign out?</p>
-      <button ng-click="signOutUser(); showSignOut=false">Sign out</button>
+      <div ng-show="navStatus === 'logOut'">
+        <p> Are you sure you're ready to sign out?</p>
+        <button ng-click="signOutUser()">Sign out</button>
+      </div>
+      <button ng-click="cancelNavBar()">Cancel</button>
     </div>
   </section>
 

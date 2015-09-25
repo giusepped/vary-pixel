@@ -34,15 +34,15 @@ html(ng-app='Homepage' lang='en')
             li.active
               a(href='/') Home
             li
-              a(ng-click='showLogIn=true; showSignUp=false; showSignOut=false') Log in
+              a(ng-click="navStatus='login'") Log in
             li
-              a(ng-click='showSignUp=true; showLogIn=false; showSignOut=false;') Sign up
+              a(ng-click="navStatus='signUp'") Sign up
             li
-              a(ng-click='showSignOut=true; showLogIn=false; showSignUp=false;') Log out
+              a(ng-click="navStatus='logOut'") Log out
           ul.nav.navbar-nav.navbar-right
             li.active
               form.searchbox(action='')
                 input.search(type='text', placeholder='Type here')
                 input.submit(type='submit', value='Search')
-
+    
     block content

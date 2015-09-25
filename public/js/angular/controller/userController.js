@@ -39,5 +39,11 @@ homepage.controller('UserController', ['$scope', function($scope) {
     console.log('I have signed out');
   }
 
+  $scope.cancelNavBar = function() {
+    $scope.navStatus = null;
+  }
+
+  $scope.navStatus;
+
 
 }]);
