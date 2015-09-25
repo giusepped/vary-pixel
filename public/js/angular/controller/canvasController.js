@@ -14,13 +14,19 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
     distance: pixelSize
   };
 
-  var index = AllCanvas.getCurrent();
-  var imgUrl = AllCanvas.allBoards()[index].attributes.picture.url();
+  var imgID = AllCanvas.getCurrent();
+  console.log(imgID);
+  var imgUrl = function(array) {
+    array = AllCanvas.allBoards();
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].id === imgID) return array[i].attributes.picture.url();
+    }
+  }
 
   var drawChosenCanvas = new Image();
 
   drawChosenCanvas.crossOrigin = "Anonymous"
-  drawChosenCanvas.src = imgUrl;
+  drawChosenCanvas.src = imgUrl();
 
   drawChosenCanvas.onload = function() {
     boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
@@ -88,6 +94,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
   })
 
   $('.save-canvas').click(function() {
-    saveCanvas(board, "hello");
+    // saveCanvas(board, "hello");
+    updateCanvas(board, imgID);
   });
 }])
