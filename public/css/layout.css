@@ -5,3 +5,7 @@
 a[ng-click]{
     cursor: pointer;
 }
+
+.username {
+  color: #ffffff;
+}
