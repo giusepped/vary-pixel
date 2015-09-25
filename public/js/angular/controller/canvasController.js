@@ -1,4 +1,4 @@
-homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', function($scope, AllCanvas, $timeout) {
+homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$interval', function($scope, AllCanvas, $timeout, $interval) {
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
@@ -112,5 +112,10 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', func
       angular.element('.save-canvas').trigger('click');
     }, 300);
   }
+
+  $interval(function(){
+    console.log("I am happening");
+    angular.element('.save-canvas').trigger('click');
+  }, 6000);
 
 }])

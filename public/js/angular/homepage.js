@@ -7,11 +7,17 @@ homepage.config(['$stateProvider', '$urlRouterProvider', function($stateProvider
     .state('home', {
       url: '/',
       templateUrl: "/js/angular/templates/homepage.html",
-      controller: "HomeController"
+      controller: "HomeController",
+      data: {
+        requireLogin: false
+      }
     })
     .state('canvas', {
       url: '/',
       templateUrl: "/js/angular/templates/canvas.html",
-      controller: "CanvasController"
+      controller: "CanvasController",
+      data: {
+        requireLogin: true
+      }
     })
 }])
