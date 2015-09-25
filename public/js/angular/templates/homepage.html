@@ -15,7 +15,7 @@
         <label>Password Confirmation:
           <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
         </label>
-        <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
+        <input class="signUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
       </form>
       <form class="sign-in" ng-show="navStatus === 'login'">
         <label>Email:
@@ -38,7 +38,6 @@
     <input ng-model="boardDesc" placeholder="name your fun" type="text">
     <button class="btn-info addBoardBtn" ng-click="addBoard(boardDesc)">New Board</button>
   </form>
-
     <section>
       <ul class="board-list">
         <li ng-repeat="board in boards">
@@ -47,4 +46,3 @@
         </li>
       </ul>
     </section>
-</body>

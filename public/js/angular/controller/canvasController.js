@@ -1,4 +1,4 @@
-homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope, AllCanvas) {
+homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', function($scope, AllCanvas, $timeout) {
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
@@ -14,34 +14,27 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
     distance: pixelSize
   };
 
-  var imgID = AllCanvas.getCurrent();
-  var imgUrl = function() {
-    var array = AllCanvas.allBoards();
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === imgID) return array[i].attributes.picture.url();
-    }
-  }
-
-  var imgDesc = function() {
-    var array = AllCanvas.allBoards();
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === imgID) return array[i].attributes.description;
-    }
-  }
-
   var drawChosenCanvas = new Image();
 
-  drawChosenCanvas.crossOrigin = "Anonymous"
-  drawChosenCanvas.src = imgUrl();
+  var colourPaletteImg = new Image();
 
-  drawChosenCanvas.onload = function() {
-    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
+  function imgID() {
+   return AllCanvas.getCurrent();
   }
 
-  board.height = board.width = boardSize;
-  background.height = background.width = boardSize;
+  function imgUrl() {
+    var array = AllCanvas.allBoards();
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].id === imgID()) return array[i].attributes.picture.url();
+    }
+  }
 
-  new Grid(opts).draw(gridContext);
+  function imgDesc() {
+    var array = AllCanvas.allBoards();
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].id === imgID()) return array[i].attributes.description;
+    }
+  }
 
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
@@ -64,13 +57,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
     $(board).off("mousemove");
   })
 
-  var colourPaletteImg = new Image();
-  colourPaletteImg.onload = function() {
-    paletteCanvas.width = paletteCanvas.height = 300;
-    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
-  }
-  colourPaletteImg.src = 'images/ColorWheel-Base.png'
-
   function drawOn() {
     boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
     socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor]);
@@ -83,8 +69,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
   $('.toggle-grid').click(function() {
     $('.grid').toggle();
   });
-
-  $('.colour-palette').hide();
 
   $('.colour-palette-toggle').click(function() {
     $('.colour-palette').fadeToggle('slow');
@@ -100,6 +84,33 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
   })
 
   $('.save-canvas').click(function() {
-    saveCanvas(board, imgDesc());
+    updateCanvas(board, imgID());
   });
+
+  $('.colour-palette').hide();
+
+  drawChosenCanvas.crossOrigin = "Anonymous";
+
+  drawChosenCanvas.onload = function() {
+    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
+  }
+
+  drawChosenCanvas.src = imgUrl();
+  board.height = board.width = boardSize;
+  background.height = background.width = boardSize;
+
+  new Grid(opts).draw(gridContext);
+
+  colourPaletteImg.onload = function() {
+    paletteCanvas.width = paletteCanvas.height = 300;
+    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
+  }
+  colourPaletteImg.src = 'images/ColorWheel-Base.png';
+
+  if(imgUrl() === undefined){
+    $timeout(function(){
+      angular.element('.save-canvas').trigger('click');
+    }, 300);
+  }
+
 }])

@@ -24,10 +24,11 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', function($sc
   function saveToParse(object, description) {
     object.save({
       picture: null,
-      name: description
+      description: description
     }, {
       success: function(canvas) {
         console.log('saved');
+        AllCanvas.setCurrent(canvas.id);
       },
       error: function(canvas, error) {
         console.log('failed');
@@ -37,6 +38,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', function($sc
 
   $scope.addBoard = function(description) {
     var object = new canvases();
+    saveToParse(object, $scope.boardDesc);
     $scope.boardDesc = ''
   };
 
