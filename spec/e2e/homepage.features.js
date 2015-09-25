@@ -1,7 +1,7 @@
 describe('homepage', function() {
 
   beforeEach(function() {
-    browser.get('http://0.0.0.0:8080');
+    browser.get('http://localhost:3000');
   });
 
   var board = element.all(by.repeater('board in boards'));
@@ -12,7 +12,7 @@ describe('homepage', function() {
   var editBtn = element(by.className('newDescBtn'));
   var delBtn = element(by.className('boardDelBtn'));
 
-  xit('should have a title', function() {
+  it('should have a title', function() {
     expect(browser.getTitle()).toEqual('Vary Pixel');
   });
 
