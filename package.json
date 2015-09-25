@@ -4,7 +4,7 @@
   "description": "VARY-PIXEL PROJECT ==================",
   "main": "public/js/app.js",
   "scripts": {
-    "test": "grunt jasmine && mocha spec/mocha-tests",
+    "test": "grunt jasmine",
     "start": "node server.js",
     "karma": "karma start spec/unit/karma.conf.js",
     "pro": "protractor spec/e2e/prot.conf.js",
