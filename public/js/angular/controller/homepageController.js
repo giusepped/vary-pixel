@@ -41,7 +41,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', function($sc
     $scope.boardDesc = ''
   };
 
-  $scope.setCurrent = function(index) {
-    AllCanvas.setCurrent(index);
+  $scope.setCurrent = function(id) {
+    AllCanvas.setCurrent(id);
   }
 }]);
