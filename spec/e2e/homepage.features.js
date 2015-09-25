@@ -12,7 +12,7 @@ describe('homepage', function() {
   var submitLogOut = element(by.className('logOutSubmit'));
   var signInUsername = element(by.model('usernameLogIn'));
   var signInPassword = element(by.model('passwordLogIn'));
-  var signUpusername = element(by.model('username'));
+  var signUpUsername = element(by.model('username'));
   var signUpEmail = element(by.model('email'));
   var signUpPassword = element(by.model('password'));
   var signUpPasswordConfirmation = element(by.model('passwordConfirmation'));
@@ -28,7 +28,7 @@ describe('homepage', function() {
       expect(element(by.className('sign-in')).isDisplayed()).toBe(true);
     });
 
-    xit('should be able to log in a user', function(){
+    it('should be able to log in a user', function(){
       signInBtn.click();
       signInUsername.sendKeys('bex');
       signInPassword.sendKeys('12345678');
@@ -38,7 +38,7 @@ describe('homepage', function() {
 
     xit('should be able to sign up a user', function(){
       signUpBtn.click();
-      signUpusername.sendKeys('benja');
+      signUpUsername.sendKeys('benja');
       signUpEmail.sendKeys('b@test.com');
       signUpPassword.sendKeys('12345');
       signUpPasswordConfirmation.sendKeys('12345');

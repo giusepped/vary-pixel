@@ -10,8 +10,7 @@ homepage.controller('UserController', ['$scope', function($scope) {
     user.set("email", email);
     user.signUp(null, {
       success:function(user){
-        $scope.username = user.get("username");
-        console.log($scope.username);
+        console.log('signed up');
       },
       error:function(user){
         console.log("didn't work");
@@ -42,8 +41,9 @@ homepage.controller('UserController', ['$scope', function($scope) {
     console.log($scope.username);
   }
 
-  $scope.currentUser = {
-    name: $scope.username
-  }
+  function toggleUserReg(username) {
+    if(username === "Logged in") {
 
+    }
+  }
 }]);
