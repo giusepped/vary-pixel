@@ -36,11 +36,6 @@ homepage.controller('UserController', ['$scope', function($scope) {
     });
   }
 
-  // $('.logInBtn').click(function() {
-  //   $('.user-reg login').show()
-  // })
-
-
   $scope.signOutUser = function(username, password) {
     Parse.User.logOut();
     loggedIn = false;
@@ -50,11 +45,25 @@ homepage.controller('UserController', ['$scope', function($scope) {
     $scope.cancelNavBar();
   }
 
-  $scope.cancelNavBar = function() {
-    $scope.navStatus = null;
-  }
+  // $scope.userAction = function (action) {
+  //   console.log(action);
+  //   return action;
+  // }
 
-  $scope.navStatus;
-
+  $('.signInButton').click(function() {
+    $('.sign-in').toggle();
+    $('.sign-up').hide();
+    $('.sign-out').hide();
+  })
+  $('.signUpButton').click(function() {
+    $('.sign-up').toggle();
+    $('.sign-out').hide();
+    $('.sign-in').hide();
+  })
+  $('.signOutButton').click(function() {
+    $('.sign-out').toggle();
+    $('.sign-up').hide();
+    $('.sign-in').hide();
+  })
 
 }]);

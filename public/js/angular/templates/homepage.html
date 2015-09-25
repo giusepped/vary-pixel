@@ -1,8 +1,16 @@
-<body class="home" ng-controller="UserController">
   <h1>Here is all the fun you can partake in</h1>
-  <section ng-controller="HomeController">
-    <div class="user-reg" ng-show="navStatus">
-      <form class="sign-up" ng-show="navStatus === 'signUp'">
+  <section >
+    <!-- <div class="user-reg"> -->
+    <form class="sign-in user-reg">
+      <label>Email:
+        <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
+      </label>
+      <label>Password:
+        <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
+      </label>
+      <input class="signInSubmit" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
+    </form>
+      <form class="sign-up user-reg">
         <label>Username:
           <input name="username" ng-model="username" placeholder="your username" type="text">
         </label>
@@ -17,21 +25,13 @@
         </label>
         <input class="signUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
       </form>
-      <form class="sign-in" ng-show="navStatus === 'login'">
-        <label>Email:
-          <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
-        </label>
-        <label>Password:
-          <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
-        </label>
-        <input ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
-      </form>
-      <div ng-show="navStatus === 'logOut'">
+
+      <div class="sign-out user-reg">
         <p> Are you sure you're ready to sign out?</p>
-        <button ng-click="signOutUser()">Sign out</button>
+        <button class='logOutSubmit' ng-click="signOutUser()">Sign out</button>
       </div>
-      <button ng-click="cancelNavBar()">Cancel</button>
-    </div>
+      <!-- <button ng-click="cancelNavBar()">Cancel</button> -->
+    <!-- </div> -->
   </section>
 
   <form>

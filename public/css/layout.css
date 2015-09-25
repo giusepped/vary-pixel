@@ -9,3 +9,7 @@ a[ng-click]{
 .username {
   color: #ffffff;
 }
+
+.user-reg {
+  display: none;
+}

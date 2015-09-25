@@ -24,27 +24,28 @@ html(lang='en')
       Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
     link(href='css/layout.css', rel='stylesheet')
     block scripts
-  body(ng-app='Homepage' ng-controller='UserController')
-    nav.navbar.navbar-inverse
-     .container-fluid
-       .navbar-header
-          a.navbar-brand(href='#') VARY-PIXEL
-        div.
-          ul.nav.navbar-nav
-            li.active
-              a(href='/') Home
-            li
-              a.logInButton(ng-click="navStatus='login'") Log in
-            li
-              a.logOutButton(ng-click="navStatus='signUp'") Sign up
-            li
-              a.signUpButton(ng-click="navStatus='logOut'") Log out
-            li
-              p(class='username') {{ username }}            
-          ul.nav.navbar-nav.navbar-right
-            li.active
-              form.searchbox(action='')
-                input.search(type='text', placeholder='Type here')
-                input.submit(type='submit', value='Search')
-    
+  body(ng-app='Homepage' ng-controller="UserController")
+    section(ng-controller="HomeController")
+      nav.navbar.navbar-inverse
+       .container-fluid
+         .navbar-header
+            a.navbar-brand(href='#') VARY-PIXEL
+          div
+            ul.nav.navbar-nav
+              li.active
+                a(href='/') Home
+              li
+                a.signInButton(ng-click="userAction('signIn')") Log in
+              li
+                a.signUpButton(ng-click="userAction('signUp')") Sign up
+              li
+                a.signOutButton(ng-click="userAction('signOut')") Log out
+              li
+                p(class='username') {{ username }}            
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                form.searchbox(action='')
+                  input.search(type='text', placeholder='Type here')
+                  input.submit(type='submit', value='Search')
+      
     block content
