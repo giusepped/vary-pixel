@@ -94,6 +94,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', function($scope,
   })
 
   $('.save-canvas').click(function() {
-    saveCanvas(board, "hello");
+    // saveCanvas(board, "hello");
+    updateCanvas(board, imgID);
   });
 }])
