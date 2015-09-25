@@ -18,13 +18,6 @@ describe('homepage', function() {
   var signUpPasswordConfirmation = element(by.model('passwordConfirmation'));
   var submitSignUpBtn = element(by.className('signUpSubmit'));
 
-  // var addBoardBtn = element(by.className('addBoardBtn'));
-  // var boardTitle = element(by.model('boardDesc'));
-  // var newDesc = element(by.model('newDescValue'));
-  // var newDescBtn = element(by.className('newDescSubmit'));
-  // var editBtn = element(by.className('newDescBtn'));
-  // var delBtn = element(by.className('boardDelBtn'));
-
   it('should have a title', function() {
     expect(browser.getTitle()).toEqual('Vary Pixel');
   });
@@ -35,7 +28,7 @@ describe('homepage', function() {
       expect(element(by.className('sign-in')).isDisplayed()).toBe(true);
     });
 
-    it('should be able to log in a user', function(){
+    xit('should be able to log in a user', function(){
       signInBtn.click();
       signInUsername.sendKeys('bex');
       signInPassword.sendKeys('12345678');
@@ -43,7 +36,7 @@ describe('homepage', function() {
       expect(element(by.className('sign-in')).isDisplayed()).toBe(false);
     });
 
-    it('should be able to sign up a user', function(){
+    xit('should be able to sign up a user', function(){
       signUpBtn.click();
       signUpusername.sendKeys('benja');
       signUpEmail.sendKeys('b@test.com');
@@ -59,26 +52,4 @@ describe('homepage', function() {
       expect(element(by.className('sign-out')).isDisplayed()).toBe(false);
     });
   });
-  // xit('should have list of all boards', function() {
-  //   boardTitle.sendKeys('test');
-  //   addBoardBtn.click();
-  //   expect(board.get(0).getText()).toContain('test');
-  // });
-
-  // xit('edit a board desc', function () {
-  //   boardTitle.sendKeys('test');
-  //   addBoardBtn.click();
-  //   editBtn.click();
-  //   newDesc.sendKeys('test2');
-  //   newDescBtn.click();
-  //   expect(board.get(0).getText()).toContain('test2')
-  // });
-
-  // xit('can delete a board', function () {
-  //   boardTitle.sendKeys('test');
-  //   addBoardBtn.click();
-  //   editBtn.click();
-  //   delBtn.click();
-  //   expect(board.length).toBeUndefined();
-  // });
 });
