@@ -1,14 +1,10 @@
 <body ng-controller="CanvasController">
-  <header>
-    <div class="header_content clearfix">
-      <button class="btn toggle-grid" type="button">Toggle Grid</button>
-      <button class="btn save-canvas" type="button">Save Drawing</button>
-      <button class="btn home-link" type="button"><a ui-sref="home">Home</a></button>
-    </div>
-  </header>
   <canvas class="grid"></canvas>
   <canvas class="board"></canvas>
   <canvas class="colour-palette"></canvas>
+  <button class="btn toggle-grid" type="button">Toggle Grid</button>
+  <button class="btn save-canvas" type="button">Save Drawing</button>
+  <button class="btn home-link" type="button"><a ui-sref="home">Home</a></button>
   <p class="save-alert"></p><img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
   <script src="/js/pixel.js"></script>
   <script src="/js/grid.js"></script>
