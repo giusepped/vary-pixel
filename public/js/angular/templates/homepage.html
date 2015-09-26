@@ -1,80 +1,84 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">VARY-PIXEL</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a class="logInButton" ng-click="showLogIn=true;">Log in</a>
-        </li>
-        <li>
-          <a class="logOutButton" ng-click="showSignOut=true;">Log out</a>
-        </li>
-        <li>
-          <a class="signUpButton" ng-click="showSignUp=true;">Sign up</a>
-        </li>
-        <li>
-          <p class="username">{{ username }}</p>
+<section ng-controller="HomeController">
+  <section ng-controller="UserController">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">VARY-PIXEL</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a class="signInButton">Log in</a>
+            </li>
+            <li>
+              <a class="signOutButton">Log out</a>
+            </li>
+            <li>
+              <a class="signUpButton">Sign up</a>
+            </li>
+            <li>
+              <p class="username">{{ username }}</p>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <form action="" class="searchbox">
+                <input class="search" placeholder="Type here" type="text"/>
+                <input class="submit" type="submit" value="Search"/>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <h1>Here is all the fun you can partake in</h1>
+    <section >
+      <form class="sign-in user-reg">
+        <label>Email:
+          <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
+        </label>
+        <label>Password:
+          <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
+        </label>
+        <input class="signInSubmit" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
+      </form>
+      <form class="sign-up user-reg">
+        <label>Username:
+          <input name="username" ng-model="username" placeholder="your username" type="text">
+        </label>
+        <label>Email:
+          <input name="email" ng-model="email" placeholder="your email address" type="email">
+        </label>
+        <label>Password:
+          <input name="password" ng-model="password" placeholder="password" type="password">
+        </label>
+        <label>Password Confirmation:
+          <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
+        </label>
+        <input class="signUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
+      </form>
+
+      <div class="sign-out user-reg">
+        <p>
+          Are you sure you're ready to sign out?</p>
+        <button class='logOutSubmit' ng-click="signOutUser()">Sign out</button>
+      </div>
+    </section>
+
+    <form>
+      <input ng-model="boardDesc" placeholder="name your fun" type="text">
+      <button class="btn-info addBoardBtn" ng-click="addBoard(boardDesc)">New Board</button>
+    </form>
+    <section>
+      <ul class="board-list">
+        <li ng-repeat="board in boards">
+          <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
+          <a ng-click="setCurrent(board.id)" ui-sref="canvas">{{ board.id }}</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active">
-          <form action="" class="searchbox">
-            <input class="search" placeholder="Type here" type="text"/>
-            <input class="submit" type="submit" value="Search"/>
-          </form>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<h1>Here is all the fun you can partake in</h1>
-<section >
-  <form class="sign-in user-reg">
-    <label>Email:
-      <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
-    </label>
-    <label>Password:
-      <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
-    </label>
-    <input class="signInSubmit" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="submit" value="submit">
-  </form>
-  <form class="sign-up user-reg">
-    <label>Username:
-      <input name="username" ng-model="username" placeholder="your username" type="text">
-    </label>
-    <label>Email:
-      <input name="email" ng-model="email" placeholder="your email address" type="email">
-    </label>
-    <label>Password:
-      <input name="password" ng-model="password" placeholder="password" type="password">
-    </label>
-    <label>Password Confirmation:
-      <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
-    </label>
-    <input class="signUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
-  </form>
-
-  <div class="sign-out user-reg">
-    <p>
-      Are you sure you're ready to sign out?</p>
-    <button class='logOutSubmit' ng-click="signOutUser()">Sign out</button>
-  </div>
-</section>
-
-<form>
-  <input ng-model="boardDesc" placeholder="name your fun" type="text">
-  <button class="btn-info addBoardBtn" ng-click="addBoard(boardDesc)">New Board</button>
-</form>
-<section>
-  <ul class="board-list">
-    <li ng-repeat="board in boards">
-      <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
-      <a ng-click="setCurrent(board.id)" ui-sref="canvas">{{ board.id }}</a>
-    </li>
-  </ul>
+    </section>
+  </section>
 </section>
