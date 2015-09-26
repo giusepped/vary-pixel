@@ -6,6 +6,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
 
     if(requireLogin && Parse.User.current() === null) {
       event.preventDefault();
+      $('.userRegistrationBox').show();
     }
   })
 
