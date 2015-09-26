@@ -1,3 +1,5 @@
+
+
 .grid {
   position: absolute;
   border: 1px solid black;
@@ -8,9 +10,10 @@
   border: 1px solid black;
 }
 
-.toggle-grid, .save-canvas {
+.toggle-grid, .save-canvas, .home-link {
   position: fixed;
-  top: 0px;
+  top: 10px;
+  font-family: arial, sans-serif;
 }
 
 .colour-palette-toggle {
@@ -29,6 +32,10 @@
 
 .save-canvas {
   left: 100px;
+}
+
+.home-link {
+  right: 20px;
 }
 
 .save-alert {
