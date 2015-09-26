@@ -24,28 +24,5 @@ html(lang='en')
     script(src='js/angular/providers/allBoardService.js')
     link(href='css/layout.css', rel='stylesheet')
     block scripts
-  body(ng-app='Homepage' ng-controller="UserController")
-    section(ng-controller="HomeController")
-      nav.navbar.navbar-inverse
-       .container-fluid
-         .navbar-header
-            a.navbar-brand(href='#') VARY-PIXEL
-          div
-            ul.nav.navbar-nav
-              li.active
-                a(href='/') Home
-              li
-                a.signInButton Log in
-              li
-                a.signUpButton Sign up
-              li
-                a.signOutButton Log out
-              li
-                p(class='username') {{ username }}            
-            ul.nav.navbar-nav.navbar-right
-              li.active
-                form.searchbox(action='')
-                  input.search(type='text', placeholder='Type here')
-                  input.submit(type='submit', value='Search')
-      
+  body(ng-app='Homepage' ng-controller='UserController')
     block content
