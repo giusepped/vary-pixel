@@ -1,0 +1,41 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'run', 'pro' ]
+2 info using npm@3.3.3
+3 info using node@v0.12.7
+4 verbose node symlink /usr/local/bin/node
+5 verbose run-script [ 'prepro', 'pro', 'postpro' ]
+6 info lifecycle vary-pixel@1.0.0~prepro: vary-pixel@1.0.0
+7 silly lifecycle vary-pixel@1.0.0~prepro: no script for prepro, continuing
+8 info lifecycle vary-pixel@1.0.0~pro: vary-pixel@1.0.0
+9 verbose lifecycle vary-pixel@1.0.0~pro: unsafe-perm in lifecycle true
+10 verbose lifecycle vary-pixel@1.0.0~pro: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Zhou/Dropbox/Projects/vary-pixel/node_modules/.bin:/Users/Zhou/.rvm/gems/ruby-2.2.2/bin:/Users/Zhou/.rvm/gems/ruby-2.2.2@global/bin:/Users/Zhou/.rvm/rubies/ruby-2.2.2/bin:/Users/Zhou/bin:/usr/local/bin:/usr/bin:/bin:/Users/Zhou/.rvm/bin:/Users/Zhou/.rvm/gems/ruby-2.2.2/bin:/Users/Zhou/.rvm/gems/ruby-2.2.2@global/bin:/Users/Zhou/.rvm/rubies/ruby-2.2.2/bin:/usr/bin:/bin:/Users/Zhou/.rvm/bin
+11 verbose lifecycle vary-pixel@1.0.0~pro: CWD: /Users/Zhou/Dropbox/Projects/vary-pixel
+12 silly lifecycle vary-pixel@1.0.0~pro: Args: [ '-c', 'protractor spec/e2e/prot.conf.js' ]
+13 silly lifecycle vary-pixel@1.0.0~pro: Returned: code: 1  signal: null
+14 info lifecycle vary-pixel@1.0.0~pro: Failed to exec pro script
+15 verbose stack Error: vary-pixel@1.0.0 pro: `protractor spec/e2e/prot.conf.js`
+15 verbose stack Exit status 1
+15 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:233:16)
+15 verbose stack     at EventEmitter.emit (events.js:110:17)
+15 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+15 verbose stack     at ChildProcess.emit (events.js:110:17)
+15 verbose stack     at maybeClose (child_process.js:1015:16)
+15 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+16 verbose pkgid vary-pixel@1.0.0
+17 verbose cwd /Users/Zhou/Dropbox/Projects/vary-pixel
+18 error Darwin 14.5.0
+19 error argv "node" "/usr/local/bin/npm" "run" "pro"
+20 error node v0.12.7
+21 error npm  v3.3.3
+22 error code ELIFECYCLE
+23 error vary-pixel@1.0.0 pro: `protractor spec/e2e/prot.conf.js`
+23 error Exit status 1
+24 error Failed at the vary-pixel@1.0.0 pro script 'protractor spec/e2e/prot.conf.js'.
+24 error This is most likely a problem with the vary-pixel package,
+24 error not with npm itself.
+24 error Tell the author that this fails on your system:
+24 error     protractor spec/e2e/prot.conf.js
+24 error You can get their info via:
+24 error     npm owner ls vary-pixel
+24 error There is likely additional logging output above.
+25 verbose exit [ 1, true ]

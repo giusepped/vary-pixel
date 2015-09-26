@@ -15,13 +15,13 @@ html(lang='en')
     script(src='http://www.parsecdn.com/js/parse-1.6.2.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js')
+    script(type='text/javascript').
+      Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
     script(src='js/angular/homepage.js')
     script(src='js/angular/controller/homepageController.js')
     script(src='js/angular/controller/userController.js')
     script(src='js/angular/controller/canvasController.js')
     script(src='js/angular/providers/allBoardService.js')
-    script(type='text/javascript').
-      Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
     link(href='css/layout.css', rel='stylesheet')
     block scripts
   body(ng-app='Homepage' ng-controller='UserController')
