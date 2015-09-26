@@ -6,15 +6,13 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
 
     if(requireLogin && Parse.User.current() === null) {
       event.preventDefault();
-
-      // $timeout($('.userRegistrationBox').hide(), 3000);
     }
   })
 
   $scope.checkUserReg = function() {
     if (Parse.User.current() === null) {
-      alert('hello world')
-      //angular.element('.userRegistrationBox').popover("open");
+      angular.element('.userRegistrationBox').show();
+      //$timeout($('.userRegistrationBox').hide(), 3000);
     }
   }
 
