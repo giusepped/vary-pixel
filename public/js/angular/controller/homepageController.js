@@ -1,5 +1,13 @@
-homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', function($scope, $q, AllCanvas) {
+homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', function($scope, $q, AllCanvas, $rootScope) {
   var canvases = Parse.Object.extend("canvases");
+
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams){
+    var requireLogin = toState.data.requireLogin;
+
+    if(requireLogin && Parse.User.current() === null) {
+      event.preventDefault();
+    }
+  })
 
   function getBoard() {
     var deferred = $q.defer();
@@ -39,7 +47,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', function($sc
   $scope.addBoard = function(description) {
     var object = new canvases();
     saveToParse(object, $scope.boardDesc);
-    $scope.boardDesc = ''
+    $scope.boardDesc = '';
   };
 
   $scope.setCurrent = function(id) {
