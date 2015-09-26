@@ -3,13 +3,10 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">VARY-PIXEL</a>
+          <a class="navbar-brand" ui-sref="home">VARY-PIXEL</a>
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="/">Home</a>
-            </li>
             <li>
               <a class="signInButton">Log in</a>
             </li>
@@ -75,8 +72,8 @@
     <section>
       <ul class="board-list">
         <li ng-repeat="board in boards">
-          <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
-          <a ng-click="setCurrent(board.id)" ui-sref="canvas">{{ board.id }}</a>
+          <img class="thumbnail" ng-src="{{ board.get('picture').url()}}"/>
+          <a ng-click="setCurrent(board.id)" ui-sref="canvas">{{ board.get("description") }}</a>
         </li>
       </ul>
     </section>
