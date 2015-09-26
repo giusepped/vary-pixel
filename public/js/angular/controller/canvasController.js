@@ -59,11 +59,14 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   function drawOn() {
     boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor]);
+    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
   }
 
   socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
+    console.log(data[3]);
+    if(data[3] === imgID()){
+      boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
+    }
   });
 
   $('.toggle-grid').click(function() {
