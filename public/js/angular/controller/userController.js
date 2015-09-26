@@ -9,7 +9,8 @@ homepage.controller('UserController', ['$scope', function($scope) {
     user.set("email", email);
     user.signUp(null, {
       success: function(user) {
-        $scope.userAction('signUp')
+        $scope.userAction('signUp');
+        $('.sign-up').hide();
         console.log("I just saved a user");
       },
       error: function(user) {
@@ -24,7 +25,8 @@ homepage.controller('UserController', ['$scope', function($scope) {
   $scope.signInUser = function(username, password) {
     Parse.User.logIn(username, password, {
       success: function(user) {
-        $scope.userAction('signIn')
+        $scope.userAction('signIn');
+        $('.sign-in').hide();
         console.log('success');
       },
       error: function(user) {
@@ -38,15 +40,25 @@ homepage.controller('UserController', ['$scope', function($scope) {
 
   $scope.signOutUser = function(username, password) {
     Parse.User.logOut();
-    $scope.userAction('signOut')
+    $scope.userAction('signOut');
+    $('.sign-out').hide();
     console.log('I have signed out');
     $scope.username = "Logged out";
   }
 
   $scope.userAction = function (action) {
-    console.log(action);
-    return action;
+    if (action === 'signIn' || action === 'signUp') {
+      $('.signInButton').hide();
+      $('.signUpButton').hide();
+      $('.signOutButton').show();
+    } else if (action === 'signOut') {
+      $('.signInButton').show();
+      $('.signUpButton').show();
+      $('.signOutButton').hide();
+    }
   }
+
+  $('.signOutButton').hide();
 
   $('.signInButton').click(function() {
     $('.sign-in').toggle();

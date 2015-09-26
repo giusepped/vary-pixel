@@ -1,15 +1,12 @@
 .searchbox {
-  margin: 12px 40px 0 0 ;
+  margin: 12px 40px 0 0;
 }
-
-a[ng-click]{
-    cursor: pointer;
+a {
+  cursor: pointer;
 }
-
 .username {
   color: #ffffff;
 }
-
 .user-reg {
   display: none;
 }
