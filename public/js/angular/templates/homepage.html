@@ -1,4 +1,27 @@
-
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header"><a href="#" class="navbar-brand">VARY-PIXEL</a></div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a ng-click="showLogIn=true;" class="logInButton">Log in</a></li>
+          <li><a ng-click="showSignOut=true;" class="logOutButton">Log out</a></li>
+          <li><a ng-click="showSignUp=true;" class="signUpButton">Sign up</a></li>
+          <li>
+            <p class="username">{{ username }}</p>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <form action="" class="searchbox">
+              <input type="text" placeholder="Type here" class="search"/>
+              <input type="submit" value="Search" class="submit"/>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <h1>Here is all the fun you can partake in</h1>
   <section ng-controller="HomeController">
     <div class="user-reg">
