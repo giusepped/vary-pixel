@@ -34,7 +34,7 @@
     <h1>Here is all the fun you can partake in</h1>
     <section >
       <form class="sign-in user-reg">
-        <label>Email:
+        <label>Username:
           <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
         </label>
         <label>Password:
@@ -73,9 +73,19 @@
       <ul class="board-list">
         <li ng-repeat="board in boards">
           <img class="thumbnail" ng-src="{{ board.get('picture').url()}}"/>
-          <a ng-click="setCurrent(board.id)" ui-sref="canvas">{{ board.get("description") }}</a>
+          <a ng-click="setCurrent(board.id); checkUserReg()" ui-sref="canvas">{{ board.get("description") }}</a>
         </li>
       </ul>
     </section>
+    <section>
+      <div class="userRegistrationBox">
+        You need to log in before you can join the fun!
+      </div>
+    </section>
   </section>
 </section>
+
+
+
+
+

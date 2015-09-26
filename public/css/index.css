@@ -25,7 +25,24 @@
   text-align: center;
 }
 
+.userRegistrationBox {
+  display: none;
+  border: 2px solid black;
+  border-radius: 8px;
+  width: 400px;
+  height: 50px;
+  padding-top: 15px;
+  position:fixed;
+  left: 50%;
+  top:  50%;
+  margin-top: -25px;
+  margin-left: -200px;
+  background: #ffffff;
+  text-align: center;
+}
+
 .user-reg input {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+

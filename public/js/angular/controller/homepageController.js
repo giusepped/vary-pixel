@@ -1,4 +1,4 @@
-homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', function($scope, $q, AllCanvas, $rootScope) {
+homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', '$timeout', function($scope, $q, AllCanvas, $rootScope, $timeout) {
   var canvases = Parse.Object.extend("canvases");
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams){
@@ -8,6 +8,15 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
       event.preventDefault();
     }
   })
+
+  $scope.checkUserReg = function() {
+    if (Parse.User.current() === null) {
+      angular.element('.userRegistrationBox').show();
+      $timeout(function() {
+        angular.element('.userRegistrationBox').hide()
+      }, 1500);
+    }
+  }
 
   function getBoard() {
     var deferred = $q.defer();
