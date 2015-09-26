@@ -24,6 +24,8 @@
 }
 
 .userRegistrationBox {
-  display: hidden;
+  display: none;
+  border: 2px solid black;
+  border-radius: 8px;
 }
 
