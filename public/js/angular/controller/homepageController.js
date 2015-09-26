@@ -12,7 +12,9 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
   $scope.checkUserReg = function() {
     if (Parse.User.current() === null) {
       angular.element('.userRegistrationBox').show();
-      //$timeout($('.userRegistrationBox').hide(), 3000);
+      $timeout(function() {
+        angular.element('.userRegistrationBox').hide()
+      }, 1500);
     }
   }
 

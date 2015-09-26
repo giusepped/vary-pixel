@@ -29,11 +29,13 @@
   border-radius: 8px;
   width: 400px;
   height: 50px;
-  padding: 20px;
+  padding-top: 15px;
   position:fixed;
   left: 50%;
   top:  50%;
   margin-top: -25px;
   margin-left: -200px;
+  background: #ffffff;
+  text-align: center;
 }
 
