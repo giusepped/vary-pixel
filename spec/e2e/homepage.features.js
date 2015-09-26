@@ -7,7 +7,7 @@ describe('homepage', function() {
   var board = element.all(by.repeater('board in boards'));
   var userReg = element(by.css('div.user-reg'));
   var username = element(by.className('username'));
-  var signInBtn = element(by.className('logInButton'));
+  var signInBtn = element(by.className('signInButton'));
   var signUpBtn = element(by.className('signUpButton'));
   var logOutBtn = element(by.className('logOutButton'));
   var submitBtn = element(by.className('signInSubmit'));

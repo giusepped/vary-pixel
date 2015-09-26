@@ -9,8 +9,8 @@ homepage.controller('UserController', ['$scope', function($scope) {
     user.set("email", email);
     user.signUp(null, {
       success: function(user) {
+        $scope.userAction('signUp')
         console.log("I just saved a user");
-        $scope.cancelNavBar();
       },
       error: function(user) {
         console.log("didn't work");
@@ -24,8 +24,8 @@ homepage.controller('UserController', ['$scope', function($scope) {
   $scope.signInUser = function(username, password) {
     Parse.User.logIn(username, password, {
       success: function(user) {
+        $scope.userAction('signIn')
         console.log('success');
-        $scope.cancelNavBar();
       },
       error: function(user) {
         console.log('error');
@@ -38,17 +38,15 @@ homepage.controller('UserController', ['$scope', function($scope) {
 
   $scope.signOutUser = function(username, password) {
     Parse.User.logOut();
-    loggedIn = false;
-    console.log(loggedIn);
+    $scope.userAction('signOut')
     console.log('I have signed out');
     $scope.username = "Logged out";
-    $scope.cancelNavBar();
   }
 
-  // $scope.userAction = function (action) {
-  //   console.log(action);
-  //   return action;
-  // }
+  $scope.userAction = function (action) {
+    console.log(action);
+    return action;
+  }
 
   $('.signInButton').click(function() {
     $('.sign-in').toggle();
