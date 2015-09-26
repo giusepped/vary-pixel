@@ -1,13 +1,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">VARY-PIXEL</a>
+      <a class="navbar-brand" ui-sref="home">VARY-PIXEL</a>
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/">Home</a>
-        </li>
         <li>
           <a class="logInButton" ng-click="showLogIn=true;">Log in</a>
         </li>
@@ -33,9 +30,10 @@
   </div>
 </nav>
 <h1>Here is all the fun you can partake in</h1>
-<section >
+
+<section>
   <form class="sign-in user-reg">
-    <label>Email:
+    <label>Username:
       <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
     </label>
     <label>Password:
@@ -58,27 +56,8 @@
     </label>
     <input class="signUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
   </form>
-
-<<<<<<< HEAD
-    <section>
-      <ul class="board-list">
-        <li ng-repeat="board in boards">
-          <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
-          <a ui-sref="canvas" ng-click="setCurrent(board.id); checkUserReg()">{{ board.get("description") }}</a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <div class="userRegistrationBox">
-        You need to log in before you can join the fun!
-      </div>
-    </section>
-
-=======
   <div class="sign-out user-reg">
-    <p>
-      Are you sure you're ready to sign out?</p>
+    <p>Are you sure you're ready to sign out?</p>
     <button class='logOutSubmit' ng-click="signOutUser()">Sign out</button>
   </div>
 </section>
@@ -90,9 +69,17 @@
 <section>
   <ul class="board-list">
     <li ng-repeat="board in boards">
-      <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
-      <a ng-click="setCurrent(board.id)" ui-sref="canvas">{{ board.id }}</a>
+      <img class="thumbnail" ng-src="{{ board.get('picture').url()}}"/>
+      <a ui-sref="canvas" ng-click="setCurrent(board.id); checkUserReg()">{{ board.get("description") }}</a>
     </li>
   </ul>
 </section>
->>>>>>> 30d5e81a8b8f441852d7638235cc8e0d836747b3
+
+<section>
+  <div class="userRegistrationBox">
+    You need to log in before you can join the fun!
+  </div>
+</section>
+
+
+
