@@ -1,34 +1,30 @@
 <section ng-controller="HomeController">
   <section ng-controller="UserController">
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" ui-sref="home">VARY-PIXEL</a>
-        </div>
-        <div>
-          <ul class="nav navbar-nav">
-            <li>
-              <a class="signInButton">Log in</a>
-            </li>
-            <li>
-              <a class="signOutButton">Log out</a>
-            </li>
-            <li>
-              <a class="signUpButton">Sign up</a>
-            </li>
-            <li>
-              <p class="username">{{ username }}</p>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <form action="" class="searchbox">
-                <input class="search" placeholder="Type here" type="text"/>
-                <input class="submit" type="submit" value="Search"/>
-              </form>
-            </li>
-          </ul>
-        </div>
+        <a class="navbar-brand navbar-header" ui-sref="home">VARY-PIXEL</a>
+        <ul class="nav navbar-nav">
+          <li>
+            <button type="button" class="btn btn-default navbar-btn signInButton">Sign in</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-default navbar-btn signUpButton">Sign up</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-default navbar-btn signOutButton">Sign out</button>
+          </li>
+          <li>
+            <p class="username">{{ username }}</p>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <form action="" class="searchbox navbar-form">
+              <input class="form-horizontal" placeholder="Type here" type="text"/>
+              <button type="button" class="btn btn-default">Search</button>
+            </form>
+          </li>
+        </ul>
       </div>
     </nav>
     <h1>Here is all the fun you can partake in</h1>
@@ -72,8 +68,7 @@
     <section>
       <ul class="board-list">
         <li ng-repeat="board in boards">
-          <img class="thumbnail" ng-src="{{ board.get('picture').url()}}"/>
-          <a ng-click="setCurrent(board.id); checkUserReg()" ui-sref="canvas">{{ board.get("description") }}</a>
+          <a ng-click="setCurrent(board.id); checkUserReg()" ui-sref="canvas"><img class="thumbnail" ng-src="{{ board.get('picture').url()}}"/></a>
         </li>
       </ul>
     </section>
@@ -84,8 +79,3 @@
     </section>
   </section>
 </section>
-
-
-
-
-

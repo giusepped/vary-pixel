@@ -66,14 +66,14 @@ homepage.controller('UserController', ['$scope', function($scope) {
     $('.sign-out').hide();
   })
   $('.signUpButton').click(function() {
+    $('.sign-in').hide();
     $('.sign-up').toggle();
     $('.sign-out').hide();
-    $('.sign-in').hide();
   })
   $('.signOutButton').click(function() {
-    $('.sign-out').toggle();
-    $('.sign-up').hide();
     $('.sign-in').hide();
+      $('.sign-up').hide();
+    $('.sign-out').toggle();
   })
 
 }]);

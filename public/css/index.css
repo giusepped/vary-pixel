@@ -1,19 +1,32 @@
+a {
+  cursor: pointer;
+}
+button {
+  height: 30px;
+}
+input {
+  height: 30px;
+}
+.navbar {
+  background-color: black;
+}
+.username {
+  color: #ffffff;
+}
 .thumbnail {
   height: 300px;
   width: 300px;
 }
-
 .board-list {
   list-style-type: none;
   z-index: 1;
 }
-
 .board-list li {
   display: inline-block;
   margin: 50px;
 }
-
 .user-reg {
+  display: none;
   position: fixed;
   background-color: white;
   margin: 0 40%;
@@ -24,7 +37,6 @@
   padding-top: 40px;
   text-align: center;
 }
-
 .userRegistrationBox {
   display: none;
   border: 2px solid black;
@@ -32,17 +44,15 @@
   width: 400px;
   height: 50px;
   padding-top: 15px;
-  position:fixed;
+  position: fixed;
   left: 50%;
-  top:  50%;
+  top: 50%;
   margin-top: -25px;
   margin-left: -200px;
   background: #ffffff;
   text-align: center;
 }
-
 .user-reg input {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
