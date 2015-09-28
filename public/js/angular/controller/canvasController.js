@@ -13,13 +13,12 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   var opts = {
     distance: pixelSize
   };
-
   var drawChosenCanvas = new Image();
-
+  drawChosenCanvas.crossOrigin = "anonymous";
   var colourPaletteImg = new Image();
 
   function imgID() {
-   return AllCanvas.getCurrent();
+    return AllCanvas.getCurrent();
   }
 
   function imgUrl() {
@@ -63,8 +62,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   }
 
   socket.on('coordinates', function(data) {
-    console.log(data[3]);
-    if(data[3] === imgID()){
+    if (data[3] === imgID()) {
       boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
     }
   });
@@ -92,17 +90,15 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   $('.colour-palette').hide();
 
-  drawChosenCanvas.crossOrigin = "Anonymous";
-
-  drawChosenCanvas.onload = function() {
-    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
-  }
-
-  drawChosenCanvas.src = imgUrl();
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
 
   new Grid(opts).draw(gridContext);
+
+  drawChosenCanvas.onload = function() {
+    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
+  }
+  drawChosenCanvas.src = imgUrl();
 
   colourPaletteImg.onload = function() {
     paletteCanvas.width = paletteCanvas.height = 300;
@@ -110,14 +106,13 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   }
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
-  if(imgUrl() === undefined){
-    $timeout(function(){
+  if (imgUrl() === undefined) {
+    $timeout(function() {
       angular.element('.save-canvas').trigger('click');
     }, 300);
   }
 
-  $interval(function(){
-    console.log("I am happening");
+  $interval(function() {
     angular.element('.save-canvas').trigger('click');
   }, 6000);
 
