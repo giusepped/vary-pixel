@@ -185,11 +185,11 @@ form {
 MOBILE
 ---------------------------------------------------------------------------------*/
 
-/*.navbar-toggle {
-  margin-top: 22px !important;
-  margin-right: 7px !important;
+@media only screen and (max-width : 850px) {
+  .navbar-collapse {
+    float: right;
+    width: 100%;
+    text-align: right;
+    background: black;
+  }
 }
-
-.navbar-header {
-  height: 75px !important;
-}*/
