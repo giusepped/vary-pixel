@@ -22,7 +22,7 @@ homepage.controller('UserController', ['$scope', function($scope) {
         console.log("didn't work");
       }
     }).then(function(user) {
-      $scope.username = user.get("username");
+      $scope.setUsername();
       $scope.$apply();
     });
   }
@@ -37,7 +37,7 @@ homepage.controller('UserController', ['$scope', function($scope) {
         console.log('error');
       }
     }).then(function(user) {
-      $scope.username = user.get("username");
+      $scope.setUsername();
       $scope.$apply();
     });
   }
@@ -75,7 +75,7 @@ homepage.controller('UserController', ['$scope', function($scope) {
 
   $scope.setUsername = function() {
     if (Parse.User.current() !== null) {
-      $scope.username = Parse.User.current().get("username");
+      $scope.username = "Have fun " + Parse.User.current().get("username") + "!";
     }
     else {
       $scope.username = "";
