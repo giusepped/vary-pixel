@@ -41,6 +41,11 @@ form {
   color: #e0e0e0;
   font-family: joyStix;
 }
+
+.navbar-default .navbar-brand{
+  color: #e0e0e0;
+}
+
 .navbar-nav {
   padding: none;
   margin-left: 10px;
