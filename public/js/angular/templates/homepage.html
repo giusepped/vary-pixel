@@ -2,7 +2,6 @@
   <section ng-controller="UserController">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-<<<<<<< HEAD
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -27,13 +26,15 @@
               <p class="username">{{ username }}</p>
             </li>
           </ul>
-          <form class="searchbox navbar-form navbar-right">
-            <input ng-model="searchString"class="form-horizontal" type="text"/>
-            <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
-          </form>
-          <form class="makenew navbar-form navbar-right">
-            <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
-          </form>
+          <div class="nav-forms">
+            <form class="searchbox navbar-form navbar-right">
+              <input ng-model="searchString"class="form-horizontal" type="text"/>
+              <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
+            </form>
+            <form class="makenew navbar-form navbar-right">
+              <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
+            </form>
+          </div>
         </div>
       </div>
     </nav>
