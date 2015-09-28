@@ -1,6 +1,6 @@
 homepage.controller('UserController', ['$scope', function($scope) {
 
-  $scope.username = '';
+  $scope.username;
   $scope.userActionChoice;
   $scope.isLoggedIn;
 
@@ -62,8 +62,6 @@ homepage.controller('UserController', ['$scope', function($scope) {
   }
 
   $scope.toggleButton = function() {
-    console.log(Parse.User.current());
-    console.log($scope.username);
     if (Parse.User.current() !== null) {
       $('.signInButton').hide();
       $('.signUpButton').hide();
@@ -75,6 +73,15 @@ homepage.controller('UserController', ['$scope', function($scope) {
     }
   }
 
+  $scope.setUsername = function() {
+    if (Parse.User.current() !== null) {
+      $scope.username = Parse.User.current().get("username");
+    }
+    else {
+      $scope.username = "";
+    }
+  }
   $scope.toggleButton();
+  $scope.setUsername();
 
 }]);
