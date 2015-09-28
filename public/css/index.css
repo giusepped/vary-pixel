@@ -116,7 +116,6 @@ h1 {
   border-radius: 8px;
   width: 200px;
   height: 300px;
-  padding-top: 10px;
   text-align: center;
 }
 .userRegistrationBox {
@@ -135,6 +134,13 @@ h1 {
 .user-action input {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.user-action .glyphicon-remove {
+  display: block;
+  float: right;
+  margin: 0px;
+  border: none;
+  background: none;
 }
 .img-rounded {
   height: 250px;

@@ -28,6 +28,7 @@
     </nav>
 
     <section class="user-action">
+      <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form class="sign-in" ng-show="userActionChoice === 'signIn'">
         <label>Username:
           <input name="username" ng-model="usernameLogIn" type="text">
