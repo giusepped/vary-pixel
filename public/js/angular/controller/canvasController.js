@@ -95,6 +95,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   $('.home-button').click(function() {
     socket.emit('leave', imgID());
+    AllCanvas.setCurrent(null);
   })
 
   $('.colour-palette').hide();
