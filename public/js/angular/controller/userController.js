@@ -66,10 +66,13 @@ homepage.controller('UserController', ['$scope', function($scope) {
       $('.signInButton').hide();
       $('.signUpButton').hide();
       $('.signOutButton').show();
+      $('.makenew').show();
+
     } else {
       $('.signInButton').show();
       $('.signUpButton').show();
       $('.signOutButton').hide();
+      $('.makenew').hide();
     }
   }
 
