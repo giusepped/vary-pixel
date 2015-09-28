@@ -1,6 +1,8 @@
 homepage.controller('UserController', ['$scope', function($scope) {
 
   $scope.username = '';
+  $scope.userActionChoice;
+  $scope.isLoggedIn;
 
   $scope.saveUser = function(username, email, password) {
     var user = new Parse.User();
@@ -9,9 +11,8 @@ homepage.controller('UserController', ['$scope', function($scope) {
     user.set("email", email);
     user.signUp(null, {
       success: function(user) {
-        $scope.userAction('signUp');
-        $('.sign-up').hide();
-        console.log("I just saved a user");
+        $scope.userAction('completed');
+        $scope.toggleButton();
       },
       error: function(user) {
         console.log("didn't work");
@@ -25,9 +26,8 @@ homepage.controller('UserController', ['$scope', function($scope) {
   $scope.signInUser = function(username, password) {
     Parse.User.logIn(username, password, {
       success: function(user) {
-        $scope.userAction('signIn');
-        $('.sign-in').hide();
-        console.log('success');
+        $scope.userAction('completed');
+        $scope.toggleButton();
       },
       error: function(user) {
         console.log('error');
@@ -40,40 +40,35 @@ homepage.controller('UserController', ['$scope', function($scope) {
 
   $scope.signOutUser = function(username, password) {
     Parse.User.logOut();
-    $scope.userAction('signOut');
-    $('.sign-out').hide();
-    console.log('I have signed out');
+    $scope.userAction('log out completed');
     $scope.username = "Logged out";
+    $scope.toggleButton();
   }
 
-  $scope.userAction = function (action) {
-    if (action === 'signIn' || action === 'signUp') {
+  $scope.userAction = function(action) {
+    if ($scope.userActionChoice === action) {
+      $('.user-action').toggle();
+    } else if (action === 'completed' || action === 'log out completed') {
+      $('.user-action').hide();
+      $scope.isLoggedIn = action;
+    } else {
+      $scope.userActionChoice = action;
+      $('.user-action').show();
+    };
+  }
+  $scope.toggleButton = function() {
+    if ($scope.isLoggedIn === 'completed') {
       $('.signInButton').hide();
       $('.signUpButton').hide();
-      $('.signOutButton').show();
-    } else if (action === 'signOut') {
+      $('.signOutButton').show();;
+    } else if ($scope.isLoggedIn === 'log out completed') {
       $('.signInButton').show();
       $('.signUpButton').show();
-      $('.signOutButton').hide();
+      $('.signOutButton').hide();;
     }
   }
+  $scope.toggleButton();
+  $('.signOutButton').hide();;
 
-  $('.signOutButton').hide();
-
-  $('.signInButton').click(function() {
-    $('.sign-in').toggle();
-    $('.sign-up').hide();
-    $('.sign-out').hide();
-  })
-  $('.signUpButton').click(function() {
-    $('.sign-in').hide();
-    $('.sign-up').toggle();
-    $('.sign-out').hide();
-  })
-  $('.signOutButton').click(function() {
-    $('.sign-in').hide();
-      $('.sign-up').hide();
-    $('.sign-out').toggle();
-  })
-
+  console.log($scope.username);
 }]);
