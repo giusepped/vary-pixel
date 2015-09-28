@@ -21,12 +21,10 @@ app.get('/', function(req, res) {
 io.on('connection', function(socket) {
   socket.on('join', function(canvas) {
     socket.join(canvas);
-    console.log("connecting to canvas " + canvas);
   });
 
   socket.on('leave', function(canvas) {
     socket.leave(canvas);
-    console.log("leaving canvas " + canvas);
   })
 
   socket.on('coordinates', function(data) {
