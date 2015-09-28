@@ -88,4 +88,5 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
     })
   }
   $scope.fetchPopular();
+  console.log("hi");
 }]);

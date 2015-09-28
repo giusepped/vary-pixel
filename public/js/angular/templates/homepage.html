@@ -77,6 +77,7 @@
         <li ng-repeat="board in boards">
           <a ng-click="setCurrent(board.id); checkUserReg()" ui-sref="canvas"><img class="img-rounded" ng-src="{{ board.get('picture').url()}}"/></a>
           <h4>{{board.get('description')}}</h4>
+          <!-- <h3>{{board.get('picture').url()}}</h3> -->
         </li>
       </ul>
     </section>
