@@ -45,3 +45,10 @@ body {
 .searchbox {
   border: 10px solid black;
 }
+.pixel-limit{
+  position: fixed;
+  bottom: 20px;
+  left: 100px;
+  font-family: lato;
+  font-size: 30px;
+}
