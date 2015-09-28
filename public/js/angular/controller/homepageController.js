@@ -1,4 +1,4 @@
-homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', '$timeout', function($scope, $q, AllCanvas, $rootScope, $timeout) {
+homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', '$timeout', '$state', function($scope, $q, AllCanvas, $rootScope, $timeout, $state) {
   var canvases = Parse.Object.extend("canvases");
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams){
@@ -26,6 +26,8 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
       success: function(canvas) {
         console.log('saved');
         AllCanvas.setCurrent(canvas.id);
+        $state.go('canvas', {});
+
       },
       error: function(canvas, error) {
         console.log('failed');
@@ -42,12 +44,11 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
   $scope.setCurrent = function(id) {
     AllCanvas.setCurrent(id);
   }
-  
+
   $scope.fetchPopular = function() {
     function getBoard() {
       var deferred = $q.defer();
       var query = new Parse.Query(canvases);
-
       query.find({
         success: function(results) {
           deferred.resolve(results);
@@ -84,8 +85,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
     getBoard().then(function(boards) {
       AllCanvas.setBoard(boards);
       $scope.boards = boards;
-    });
+    })
   }
-
   $scope.fetchPopular();
 }]);
