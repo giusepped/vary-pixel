@@ -62,9 +62,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   }
 
   socket.on('coordinates', function(data) {
-    if (data[3] === imgID()) {
-      boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
-    }
+    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
   });
 
   $('.toggle-grid').click(function() {
@@ -88,6 +86,10 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     updateCanvas(board, imgID());
   });
 
+  $('.home-button').click(function() {
+    socket.emit('leave', imgID());
+  })
+
   $('.colour-palette').hide();
 
   board.height = board.width = boardSize;
@@ -97,6 +99,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   drawChosenCanvas.onload = function() {
     boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
+    socket.emit('join', imgID());
   }
   drawChosenCanvas.src = imgUrl();
 
