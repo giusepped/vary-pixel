@@ -67,8 +67,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   function showPixelLimit(){
     var pixmessage = $('.pixel-limit').text(boardInterface.userLimit)
-    FlashMessage(pixmessage);
-  };  
+  };
 
   socket.on('coordinates', function(data) {
     if (data[3] === imgID()) {
