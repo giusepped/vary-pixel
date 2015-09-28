@@ -4,6 +4,10 @@ homepage.controller('UserController', ['$scope', function($scope) {
   $scope.userActionChoice;
   $scope.isLoggedIn;
 
+  $scope.test = function() {
+    console.log(Parse.User.current());
+  }
+
   $scope.saveUser = function(username, email, password) {
     var user = new Parse.User();
     user.set("username", username);
@@ -56,19 +60,21 @@ homepage.controller('UserController', ['$scope', function($scope) {
       $('.user-action').show();
     };
   }
+
   $scope.toggleButton = function() {
-    if ($scope.isLoggedIn === 'completed') {
+    console.log(Parse.User.current());
+    console.log($scope.username);
+    if (Parse.User.current() !== null) {
       $('.signInButton').hide();
       $('.signUpButton').hide();
-      $('.signOutButton').show();;
-    } else if ($scope.isLoggedIn === 'log out completed') {
+      $('.signOutButton').show();
+    } else {
       $('.signInButton').show();
       $('.signUpButton').show();
-      $('.signOutButton').hide();;
+      $('.signOutButton').hide();
     }
   }
-  $scope.toggleButton();
-  $('.signOutButton').hide();;
 
-  console.log($scope.username);
+  $scope.toggleButton();
+
 }]);
