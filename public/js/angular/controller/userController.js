@@ -60,15 +60,13 @@ homepage.controller('UserController', ['$scope', function($scope) {
     if ($scope.isLoggedIn === 'completed') {
       $('.signInButton').hide();
       $('.signUpButton').hide();
-      $('.signOutButton').show();;
+      $('.signOutButton').show();
     } else if ($scope.isLoggedIn === 'log out completed') {
       $('.signInButton').show();
       $('.signUpButton').show();
-      $('.signOutButton').hide();;
+      $('.signOutButton').hide();
     }
   }
   $scope.toggleButton();
-  $('.signOutButton').hide();;
-
-  console.log($scope.username);
+  $('.signOutButton').hide();
 }]);
