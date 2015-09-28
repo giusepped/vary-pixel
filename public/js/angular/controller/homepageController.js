@@ -55,7 +55,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
 
   $scope.addBoard = function(description) {
     var object = new canvases();
-    saveToParse(object, $scope.boardDesc);
+    saveToParse(object, description);
     $scope.boardDesc = '';
   };
 
