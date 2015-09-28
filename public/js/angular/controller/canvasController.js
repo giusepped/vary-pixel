@@ -117,6 +117,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   $interval(function() {
     angular.element('.save-canvas').trigger('click');
-  }, 6000);
+  }, 3000);
 
 }])

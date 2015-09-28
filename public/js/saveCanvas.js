@@ -35,19 +35,4 @@ function updateCanvas(board, imgID) {
     }
   });
 
-  // var query = new Parse.Query(canvases);
-  // query.get(imgID, {
-  //   success:function(canvas) {
-  //     var relation = canvas.relation("contributors");
-  //     relation.query().find({
-  //       success:function(result){
-  //         console.log(result);
-  //       }, error:function(){
-  //         console.log("something went wrong");
-  //       }
-  //     })
-  //   }, error:function(){
-  //     console.log("something went wrong 2");
-  //   }
-  // })
 }
