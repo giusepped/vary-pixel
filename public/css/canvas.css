@@ -39,6 +39,8 @@ body {
   position: fixed;
   bottom: 20px;
   left: 200px;
+  font-family: lato;
+  font-size: 30px;
 }
 .searchbox {
   border: 10px solid black;
