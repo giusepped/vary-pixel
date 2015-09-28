@@ -1,8 +1,12 @@
 homepage.controller('UserController', ['$scope', function($scope) {
 
-  $scope.username = '';
+  $scope.username;
   $scope.userActionChoice;
   $scope.isLoggedIn;
+
+  $scope.test = function() {
+    console.log(Parse.User.current());
+  }
 
   $scope.saveUser = function(username, email, password) {
     var user = new Parse.User();
@@ -18,7 +22,7 @@ homepage.controller('UserController', ['$scope', function($scope) {
         console.log("didn't work");
       }
     }).then(function(user) {
-      $scope.username = user.get("username");
+      $scope.setUsername();
       $scope.$apply();
     });
   }
@@ -33,7 +37,7 @@ homepage.controller('UserController', ['$scope', function($scope) {
         console.log('error');
       }
     }).then(function(user) {
-      $scope.username = user.get("username");
+      $scope.setUsername();
       $scope.$apply();
     });
   }
@@ -56,19 +60,31 @@ homepage.controller('UserController', ['$scope', function($scope) {
       $('.user-action').show();
     };
   }
+
   $scope.toggleButton = function() {
-    if ($scope.isLoggedIn === 'completed') {
+    if (Parse.User.current() !== null) {
       $('.signInButton').hide();
       $('.signUpButton').hide();
-      $('.signOutButton').show();;
-    } else if ($scope.isLoggedIn === 'log out completed') {
+      $('.signOutButton').show();
+      $('.makenew').show();
+
+    } else {
       $('.signInButton').show();
       $('.signUpButton').show();
-      $('.signOutButton').hide();;
+      $('.signOutButton').hide();
+      $('.makenew').hide();
+    }
+  }
+
+  $scope.setUsername = function() {
+    if (Parse.User.current() !== null) {
+      $scope.username = "Have fun " + Parse.User.current().get("username") + "!";
+    }
+    else {
+      $scope.username = "";
     }
   }
   $scope.toggleButton();
-  $('.signOutButton').hide();;
+  $scope.setUsername();
 
-  console.log($scope.username);
 }]);

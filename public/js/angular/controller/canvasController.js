@@ -2,9 +2,9 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
-  var boardInterface = new BoardInterface(boardCtx);
   var boardSize = 1500;
-  var pixelSize = 15;
+  var pixelSize = boardSize/100;
+  var boardInterface = new BoardInterface(boardCtx);
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
   var paletteCanvas = $('.colour-palette')[0];
@@ -48,10 +48,8 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
         drawOn();
         prevX = x;
         prevY = y;
-        showPixelLimit();
       };
     })
-    showPixelLimit();
   })
 
   $(board).mouseup(function() {
@@ -59,20 +57,12 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   })
 
   function drawOn() {
-    if (boardInterface.userLimit > 0){
       boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
       socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
-    };
-  };
-
-  function showPixelLimit(){
-    var pixmessage = $('.pixel-limit').text(boardInterface.userLimit)
   };
 
   socket.on('coordinates', function(data) {
-    if (data[3] === imgID()) {
-      boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
-    }
+    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
   });
 
   $('.toggle-grid').click(function() {
@@ -96,6 +86,11 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     updateCanvas(board, imgID());
   });
 
+  $('.home-button').click(function() {
+    socket.emit('leave', imgID());
+    AllCanvas.setCurrent(null);
+  })
+
   $('.colour-palette').hide();
 
   board.height = board.width = boardSize;
@@ -105,6 +100,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   drawChosenCanvas.onload = function() {
     boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
+    socket.emit('join', imgID());
   }
   drawChosenCanvas.src = imgUrl();
 
@@ -122,6 +118,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   $interval(function() {
     angular.element('.save-canvas').trigger('click');
-  }, 6000);
+  }, 3000);
 
 }])
