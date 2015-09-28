@@ -1,32 +1,42 @@
 <section class="homepage" ng-controller="HomeController">
   <section ng-controller="UserController">
-    <nav class="navbar">
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <a class="navbar-brand navbar-header" ng-click="fetchPopular()">VARY-PIXEL</a>
-        <ul class="nav navbar-nav">
-          <li>
-            <button class="btn btn-default navbar-btn signInButton" ng-click="userAction('signIn')" type="button">Sign in</button>
-          </li>
-          <li>
-            <button class="btn btn-default navbar-btn signUpButton" ng-click="userAction('signUp')" type="button">Sign up</button>
-          </li>
-          <li>
-            <button class="btn btn-default navbar-btn signOutButton" ng-click="userAction('signOut')" type="button">Sign out</button>
-          </li>
-          <li>
-            <p class="username">{{ username }}</p>
-          </li>
-        </ul>
-        <form class="searchbox navbar-form navbar-right">
-          <input ng-model="searchString"class="form-horizontal" placeholder="Type here" type="text"/>
-          <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
-        </form>
-        <form class="makenew navbar-form navbar-right">
-          <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
-        </form>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand navbar-header" ng-click="fetchPopular()">VARY-PIXEL</a>
+        </div>
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <button class="btn btn-default navbar-btn signInButton" ng-click="userAction('signIn')" type="button">Sign in</button>
+            </li>
+            <li>
+              <button class="btn btn-default navbar-btn signUpButton" ng-click="userAction('signUp')" type="button">Sign up</button>
+            </li>
+            <li>
+              <button class="btn btn-default navbar-btn signOutButton" ng-click="userAction('signOut')" type="button">Sign out</button>
+            </li>
+            <li>
+              <p class="username">{{ username }}</p>
+            </li>
+          </ul>
+          <form class="searchbox navbar-form navbar-right">
+            <input ng-model="searchString"class="form-horizontal" placeholder="Type here" type="text"/>
+            <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
+          </form>
+          <form class="makenew navbar-form navbar-right">
+            <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
+          </form>
+        </div>
       </div>
     </nav>
-    
+
     <section class="user-action">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form class="sign-in" ng-show="userActionChoice === 'signIn'">
