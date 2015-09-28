@@ -2,9 +2,10 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
-  var boardInterface = new BoardInterface(boardCtx);
   var boardSize = 1500;
-  var pixelSize = 15;
+  var pixelSize = boardSize/100;
+  var limit = (boardSize/pixelSize * boardSize/pixelSize)/10;
+  var boardInterface = new BoardInterface(boardCtx, limit);
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
   var paletteCanvas = $('.colour-palette')[0];
@@ -59,10 +60,8 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   })
 
   function drawOn() {
-    if (boardInterface.userLimit > 0){
-      boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
+      boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor, boardInterface.userLimit);
       socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
-    };
   };
 
   function showPixelLimit(){
@@ -100,6 +99,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   })
 
   $('.colour-palette').hide();
+  showPixelLimit();
 
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;

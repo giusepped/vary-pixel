@@ -1,30 +1,37 @@
-function BoardInterface(context) {
+function BoardInterface(context, limit) {
   this.context = context;
-  this.userLimit = 200;
+  this.userLimit = limit;
 }
 
-BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {
+BoardInterface.prototype.createPixel = function(x, y, size, pixelColor, limit) {
 
   x = Math.floor(x / size) * size;
   y = Math.floor(y / size) * size;
 
-  if (PixelGenerator.createDot(this.context, x, y, size, pixelColor)) {
+  var created = PixelGenerator.createDot(this.context, x, y, size, pixelColor, limit);
+
+  if (created === 'made') {
     this.userLimit--;
-  } else {
+  } else if (created === 'cleared') {
     this.userLimit++;
+  } else if (created === 'nothing') {
+
   };
 };
 
 var PixelGenerator = (function() {
 
-  function createDot(ctx, x, y, size, pixelColor) {
-    if (WhatColour.pickColour(ctx, x, y) === 'rgba(0,0,0,0)') {
+  function createDot(ctx, x, y, size, pixelColor, limit) {
+    var colour = WhatColour.pickColour(ctx, x, y);
+    if (colour === 'rgba(0,0,0,0)' && limit > 0) {
       ctx.fillStyle = pixelColor;
       ctx.fillRect(x, y, size, size);
-      return true
-    } else {
+      return 'made';
+    } else if (colour !== 'rgba(0,0,0,0)') {
       ctx.clearRect(x, y, size, size);
-      return false
+      return 'cleared';
+    } else if (colour === 'rgba(0,0,0,0)' && limit === 0) {
+      return 'nothing';
     }
   };
 
