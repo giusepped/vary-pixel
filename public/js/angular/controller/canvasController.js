@@ -48,8 +48,10 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
         drawOn();
         prevX = x;
         prevY = y;
+        showPixelLimit();
       };
     })
+    showPixelLimit();
   })
 
   $(board).mouseup(function() {
@@ -57,9 +59,15 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   })
 
   function drawOn() {
-    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
-  }
+    if (boardInterface.userLimit > 0){
+      boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
+      socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
+    };
+  };
+
+  function showPixelLimit(){
+    var pixmessage = $('.pixel-limit').text(boardInterface.userLimit)
+  };
 
   socket.on('coordinates', function(data) {
     boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
