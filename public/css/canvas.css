@@ -31,6 +31,7 @@ body {
 }
 .save-canvas {
   left: 100px;
+  visibility: hidden;
 }
 .home-link {
   right: 20px;
