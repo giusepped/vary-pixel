@@ -31,25 +31,25 @@
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form class="sign-in" ng-show="userActionChoice === 'signIn'">
         <label>Username:
-          <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
+          <input name="username" ng-model="usernameLogIn" type="text">
         </label>
         <label>Password:
-          <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
+          <input name="password" ng-model="passwordLogIn" type="password">
         </label>
         <button class="btn btn-success signInSubmit" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
       </form>
       <form class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
-          <input name="username" ng-model="username" placeholder="your username" type="text">
+          <input name="username" ng-model="username" type="text">
         </label>
         <label>Email:
-          <input name="email" ng-model="email" placeholder="your email address" type="email">
+          <input name="email" ng-model="email" type="email">
         </label>
         <label>Password:
-          <input name="password" ng-model="password" placeholder="password" type="password">
+          <input name="password" ng-model="password" type="password">
         </label>
         <label>Password Confirmation:
-          <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
+          <input name="password-confirmation" ng-model="passwordConfirmation" confirmation" type="password">
         </label>
         <button class="btn btn-success ignUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation)" type="button">Sign up</button>
       </form>

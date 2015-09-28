@@ -25,15 +25,29 @@ h1 {
   background-color: rgba(200, 200, 200, 0.3);
   height: 50px;
 }
+
+@font-face {
+  font-family: joyStix;
+  src: url(../images/joystix.ttf);
+}
+
+@font-face {
+  font-family: lato;
+  src: url(../images/lato.ttf)
+}
+
 .navbar-brand {
-  font-size: 28px;
-  color: black;
+  font-size: 25px;
+  color: #e0e0e0;
+  font-family: joyStix;
 }
 .navbar-nav {
   padding: none;
   margin-left: 10px;
   margin-top: 10px;
   height: 30px;
+  font-family: lato;
+
 }
 .navbar-nav li {
   padding-right: 5px;
@@ -55,6 +69,7 @@ h1 {
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  color: black;
 }
 .searchbox input {
   width: 180px;
@@ -62,6 +77,9 @@ h1 {
   border-radius: 5px;
   margin-right: 10px;
   background-color: rgba(200, 200, 200, 0.3);
+  font-family: lato;
+  font-size: 16px;
+  color: black;
 }
 .searchbox button {
   padding: 0px;
@@ -69,7 +87,8 @@ h1 {
   background: none;
   border: none;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: lato;
 }
 .makenew {
   height: 30px;
@@ -80,6 +99,7 @@ h1 {
   background: none;
   border: none;
   font-size: 25px;
+  color: #e0e0e0
 }
 .username {
   color: #ffffff;
@@ -129,12 +149,18 @@ h1 {
   background-color: rgba(200, 200, 200, 0.3)
 }
 .jumbotron {
-  padding-left: 20px;
   background: none;
   color: black;
   margin-bottom: -30px;
-  margin-top: -30px;
+  margin-top: -40px;
+  font-family: lato;
+  text-align: center;
 }
+
+.jumbotron p {
+  margin-top: 10px;
+}
+
 .board-list {
   list-style-type: none;
   z-index: 1;
@@ -142,4 +168,8 @@ h1 {
 .board-list li {
   display: inline-block;
   margin: 25px;
+}
+
+form {
+  font-family: lato;
 }
