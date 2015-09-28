@@ -1,6 +1,6 @@
 function BoardInterface(context) {
   this.context = context;
-  this.userLimit = 100;
+  this.userLimit = 200;
 }
 
 BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {

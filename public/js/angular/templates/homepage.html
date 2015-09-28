@@ -1,8 +1,8 @@
-<section ng-controller="HomeController" class="homepage">
+<section class="homepage" ng-controller="HomeController">
   <section ng-controller="UserController">
     <nav class="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand navbar-header" ui-sref="home">VARY-PIXEL</a>
+        <a class="navbar-brand navbar-header" ng-click="fetchPopular()">VARY-PIXEL</a>
         <ul class="nav navbar-nav">
           <li>
             <button class="btn btn-default navbar-btn signInButton" ng-click="userAction('signIn')" type="button">Sign in</button>
@@ -18,47 +18,48 @@
           </li>
         </ul>
         <form class="searchbox navbar-form navbar-right">
-          <input class="form-horizontal" placeholder="Type here" type="text"/>
-          <button class="btn btn-default" type="button">Search</button>
+          <input ng-model="searchString"class="form-horizontal" placeholder="Type here" type="text"/>
+          <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
         </form>
         <form class="makenew navbar-form navbar-right">
-          <button class="glyphicon glyphicon-plus addBoardBtn" ng-click="userAction('makeNew')"></button>
+          <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
         </form>
       </div>
     </nav>
 
     <section class="user-action">
+      <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form class="sign-in" ng-show="userActionChoice === 'signIn'">
         <label>Username:
-          <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
+          <input name="username" ng-model="usernameLogIn" type="text">
         </label>
         <label>Password:
-          <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
+          <input name="password" ng-model="passwordLogIn" type="password">
         </label>
-        <button class="btn btn-success signInSubmit" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
+        <button class="btn btn-success" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
       </form>
       <form class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
-          <input name="username" ng-model="username" placeholder="your username" type="text">
+          <input name="username" ng-model="username" type="text">
         </label>
         <label>Email:
-          <input name="email" ng-model="email" placeholder="your email address" type="email">
+          <input name="email" ng-model="email" type="email">
         </label>
         <label>Password:
-          <input name="password" ng-model="password" placeholder="password" type="password">
+          <input name="password" ng-model="password" type="password">
         </label>
         <label>Password Confirmation:
-          <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
+          <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
         </label>
-        <button class="btn btn-success ignUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation)" type="button">Sign up</button>
+        <button class="btn btn-success" ng-click="saveUser(username, email, password, passwordConfirmation)" type="button">Sign up</button>
       </form>
       <form class="sign-out" ng-show="userActionChoice === 'signOut'">
         <p>Are you sure you're ready to sign out?</p>
-        <button class='btn btn-danger logOutSubmit' ng-click="signOutUser()">Sign out</button>
+        <button class='btn btn-danger' ng-click="signOutUser()">Sign out</button>
       </form>
       <form ng-show="userActionChoice==='makeNew'">
-        <input ng-model="boardDesc" placeholder="name your fun" type="text">
-        <button class="btn btn-success" ng-click="addBoard(boardDesc)" type="button" ui-sref="canvas">This is my fun</button>
+        <input ng-model="boardDesc" type="text">
+        <button class="btn btn-success" ng-click="addBoard(boardDesc)" type="button">This is my fun</button>
       </form>
     </section>
 
@@ -67,13 +68,15 @@
         <h1>Here is all the fun you can partake in</h1>
         <p>
           It's simple! Sign up, join a room and start!
-          <br/> Don't like any rooms? Create your own.
+          <br/>
+          Don't like any rooms? Create your own.
         </p>
       </div>
 
       <ul class="board-list">
         <li ng-repeat="board in boards">
           <a ng-click="setCurrent(board.id); checkUserReg()" ui-sref="canvas"><img class="img-rounded" ng-src="{{ board.get('picture').url()}}"/></a>
+          <h4>{{board.get('description')}}</h4>
         </li>
       </ul>
     </section>
