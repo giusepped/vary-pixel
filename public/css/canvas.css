@@ -39,7 +39,7 @@ body {
   position: fixed;
   bottom: 20px;
   left: 200px;
-  font-family: lato;
+  font-family: lato, sans-serif;
   font-size: 30px;
 }
 .searchbox {
@@ -49,6 +49,6 @@ body {
   position: fixed;
   bottom: 20px;
   left: 100px;
-  font-family: lato;
+  font-family: lato, sans-serif;
   font-size: 30px;
 }
