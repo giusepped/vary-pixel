@@ -2,7 +2,7 @@
   <section ng-controller="UserController">
     <nav class="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand navbar-header" ui-sref="home">VARY-PIXEL</a>
+        <a class="navbar-brand navbar-header" ng-click="fetchPopular()">VARY-PIXEL</a>
         <ul class="nav navbar-nav">
           <li>
             <button class="btn btn-default navbar-btn signInButton" ng-click="userAction('signIn')" type="button">Sign in</button>
@@ -18,15 +18,15 @@
           </li>
         </ul>
         <form class="searchbox navbar-form navbar-right">
-          <input class="form-horizontal" placeholder="Type here" type="text"/>
-          <button class="btn btn-default" type="button">Search</button>
+          <input ng-model="searchString"class="form-horizontal" placeholder="Type here" type="text"/>
+          <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
         </form>
         <form class="makenew navbar-form navbar-right">
           <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
         </form>
       </div>
     </nav>
-
+    
     <section class="user-action">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form class="sign-in" ng-show="userActionChoice === 'signIn'">
