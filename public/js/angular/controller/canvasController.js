@@ -16,7 +16,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   var drawChosenCanvas = new Image();
   drawChosenCanvas.crossOrigin = "anonymous";
   var colourPaletteImg = new Image();
-  var pixelLimit = 200;  
 
   function imgID() {
     return AllCanvas.getCurrent();
