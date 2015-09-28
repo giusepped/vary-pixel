@@ -1,37 +1,25 @@
 function BoardInterface(context, limit) {
   this.context = context;
-  this.userLimit = limit;
+
 }
 
-BoardInterface.prototype.createPixel = function(x, y, size, pixelColor, limit) {
+BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {
 
   x = Math.floor(x / size) * size;
   y = Math.floor(y / size) * size;
 
-  var created = PixelGenerator.createDot(this.context, x, y, size, pixelColor, limit);
-
-  if (created === 'made') {
-    this.userLimit--;
-  } else if (created === 'cleared') {
-    this.userLimit++;
-  } else if (created === 'nothing') {
-
-  };
+  var created = PixelGenerator.createDot(this.context, x, y, size, pixelColor);
 };
 
 var PixelGenerator = (function() {
 
-  function createDot(ctx, x, y, size, pixelColor, limit) {
+  function createDot(ctx, x, y, size, pixelColor) {
     var colour = WhatColour.pickColour(ctx, x, y);
-    if (colour === 'rgba(0,0,0,0)' && limit > 0) {
+    if (colour === 'rgba(0,0,0,0)') {
       ctx.fillStyle = pixelColor;
       ctx.fillRect(x, y, size, size);
-      return 'made';
-    } else if (colour !== 'rgba(0,0,0,0)') {
+    } else {
       ctx.clearRect(x, y, size, size);
-      return 'cleared';
-    } else if (colour === 'rgba(0,0,0,0)' && limit === 0) {
-      return 'nothing';
     }
   };
 
