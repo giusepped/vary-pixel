@@ -1,10 +1,10 @@
 homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootScope', '$timeout', '$state', function($scope, $q, CanvasProvider, $rootScope, $timeout, $state) {
   var canvases = Parse.Object.extend("canvases");
 
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams){
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
 
-    if(requireLogin && Parse.User.current() === null) {
+    if (requireLogin && Parse.User.current() === null) {
       event.preventDefault();
     }
   })
@@ -18,28 +18,9 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     }
   }
 
-  function saveToParse(object, description) {
-    var blankCanvas = document.createElement('canvas');
-    var base64 = blankCanvas.toDataURL('image/png');
-    object.save({
-      Base64: base64,
-      description: description
-    }, {
-      success: function(canvas) {
-        console.log('saved');
-        CanvasProvider.setCurrent(canvas.id);
-        $state.go('canvas', {});
-
-      },
-      error: function(canvas, error) {
-        console.log('failed');
-      }
-    });
-  }
-
   $scope.addBoard = function(description) {
     var object = new canvases();
-    saveToParse(object, description);
+    CanvasProvider(object, description);
     $scope.boardDesc = '';
   };
 
@@ -47,46 +28,14 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     CanvasProvider.setCurrent(id);
   }
 
-  $scope.fetchPopular = function() {
-    function getBoard() {
-      var deferred = $q.defer();
-      var query = new Parse.Query(canvases);
-      query.find({
-        success: function(results) {
-          deferred.resolve(results);
-        },
-        error: function(error) {
-          deferred.reject(error.message);
-        }
-      });
-      return deferred.promise;
-    }
-
-    getBoard().then(function(boards) {
-      $scope.boards = boards;
-    });
-  }
-
-  $scope.search = function (description) {
-    function getBoard() {
-      var deferred = $q.defer();
-      var query = new Parse.Query(canvases);
-      query.startsWith("description", description)
-      query.find({
-        success: function(results) {
-          deferred.resolve(results);
-        },
-        error: function(error) {
-          deferred.reject(error.message);
-        }
-      });
-      return deferred.promise;
-    }
-
-    getBoard().then(function(boards) {
+  $scope.searchBy = function(type, param) {
+    CanvasProvider.searchFor(type, param).then(function(boards) {
       $scope.boards = boards;
     })
   }
-  $scope.fetchPopular();
+
+  CanvasProvider.fetch().then(function(boards) {
+    $scope.boards = boards;
+  });
 
 }]);
