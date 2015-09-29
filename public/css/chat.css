@@ -1,0 +1,52 @@
+.chatbox {
+  height: 500px;
+  border: 2px solid black;
+  width: 400px;
+  float: right;
+  display: inline;
+  margin-right: 8px;
+  position: relative;
+  font-family: lato, sans-serif;
+  background: #ffffff;
+}
+
+.messagebox {
+  overflow: scroll;
+  height:460px;
+}
+
+.chat {
+  background: #000000;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 398px;
+  position: absolute;
+}
+
+.msg {
+  border: 0;
+  padding: 10px;
+  width: 84%;
+  margin-right: 1%;
+}
+
+.send-msg {
+  width: 14%;
+  background: rgb(130, 224, 255);
+  border: none;
+}
+
+.messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.messages li {
+  padding: 5px 10px;
+}
+
+.messages li:nth-child(odd) {
+  background: #eee;
+}

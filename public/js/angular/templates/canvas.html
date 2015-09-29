@@ -1,5 +1,6 @@
 <head>
   <link href='css/canvas.css' rel='stylesheet' type='text/css'>
+  <link href='css/chat.css' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="CanvasController">
   <div class="button-container container">
@@ -7,12 +8,24 @@
     <button class="btn toggle-grid" type="button">Toggle Grid</button>
     <button class="btn save-canvas" type="button">Save Drawing</button>
     <button class="btn home-button" ui-sref="home" type="button">Home</button>
+    <button class="btn chat-button" type="button">Chat</button>
   </div>
+  <section class="canvases">
+    <canvas class="grid"></canvas>
+    <canvas class="board"></canvas>
+    <canvas class="colour-palette"></canvas>
+  </section>
+  <section class="chatroom">
+    <div class="chatbox">
+    <div class="messagebox">
+      <ul class="messages"></ul>
+    </div>
+      <form class="chat">
+        <input class="msg" autocomplete="off"><button class="send-msg">Send</button>
+      </form>
 
-  <canvas class="grid"></canvas>
-  <canvas class="board"></canvas>
-  <canvas class="colour-palette"></canvas>
-
+  </div>
+  </section>
   <p class="save-alert"></p><img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
   <script src="/js/pixel.js"></script>
   <script src="/js/grid.js"></script>
