@@ -3,6 +3,7 @@ body {
 }
 .button-container {
   margin-bottom: 50px;
+  width: 100%;
 }
 .grid {
   position: absolute;
@@ -15,7 +16,7 @@ body {
 .mouseDown {
    cursor: url('/images/paintbrush.png'), auto;
 }
-.toggle-grid, .save-canvas, .home-link {
+.toggle-grid, .save-canvas, .home-button {
   position: fixed;
   top: 10px;
   font-family: arial, sans-serif;

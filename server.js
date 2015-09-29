@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
   socket.on('join', function(data) {
-    console.log('joined');
+    console.log(data[1]);
     imgID = data[0];
     socket.join(imgID);
     username = data[1];

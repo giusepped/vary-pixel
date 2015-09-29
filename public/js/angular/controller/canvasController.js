@@ -91,7 +91,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   })
 
   $('.home-button').click(function() {
-    socket.emit('leave', imgID());
+    socket.emit('leave', [imgID(), username]);
     CanvasProvider.setCurrent(null);
   })
 
@@ -105,6 +105,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   chosenCanvas.onload = function() {
     boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
+    console.log(username);
+    socket.emit('join', [imgID(), username]);
   }
 
   colourPaletteImg.onload = function() {
@@ -121,7 +123,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     updateCanvas(board, imgID());
   })
 
-  socket.emit('join', [imgID(), username]);
 
   $('.chat').submit(function() {
     socket.emit('chat message', [$('.msg').val(), username, imgID()]);
