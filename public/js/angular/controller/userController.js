@@ -10,7 +10,7 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
 
   $scope.saveUser = function(username, email, password, rePassword) {
     var user = new Parse.User();
-    if(password.match
+    if(password.match(rePassword)){
     user.set("username", username);
     user.set("password", password);
     user.set("email", email);
@@ -29,6 +29,12 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
       $scope.setUsername();
       $scope.$apply();
     });
+  } else {
+    angular.element('.passwordUnmatch').show();
+    $timeout(function() {
+      angular.element('.passwordUnmatch').hide()
+    }, 1500);
+    }
   }
 
   $scope.signInUser = function(username, password) {
