@@ -1,9 +1,9 @@
-homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$interval', function($scope, AllCanvas, $timeout, $interval) {
+homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout', '$interval', '$q', function($scope, CanvasProvider, $timeout, $interval, $q) {
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
   var boardSize = 1500;
-  var pixelSize = boardSize/100;
+  var pixelSize = boardSize / 100;
   var boardInterface = new BoardInterface(boardCtx);
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
@@ -13,32 +13,39 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   var opts = {
     distance: pixelSize
   };
-  var drawChosenCanvas = new Image();
-  drawChosenCanvas.crossOrigin = "anonymous";
+  var chosenCanvas = new Image();
   var colourPaletteImg = new Image();
-
   function imgID() {
-    return AllCanvas.getCurrent();
-  }
-
-  function imgUrl() {
-    var array = AllCanvas.allBoards();
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === imgID()) return array[i].attributes.picture.url();
-    }
+    return CanvasProvider.getCurrent()[0];
   }
 
   $scope.imgDesc = function() {
-    var array = AllCanvas.allBoards();
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === imgID()) return array[i].attributes.description;
+    return CanvasProvider.getCurrent()[1];
     }
+  function search(id) {
+    function getBoard() {
+      var deferred = $q.defer();
+      var query = new Parse.Query(canvases);
+      query.startsWith("objectId", id)
+      query.find({
+        success: function(result) {
+          deferred.resolve(result);
+          chosenCanvas.src = result[0].attributes.Base64;
+        },
+        error: function(error) {
+          deferred.reject(error.message);
+        }
+      });
+      return deferred.promise;
+    }
+    getBoard().then(function(canvas) {
+      socket.emit('join', imgID());
+    })
   }
 
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
-    console.log(event);
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()
@@ -83,13 +90,9 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     $('.colour-palette-toggle').fadeToggle('slow');
   })
 
-  $('.save-canvas').click(function() {
-    updateCanvas(board, imgID());
-  });
-
   $('.home-button').click(function() {
     socket.emit('leave', imgID());
-    AllCanvas.setCurrent(null);
+    CanvasProvider.setCurrent(null);
   })
 
   $('.colour-palette').hide();
@@ -98,12 +101,12 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   background.height = background.width = boardSize;
 
   new Grid(opts).draw(gridContext);
+  search(imgID())
 
-  drawChosenCanvas.onload = function() {
-    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
-    socket.emit('join', imgID());
+  chosenCanvas.onload = function() {
+    boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
   }
-  drawChosenCanvas.src = imgUrl();
+
 
   colourPaletteImg.onload = function() {
     paletteCanvas.width = paletteCanvas.height = 300;
@@ -111,14 +114,12 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   }
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
-  if (imgUrl() === undefined) {
-    $timeout(function() {
-      angular.element('.save-canvas').trigger('click');
-    }, 300);
-  }
+  // setInterval(function() {
+  //   updateCanvas(board, imgID());
+  // }, 3000);
 
-  $interval(function() {
-    angular.element('.save-canvas').trigger('click');
-  }, 3000);
+  $('.save-canvas').click(function() {
+    updateCanvas(board, imgID());
+  })
 
 }])

@@ -1,4 +1,4 @@
-homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', '$timeout', '$state', function($scope, $q, AllCanvas, $rootScope, $timeout, $state) {
+homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootScope', '$timeout', '$state', function($scope, $q, CanvasProvider, $rootScope, $timeout, $state) {
   var canvases = Parse.Object.extend("canvases");
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams){
@@ -19,13 +19,15 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
   }
 
   function saveToParse(object, description) {
+    var blankCanvas = document.createElement('canvas');
+    var base64 = blankCanvas.toDataURL('image/png');
     object.save({
-      picture: null,
+      Base64: base64,
       description: description
     }, {
       success: function(canvas) {
         console.log('saved');
-        AllCanvas.setCurrent(canvas.id);
+        CanvasProvider.setCurrent(canvas.id);
         $state.go('canvas', {});
 
       },
@@ -42,7 +44,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
   };
 
   $scope.setCurrent = function(id) {
-    AllCanvas.setCurrent(id);
+    CanvasProvider.setCurrent(id);
   }
 
   $scope.fetchPopular = function() {
@@ -61,7 +63,6 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
     }
 
     getBoard().then(function(boards) {
-      AllCanvas.setBoard(boards);
       $scope.boards = boards;
     });
   }
@@ -83,9 +84,9 @@ homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope'
     }
 
     getBoard().then(function(boards) {
-      AllCanvas.setBoard(boards);
       $scope.boards = boards;
     })
   }
   $scope.fetchPopular();
+
 }]);

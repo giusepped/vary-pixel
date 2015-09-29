@@ -34,9 +34,8 @@ body {
 }
 .save-canvas {
   left: 100px;
-  visibility: hidden;
 }
-.home-link {
+.home-button {
   right: 20px;
 }
 .save-alert {
