@@ -25,26 +25,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[1];
   }
 
-  function search(id) {
-    function getBoard() {
-      var deferred = $q.defer();
-      var query = new Parse.Query(canvases);
-      query.startsWith("objectId", id)
-      query.find({
-        success: function(result) {
-          deferred.resolve(result);
-          chosenCanvas.src = result[0].attributes.Base64;
-        },
-        error: function(error) {
-          deferred.reject(error.message);
-        }
-      });
-      return deferred.promise;
-    }
-    getBoard().then(function(canvas) {
-      socket.emit('join', imgID());
-    })
-  }
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
