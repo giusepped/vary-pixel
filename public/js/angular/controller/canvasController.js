@@ -38,6 +38,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
+    console.log(event);
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()

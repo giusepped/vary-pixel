@@ -11,7 +11,7 @@ body {
 .board {
   position: absolute;
   border: 1px solid black;
-  cursor: url('/images/cursor.cur'), auto;
+  cursor: url('/images/paintbrush.png'), auto;
 }
 .toggle-grid, .save-canvas, .home-link {
   position: fixed;
