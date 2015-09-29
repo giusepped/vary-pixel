@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand navbar-header" ng-click="fetchPopular()">VARY-PIXEL</a>
+          <a class="navbar-brand navbar-header" ng-click="searchFor('')">VARY-PIXEL</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -29,7 +29,7 @@
           <div class="nav-forms">
             <form class="searchbox navbar-form navbar-right">
               <input ng-model="searchString"class="form-horizontal" type="text"/>
-              <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
+              <button class="btn btn-default" type="button" ng-click="searchBy('objectId', searchString)">Search</button>
             </form>
             <form class="makenew navbar-form navbar-right">
               <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
@@ -87,8 +87,13 @@
 
       <ul class="board-list">
         <li ng-repeat="board in boards">
+<<<<<<< HEAD
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg(); joinChat()" ui-sref="canvas">
             <img src="{{ board.attributes.Base64 }}"/>
+=======
+          <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg()" ui-sref="canvas">
+            <img data-ng-src="{{board.attributes.Base64}}"/>
+>>>>>>> 769e3adac309f175878eadab25fb7467c422cc03
           </a>
           <h4>{{ board.get('description') }}</h4>
         </li>

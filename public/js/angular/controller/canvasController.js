@@ -22,26 +22,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[0];
   }
 
-  function search(id) {
-    function getBoard() {
-      var deferred = $q.defer();
-      var query = new Parse.Query(canvases);
-      query.startsWith("objectId", id)
-      query.find({
-        success: function(result) {
-          deferred.resolve(result);
-          chosenCanvas.src = result[0].attributes.Base64;
-        },
-        error: function(error) {
-          deferred.reject(error.message);
-        }
-      });
-      return deferred.promise;
-    }
-    getBoard().then(function(canvas) {
-      console.log(canvas);
-      joinRoom();
-    })
+  $scope.imgDesc = function() {
+    return CanvasProvider.getCurrent()[1];
   }
 
   $(board).mousedown(function() {
@@ -102,7 +84,11 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   background.height = background.width = boardSize;
 
   new Grid(opts).draw(gridContext);
-  search(imgID());
+
+  CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
+    chosenCanvas.src = result[0].attributes.Base64;
+    socket.emit('join', imgID());
+  })
 
   chosenCanvas.onload = function() {
     boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
@@ -113,10 +99,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
   }
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
-
-  // setInterval(function() {
-  //   updateCanvas(board, imgID());
-  // }, 3000);
 
   function joinRoom() {
     socket.emit('joinRoom', [imgID(), username]);
