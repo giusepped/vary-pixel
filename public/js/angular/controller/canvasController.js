@@ -39,7 +39,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
       return deferred.promise;
     }
     getBoard().then(function(canvas) {
-      socket.emit('join', [imgID(), username]);
+      console.log(canvas);
+      joinRoom();
     })
   }
 
@@ -91,7 +92,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   })
 
   $('.home-button').click(function() {
-    socket.emit('leave', [imgID(), username]);
+    socket.emit('leaveRoom', [imgID(), username]);
     CanvasProvider.setCurrent(null);
   })
 
@@ -117,6 +118,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   //   updateCanvas(board, imgID());
   // }, 3000);
 
+  function joinRoom() {
+    socket.emit('joinRoom', [imgID(), username]);
+  }
+
   $('.save-canvas').click(function() {
     updateCanvas(board, imgID());
   })
@@ -130,4 +135,5 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   socket.on('chat message', function(msg) {
     $('.messages').append($('<li>').text(msg));
   });
+
 }])

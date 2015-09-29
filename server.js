@@ -23,14 +23,13 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-  socket.on('join', function(data) {
+  socket.on('joinRoom', function(data) {
     imgID = data[0];
     socket.join(imgID);
     username = data[1];
     users.push({ name: username, id: socket.id , roomID: imgID });
-    console.log(users);
     socket.broadcast.to(imgID).emit('chat message', username + ' has joined the room');
-    socket.emit('chat message', 'Welcome to the room ' + username + '!');
+    socket.emit('chat message', 'Welcome to the room ' + imgID + ' ' + username + '!');
     for (var i = 0; i < users.length - 1; i++) {
       if (users[i]["roomID"] === imgID) {
         socket.emit('chat message', users[i]["name"] + " is drawing too");
@@ -39,12 +38,13 @@ io.on('connection', function(socket) {
   });
 
   socket.on('chat message', function(data) {
+    console.log(data);
     imgID = data[2];
     username = data[1];
-    io.to(imgID).emit('chat message', username + ':' + data[0]);
+    io.to(imgID).emit('chat message', username + ":" + data[0]);
   });
 
-  socket.on('leave', function(data) {
+  socket.on('leaveRoom', function(data) {
     imgID = data[0];
     username = data[1];
     socket.broadcast.to(imgID).emit('chat message', username + ' has left the room');
@@ -55,7 +55,8 @@ io.on('connection', function(socket) {
       }
     }
     socket.leave(imgID);
-  })
+    console.log("Left room " + imgID);
+  });
 
   socket.on('coordinates', function(data) {
     socket.broadcast.to(data[3]).emit('coordinates', data);
