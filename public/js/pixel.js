@@ -1,6 +1,5 @@
-function BoardInterface(context, limit) {
+function BoardInterface(context) {
   this.context = context;
-
 }
 
 BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {
@@ -8,7 +7,7 @@ BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {
   x = Math.floor(x / size) * size;
   y = Math.floor(y / size) * size + (3 * size); //this adjustment at the end is for the paintbrush cursor
 
-  var created = PixelGenerator.createDot(this.context, x, y, size, pixelColor);
+  PixelGenerator.createDot(this.context, x, y, size, pixelColor);
 };
 
 var PixelGenerator = (function() {

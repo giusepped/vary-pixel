@@ -9,7 +9,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var gridContext = background.getContext('2d');
   var paletteCanvas = $('.colour-palette')[0];
   var paletteCtx = paletteCanvas.getContext('2d');
-  var pixelColor;
+  var pixelColor = 'rgba(0,0,0,255)';
   var opts = {
     distance: pixelSize
   };
@@ -17,6 +17,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var colourPaletteImg = new Image();
   var userObj = Parse.User.current();
   var username = userObj.get("username");
+
+  board.height = board.width = boardSize;
+  background.height = background.width = boardSize;
+  new Grid(opts).draw(gridContext);
 
   function imgID() {
     return CanvasProvider.getCurrent()[0];
@@ -26,13 +30,26 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[1];
   }
 
+  function drawOn(x, y, colour) {
+    x = x || event.offsetX;
+    y = y || event.offsetY;
+    colour = colour || pixelColor;
+
+    boardInterface.createPixel(x, y, pixelSize, colour);
+    socket.emit('coordinates', [x, y, colour, imgID()]);
+  };
+
+  socket.on('coordinates', function(data) {
+    drawOn(data[0], data[1], data[2]);
+  });
+
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()
-    $(board).mousemove(function(e) {
+    $(board).mousemove(function() {
       x = Math.floor(event.offsetX / pixelSize) * pixelSize;
       y = Math.floor(event.offsetY / pixelSize) * pixelSize;
       if (Math.abs(prevX - x) > 14 || Math.abs(prevY - y) > 14) {
@@ -46,15 +63,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   $(board).mouseup(function() {
     $(board).off("mousemove");
   })
-
-  function drawOn() {
-    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
-  };
-
-  socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
-  });
 
   $('.toggle-grid').click(function() {
     $('.grid').toggle();
@@ -86,14 +94,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   $('.colour-palette').hide();
 
-  board.height = board.width = boardSize;
-  background.height = background.width = boardSize;
-
-  new Grid(opts).draw(gridContext);
-
   CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
     chosenCanvas.src = result[0].attributes.Base64;
-
   })
 
   chosenCanvas.onload = function() {
@@ -108,12 +110,16 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
+  setInterval(function() {
+    socket.emit('canvas', [imgID(), board.toDataURL('image/png')]);
+  }, 5000);
+
   function joinRoom() {
     socket.emit('joinRoom', [imgID(), username]);
   }
 
   $('.save-canvas').click(function() {
-    updateCanvas(board, imgID());
+    CanvasProvider.updateCanvas(board, imgID());
   })
 
   $('.chat-button').click(function() {
@@ -131,5 +137,4 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   function appendMessage(msg) {
     $('.messages').append($('<li>').text(msg));
   }
-
 }])
