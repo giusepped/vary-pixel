@@ -12,6 +12,7 @@ body {
 .board {
   position: absolute;
   border: 1px solid black;
+
 }
 .mouseDown {
   cursor: url('/images/paintbrush.png'), auto;

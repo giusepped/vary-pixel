@@ -87,6 +87,11 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     CanvasProvider.setCurrent(null);
   })
 
+  window.onunload = function() {
+    socket.emit('leaveRoom', [imgID(), username]);
+    socket.removeListener('chat message', appendMessage);
+  }
+
   $('.colour-palette').hide();
 
   CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
