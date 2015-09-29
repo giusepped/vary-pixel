@@ -71,10 +71,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         relation.add(currentUser);
         relation.query().find({
           success: function(result) {
-            for (var i = 0; i < result.length; i++) {
-              contributors.push(result[i].get("username"));
-              console.log(contributors);
-            }
+            console.log(result);
           },
           error: function() {
             console.log('not updated');
@@ -88,6 +85,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
   }
 
   var getContributors = function(imgID) {
+    var deferred = $q.defer();
     var query = new Parse.Query("canvases");
     var currentCanvas;
     query.get(imgID, {
@@ -96,21 +94,19 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         var relation = currentCanvas.relation("contributors");
         relation.query().find({
           success: function(result) {
-            for (var i = 0; i < result.length; i++) {
-              contributors.push(result[i].get("username"));
-              console.log(contributors);
-            }
+            deferred.resolve(result);
+            // for (var i = 0; i < result.length; i++) {
+            //   contributors.push(result[i].get("username"));
+            // }
           },
-          error: function() {
+          error: function(error) {
+            deferred.reject(error.message);
             console.log('not updated');
           }
         })
       }
     })
-  }
-
-  var showContributors = function(contributors) {
-    console.log(contributors);
+    return deferred.promise;
   }
 
   return {
@@ -119,6 +115,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
     fetch: fetch,
     searchBy: searchBy,
     createCanvas: createCanvas,
-    updateCanvas: updateCanvas
+    updateCanvas: updateCanvas,
+    getContributors: getContributors
   }
 }]);

@@ -38,9 +38,10 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     $scope.boards = results;
   });
 
-
-  angular.element('.board-thumbnail').mouseover(function() {
-    console.log("hi");
-    showContributors();
-  });
+  $scope.show = function(id) {
+    CanvasProvider.getContributors(id).then(function(results) {
+      $scope.contributors = results;
+      console.log($scope.contributors);
+    });
+  }
 }]);
