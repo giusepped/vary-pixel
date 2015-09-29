@@ -1,10 +1,21 @@
 <head>
   <link href='css/canvas.css' rel='stylesheet' type='text/css'>
+  <link href='css/chat.css' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="CanvasController">
-  <canvas class="grid"></canvas>
-  <canvas class="board"></canvas>
-  <canvas class="colour-palette"></canvas>
+  <section class="canvases">
+    <canvas class="grid"></canvas>
+    <canvas class="board"></canvas>
+    <canvas class="colour-palette"></canvas>
+  </section>
+  <section class="chatroom">
+    <div class="chatbox">
+      <ul class="messages"></ul>
+      <form class="chat">
+        <input class="msg" autocomplete="off"><button class="send-msg">Send</button>
+      </form>
+  </div>
+  </section>
   <div class="button-container">
     <button class="btn toggle-grid" type="button">Toggle Grid</button>
     <button class="btn save-canvas" type="button">Save Drawing</button>

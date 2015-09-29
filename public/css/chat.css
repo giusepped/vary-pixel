@@ -1,0 +1,18 @@
+.chatbox {
+  height: 500px;
+  border: 2px solid black;
+  border-radius: 8px;
+  width: 400px;
+  float: right;
+  display: inline;
+  background-color: #ff0000;
+  margin-right: 8px;
+}
+
+.chat {
+  background: #000000;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 200px;
+}
