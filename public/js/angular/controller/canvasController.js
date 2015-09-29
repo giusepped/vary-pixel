@@ -137,4 +137,5 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   function appendMessage(msg) {
     $('.messages').append($('<li>').text(msg));
   }
+
 }])

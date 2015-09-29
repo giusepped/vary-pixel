@@ -38,4 +38,9 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     $scope.boards = results;
   });
 
+
+  angular.element('.board-thumbnail').mouseover(function() {
+    console.log("hi");
+    showContributors();
+  });
 }]);

@@ -60,7 +60,4 @@ io.on('connection', function(socket) {
     socket.broadcast.to(imgID).emit('coordinates', data);
   });
 
-  socket.on('canvas', function(data) {
-    canvases[data[0]] = [users[0].id, '1'];
-  });
 });
