@@ -17,7 +17,12 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var colourPaletteImg = new Image();
 
   function imgID() {
+
     return CanvasProvider.getCurrent()[0];
+  }
+
+  $scope.imgDesc = function() {
+    return CanvasProvider.getCurrent()[1];
   }
 
   $(board).mousedown(function() {
@@ -78,7 +83,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   background.height = background.width = boardSize;
 
   new Grid(opts).draw(gridContext);
-  
+
   CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
     chosenCanvas.src = result[0].attributes.Base64;
     socket.emit('join', imgID());

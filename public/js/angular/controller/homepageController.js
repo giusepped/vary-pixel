@@ -24,8 +24,8 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     $scope.boardDesc = '';
   };
 
-  $scope.setCurrent = function(id) {
-    CanvasProvider.setCurrent(id);
+  $scope.setCurrent = function(id, description) {
+    CanvasProvider.setCurrent(id, description);
   }
 
   $scope.searchBy = function(type, param) {
