@@ -34,7 +34,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
       if (array[i].id === imgID()) return array[i].attributes.description;
     }
   }
-
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
