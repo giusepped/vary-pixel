@@ -11,6 +11,7 @@ body {
 .board {
   position: absolute;
   border: 1px solid black;
+  cursor: url('/images/paintbrush.png'), auto;
 }
 .toggle-grid, .save-canvas, .home-link {
   position: fixed;
@@ -53,3 +54,5 @@ body {
   font-family: lato, sans-serif;
   font-size: 30px;
 }
+
+
