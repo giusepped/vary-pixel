@@ -16,6 +16,8 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   var drawChosenCanvas = new Image();
   drawChosenCanvas.crossOrigin = "anonymous";
   var colourPaletteImg = new Image();
+  var userObj = Parse.User.current();
+  var username = userObj.get("username");
 
   function imgID() {
     return AllCanvas.getCurrent();
@@ -101,7 +103,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   drawChosenCanvas.onload = function() {
     boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
-    socket.emit('join', imgID());
+    socket.emit('join', [imgID(), username]);
   }
   drawChosenCanvas.src = imgUrl();
 

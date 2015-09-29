@@ -3,6 +3,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var Parse = require('parse/node').Parse;
+var username;
+var users = [];
 
 Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
 
@@ -19,11 +21,16 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-  socket.on('join', function(canvas) {
-    socket.join(canvas);
+  socket.on('join', function(data) {
+    socket.join(data[0]);
+    username = data[1];
+    users.push({ socket.id: username });
+    socket.broadcast.emit('chat message', username + ' has joined the room');
+    socket.emit('chat message', 'Welcome to the room ' + username + '!');
   });
 
   socket.on('leave', function(canvas) {
+    socket.broadcast.emit('chat message', username + ' has left the room');
     socket.leave(canvas);
   })
 
