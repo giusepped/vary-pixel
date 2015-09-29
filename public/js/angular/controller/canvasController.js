@@ -36,8 +36,11 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   }
 
   $(board).mousedown(function() {
+    event.preventDefault();
+    $('.board').addClass('mouseDown');
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
+    console.log(event);
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()
@@ -53,12 +56,13 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   })
 
   $(board).mouseup(function() {
+    $('.board').removeClass('mouseDown');
     $(board).off("mousemove");
   })
 
   function drawOn() {
-      boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-      socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
+    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
+    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
   };
 
   socket.on('coordinates', function(data) {
