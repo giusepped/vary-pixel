@@ -52,7 +52,43 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
 
       },
       error: function(canvas, error) {
-        console.log('failed');
+        console.log('failed save');
+      }
+    });
+  }
+
+  var updateCanvas = function(board, imgID) {
+
+    function hideFlashMessage(message) {
+      message.delay(2000).fadeOut('normal', function() {
+        $(this).remove();
+      });
+    }
+
+    var canvasData = board.toDataURL('image/png');
+    var query = new Parse.Query("canvases");
+    var currentCanvas;
+    query.get(imgID, {
+      success: function(result) {
+        currentCanvas = result;
+        currentCanvas.set("Base64", canvasData);
+        currentCanvas.save();
+        var message = $('.save-alert').text('Your drawing has been updated!');
+        hideFlashMessage(message);
+        var currentUser = Parse.User.current();
+        var contributors = currentCanvas.relation("contributors");
+        contributors.add(currentUser);
+        contributors.query().find({
+          success: function(result) {
+            console.log('updated');
+          },
+          error: function() {
+            console.log('not updated');
+          }
+        });
+      },
+      error: function(currentCanvas) {
+        console.log("Could not find the canvas");
       }
     });
   }
@@ -62,6 +98,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
     getCurrent: getCurrent,
     fetch: fetch,
     searchBy: searchBy,
-    createCanvas: createCanvas
+    createCanvas: createCanvas,
+    updateCanvas: updateCanvas
   }
 }])

@@ -41,11 +41,9 @@ form {
   color: #e0e0e0;
   font-family: joyStix;
 }
-
-.navbar-default .navbar-brand{
+.navbar-default .navbar-brand {
   color: #e0e0e0;
 }
-
 .navbar-nav {
   padding: none;
   margin-left: 10px;
@@ -191,31 +189,25 @@ form {
 MOBILE
 ---------------------------------------------------------------------------------*/
 
-
-
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width: 768px) {
   .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
     margin-right: 0px !important;
     margin-left: 0px !important;
   }
-
   .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border: 5px !important;
   }
-
   .navbar-collapse {
     width: 100%;
     background: #5a90af;
     text-align: center;
     border-color: transparent !important;
   }
-
   .navbar-collapse li {
-     padding: 0 0 0 0 !important;
-     margin: 0 0 0 0 !important;
-     height: auto !important;
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    height: auto !important;
   }
-
   .navbar-collapse .nav-forms {
     padding-left: 7% !important;
     padding-bottom: 10px;
@@ -223,7 +215,7 @@ MOBILE
     margin-left: 33%;
     margin-right: 33%;
   }
-  .navbar-form{
+  .navbar-form {
     box-shadow: none;
     -webkit-box-shadow: none;
   }

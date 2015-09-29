@@ -16,7 +16,7 @@ app.set('view engine', 'jade');
 
 server.listen(process.env.PORT || 3000);
 
-var canvasesArray = [];
+var canvases = {};
 
 app.get('/', function(req, res) {
   res.render('views/index.jade');
@@ -58,5 +58,9 @@ io.on('connection', function(socket) {
 
   socket.on('coordinates', function(data) {
     socket.broadcast.to(data[3]).emit('coordinates', data);
+  });
+
+  socket.on('canvas', function(data) {
+    canvases[data[0]] = [users[0].id, '1'];
   });
 });

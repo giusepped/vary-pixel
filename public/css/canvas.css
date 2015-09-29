@@ -1,29 +1,27 @@
 body {
   background: none;
 }
-
 .button-container {
   margin-bottom: 50px;
   width: 100%;
 }
-
 .grid {
   position: absolute;
   border: 1px solid black;
 }
-
 .board {
   position: absolute;
   border: 1px solid black;
+
+}
+.mouseDown {
   cursor: url('/images/paintbrush.png'), auto;
 }
-
 .toggle-grid, .save-canvas, .home-button, .chat-button {
   position: fixed;
   top: 10px;
   font-family: lato;
 }
-
 .colour-palette-toggle {
   width: 50px;
   height: 50px;
@@ -31,29 +29,23 @@ body {
   bottom: 20px;
   left: 20px;
 }
-
 .colour-palette {
   left: 50px;
   position: fixed;
   bottom: 50px;
 }
-
-.toggle-grid{
+.toggle-grid {
   left: 10px;
 }
-
 .save-canvas {
   left: 120px;
 }
-
 .chat-button {
   left: 240px;
 }
-
 .home-button {
   right: 20px;
 }
-
 .save-alert {
   position: fixed;
   bottom: 20px;
@@ -61,20 +53,17 @@ body {
   font-family: lato, sans-serif;
   font-size: 30px;
 }
-
 .searchbox {
   border: 10px solid black;
 }
-
-.pixel-limit{
+.pixel-limit {
   position: fixed;
   bottom: 20px;
   left: 100px;
   font-family: lato, sans-serif;
   font-size: 30px;
 }
-
-.img-description{
+.img-description {
   position: fixed;
   top: 10px;
   margin-left: 45%;
