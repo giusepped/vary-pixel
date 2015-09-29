@@ -17,12 +17,14 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var colourPaletteImg = new Image();
 
   function imgID() {
+
     return CanvasProvider.getCurrent()[0];
   }
 
   $scope.imgDesc = function() {
     return CanvasProvider.getCurrent()[1];
-    }
+  }
+
   function search(id) {
     function getBoard() {
       var deferred = $q.defer();
