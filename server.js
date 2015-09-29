@@ -38,7 +38,6 @@ io.on('connection', function(socket) {
   });
 
   socket.on('chat message', function(data) {
-    console.log(data);
     imgID = data[2];
     username = data[1];
     io.to(imgID).emit('chat message', username + ":" + data[0]);
@@ -55,7 +54,6 @@ io.on('connection', function(socket) {
       }
     }
     socket.leave(imgID);
-    console.log("Left room " + imgID);
   });
 
   socket.on('coordinates', function(data) {
