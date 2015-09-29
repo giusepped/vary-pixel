@@ -205,8 +205,9 @@ MOBILE
 
   .navbar-collapse {
     width: 100%;
-    background: #C0C0C0;
+    background: #5a90af;
     text-align: center;
+    border-color: transparent !important;
   }
 
   .navbar-collapse li {
@@ -219,17 +220,11 @@ MOBILE
     padding-left: 7% !important;
     padding-bottom: 10px;
     padding-top: 37px;
-    float: center;
+    margin-left: 33%;
+    margin-right: 33%;
   }
-
-  .navbar-collapse .form-horizontal{
-    background: #707070;
-  }
-
-  .navbar-collapse .username{
-    color: black;
-  }
-  .navbar-collapse .glyphicon {
-    color: black;
+  .navbar-form{
+    box-shadow: none;
+    -webkit-box-shadow: none;
   }
 }
