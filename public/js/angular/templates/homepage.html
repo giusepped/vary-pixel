@@ -52,7 +52,7 @@
       </form>
       <form class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
-          <input name="username" ng-model="username" type="text">
+          <input name="username" ng-model="usernameSignUp" type="text">
         </label>
         <label>Email:
           <input name="email" ng-model="email" type="email">
@@ -63,7 +63,7 @@
         <label>Password Confirmation:
           <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
         </label>
-        <button class="btn btn-success" ng-click="saveUser(username, email, password, passwordConfirmation)" type="button">Sign up</button>
+        <button class="btn btn-success" ng-click="saveUser(usernameSignUp, email, password, passwordConfirmation)" type="button">Sign up</button>
       </form>
       <form class="sign-out" ng-show="userActionChoice === 'signOut'">
         <p>Are you sure you're ready to sign out?</p>
