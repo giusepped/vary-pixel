@@ -9,7 +9,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var gridContext = background.getContext('2d');
   var paletteCanvas = $('.colour-palette')[0];
   var paletteCtx = paletteCanvas.getContext('2d');
-  var pixelColor;
+  var pixelColor = 'rgba(0,0,0,255)';
   var opts = {
     distance: pixelSize
   };
@@ -28,13 +28,17 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[1];
   }
 
-  function drawOn() {
-    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
+  function drawOn(x, y, colour) {
+    x = x || event.offsetX;
+    y = y || event.offsetY;
+    colour = colour || pixelColor;
+
+    boardInterface.createPixel(x, y, pixelSize, colour);
+    socket.emit('coordinates', [x, y, colour, imgID()]);
   };
 
   socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
+    drawOn(data[0], data[1], data[2]);
   });
 
   $(board).mousedown(function() {
@@ -43,7 +47,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()
-    $(board).mousemove(function(e) {
+    $(board).mousemove(function() {
       x = Math.floor(event.offsetX / pixelSize) * pixelSize;
       y = Math.floor(event.offsetY / pixelSize) * pixelSize;
       if (Math.abs(prevX - x) > 14 || Math.abs(prevY - y) > 14) {
@@ -78,7 +82,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   $('.home-button').click(function() {
     socket.emit('leave', imgID());
     CanvasProvider.setCurrent();
-    console.log('left-  ' + CanvasProvider.getCurrent());
   })
 
   $('.colour-palette').hide();
@@ -99,12 +102,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
   // setInterval(function() {
-  //   updateCanvas(board, imgID());
-  // }, 3000);
+  //   socket.emit('canvas', [imgID(), board.toDataURL('image/png')]);
+  // }, 1000);
 
   $('.save-canvas').click(function() {
     CanvasProvider.updateCanvas(board, imgID());
   })
-  console.log('entry-  ' + CanvasProvider.getCurrent());
-
 }])
