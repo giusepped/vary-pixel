@@ -20,7 +20,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
 
   $scope.addBoard = function(description) {
     var object = new canvases();
-    CanvasProvider(object, description);
+    CanvasProvider.createCanvas(object, description);
     $scope.boardDesc = '';
   };
 

@@ -1,4 +1,4 @@
-homepage.factory('CanvasProvider', ['$q', function($q) {
+homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
   var currentID = [];
 
   var setCurrent = function(id, description) {
