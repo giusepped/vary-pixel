@@ -39,7 +39,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
       return deferred.promise;
     }
     getBoard().then(function(canvas) {
-      socket.emit('join', imgID());
+      socket.emit('join', [imgID(), username]);
     })
   }
 
@@ -101,12 +101,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   background.height = background.width = boardSize;
 
   new Grid(opts).draw(gridContext);
-  search(imgID())
+  search(imgID());
 
   chosenCanvas.onload = function() {
     boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
-    console.log(username);
-    socket.emit('join', [imgID(), username]);
   }
 
   colourPaletteImg.onload = function() {
@@ -122,7 +120,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   $('.save-canvas').click(function() {
     updateCanvas(board, imgID());
   })
-
 
   $('.chat').submit(function() {
     socket.emit('chat message', [$('.msg').val(), username, imgID()]);
