@@ -67,7 +67,9 @@
           <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
         </label>
         <button class="btn btn-success" ng-click="saveUser(usernameSignUp, email, password, passwordConfirmation)" type="button">Sign up</button>
+      <section>
         <div class="invalidSignUp">Password's do not match</div>
+      </section>
       </form>
       <form class="sign-out" ng-show="userActionChoice === 'signOut'">
         <p>Are you sure you're ready to sign out?</p>
@@ -92,9 +94,9 @@
       <ul class="board-list">
         <li ng-repeat="board in boards">
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg()" ui-sref="canvas">
-            <img src="{{board.attributes.Base64}}"/>
+            <img data-ng-src="{{board.attributes.Base64}}"/>
           </a>
-          <h4>{{board.get('description')}}</h4>
+          <h4>{{ board.get('description') }}</h4>
         </li>
       </ul>
     </section>

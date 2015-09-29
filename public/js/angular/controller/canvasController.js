@@ -15,9 +15,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   };
   var chosenCanvas = new Image();
   var colourPaletteImg = new Image();
+  var userObj = Parse.User.current();
+  var username = userObj.get("username");
 
   function imgID() {
-
     return CanvasProvider.getCurrent()[0];
   }
 
@@ -73,7 +74,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   })
 
   $('.home-button').click(function() {
-    socket.emit('leave', imgID());
+    socket.emit('leaveRoom', [imgID(), username]);
+    socket.removeListener('chat message', appendMessage);
     CanvasProvider.setCurrent(null);
   })
 
@@ -86,10 +88,11 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
     chosenCanvas.src = result[0].attributes.Base64;
-    socket.emit('join', imgID());
+
   })
 
   chosenCanvas.onload = function() {
+    joinRoom();
     boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
   }
 
@@ -97,14 +100,31 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     paletteCanvas.width = paletteCanvas.height = 300;
     paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
   }
+
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
-  // setInterval(function() {
-  //   updateCanvas(board, imgID());
-  // }, 3000);
+  function joinRoom() {
+    socket.emit('joinRoom', [imgID(), username]);
+  }
 
   $('.save-canvas').click(function() {
     updateCanvas(board, imgID());
   })
+
+  $('.chat-button').click(function() {
+    $('.chatbox').toggle();
+  });
+
+  $('.chat').submit(function() {
+    socket.emit('chat message', [$('.msg').val(), username, imgID()]);
+    $('.msg').val('');
+    return false;
+  });
+
+  socket.on('chat message', appendMessage);
+
+  function appendMessage(msg) {
+    $('.messages').append($('<li>').text(msg));
+  }
 
 }])

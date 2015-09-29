@@ -18,8 +18,11 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
         $scope.userAction('completed');
         $scope.toggleButton();
       },
-      error: function(error) {
-        console.log(error);
+      error: function(user) {
+        angular.element('.invalidSignUp').show();
+        $timeout(function() {
+          angular.element('.invalidSignUp').hide()
+        }, 1500);
       }
     }).then(function(user) {
       $scope.setUsername();
