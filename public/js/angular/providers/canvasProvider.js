@@ -58,13 +58,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
   }
 
   var updateCanvas = function(board, imgID) {
-
-    function hideFlashMessage(message) {
-      message.delay(2000).fadeOut('normal', function() {
-        $(this).remove();
-      });
-    }
-
     var canvasData = board.toDataURL('image/png');
     var query = new Parse.Query("canvases");
     var currentCanvas;
@@ -73,8 +66,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         currentCanvas = result;
         currentCanvas.set("Base64", canvasData);
         currentCanvas.save();
-        var message = $('.save-alert').text('Your drawing has been updated!');
-        hideFlashMessage(message);
         var currentUser = Parse.User.current();
         var contributors = currentCanvas.relation("contributors");
         contributors.add(currentUser);
