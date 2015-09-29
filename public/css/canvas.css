@@ -1,8 +1,10 @@
 body {
   background: none;
 }
+
 .button-container {
   margin-bottom: 50px;
+  background: white;
 }
 .grid {
   position: absolute;
@@ -16,7 +18,7 @@ body {
 .toggle-grid, .save-canvas, .home-link {
   position: fixed;
   top: 10px;
-  font-family: arial, sans-serif;
+  font-family: lato;
 }
 .colour-palette-toggle {
   width: 50px;
@@ -55,4 +57,11 @@ body {
   font-size: 30px;
 }
 
-
+.img-description{
+  position: fixed;
+  top: 10px;
+  margin-left: 30%;
+  margin-right: 70%;
+  font-size: 40px;
+  font-family: joyStix;
+}

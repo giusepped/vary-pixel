@@ -28,7 +28,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     }
   }
 
-  function imgDesc() {
+  $scope.imgDesc = function() {
     var array = AllCanvas.allBoards();
     for (var i = 0; i < array.length; i++) {
       if (array[i].id === imgID()) return array[i].attributes.description;
