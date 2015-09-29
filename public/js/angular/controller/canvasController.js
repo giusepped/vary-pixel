@@ -91,6 +91,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   })
 
   chosenCanvas.onload = function() {
+    joinRoom();
     boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
   }
 
