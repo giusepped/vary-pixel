@@ -9,6 +9,11 @@
   font-family: lato, sans-serif;
 }
 
+.messagebox {
+  overflow: scroll;
+  height:460px;
+}
+
 .chat {
   background: #000000;
   padding: 3px;
