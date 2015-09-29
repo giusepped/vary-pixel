@@ -75,6 +75,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   $('.home-button').click(function() {
     socket.emit('leaveRoom', [imgID(), username]);
+    socket.removeListener('chat message', appendMessage);
     CanvasProvider.setCurrent(null);
   })
 
@@ -87,7 +88,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
     chosenCanvas.src = result[0].attributes.Base64;
-    socket.emit('join', imgID());
+
   })
 
   chosenCanvas.onload = function() {
@@ -116,8 +117,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return false;
   });
 
-  socket.on('chat message', function(msg) {
+  socket.on('chat message', appendMessage);
+
+  function appendMessage(msg) {
     $('.messages').append($('<li>').text(msg));
-  });
+  }
 
 }])
