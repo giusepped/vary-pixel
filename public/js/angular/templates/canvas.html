@@ -4,11 +4,14 @@
 </head>
 <body ng-controller="CanvasController">
   <div class="button-container container">
-    <p class="img-description">{{imgDesc()}}</p>
+
     <button class="btn toggle-grid" type="button">Toggle Grid</button>
     <button class="btn save-canvas" type="button">Save Drawing</button>
-    <button class="btn home-button" ui-sref="home" type="button">Home</button>
     <button class="btn chat-button" type="button">Chat</button>
+    <img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
+    <p class="img-description">{{imgDesc()}}</p>
+    <button class="btn home-button" ui-sref="home" type="button">Home</button>
+
   </div>
   <section class="canvases">
     <canvas class="grid"></canvas>
@@ -26,7 +29,6 @@
     </div>
   </section>
   <p class="save-alert"></p>
-  <img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
   <script src="/js/pixel.js"></script>
   <script src="/js/grid.js"></script>
 </body>
