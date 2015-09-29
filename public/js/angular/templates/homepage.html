@@ -18,8 +18,8 @@
           </li>
         </ul>
         <form class="searchbox navbar-form navbar-right">
-          <input ng-model="searchString"class="form-horizontal" type="text"/>
-          <button class="btn btn-default" type="button" ng-click="search(searchString)">Search</button>
+          <input class="form-horizontal" ng-model="searchString" type="text"/>
+          <button class="btn btn-default" ng-click="search(searchString)" type="button">Search</button>
         </form>
         <form class="makenew navbar-form navbar-right">
           <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
@@ -75,7 +75,9 @@
 
       <ul class="board-list">
         <li ng-repeat="board in boards">
-          <a ng-click="setCurrent(board.id); checkUserReg()" ui-sref="canvas"><img class="img-rounded" ng-src="{{ board.get('picture').url()}}"/></a>
+          <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg()" ui-sref="canvas">
+            <img src="{{board.attributes.Base64}}"/>
+          </a>
           <h4>{{board.get('description')}}</h4>
         </li>
       </ul>

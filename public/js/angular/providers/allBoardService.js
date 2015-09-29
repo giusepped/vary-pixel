@@ -1,27 +1,16 @@
-homepage.service('AllCanvas', function() {
-  var Boards = [];
-  var current;
+homepage.service('CanvasProvider', function() {
+  var currentID = [];
 
-  var setBoard = function (boards) {
-    Boards = boards;
-  }
-
-  var allBoards = function () {
-    return Boards;
-  }
-
-  var setCurrent = function (id) {
-    current = id;
+  var setCurrent = function (id, description) {
+    currentID = [id, description];
   }
 
   var getCurrent = function () {
-    return current;
+    return currentID;
   }
 
   return {
-    allBoards: allBoards,
-    setBoard: setBoard,
     setCurrent: setCurrent,
-    getCurrent: getCurrent
+    getCurrent: getCurrent,
   }
 })
