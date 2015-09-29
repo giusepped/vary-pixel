@@ -3,6 +3,7 @@ body {
 }
 .button-container {
   margin-bottom: 50px;
+  background: white;
   width: 100%;
 }
 .grid {
@@ -35,7 +36,7 @@ body {
   left: 10px;
 }
 .save-canvas {
-  left: 120px;
+  left: 100px;
 }
 .chat-button {
   left: 240px;
@@ -63,7 +64,8 @@ body {
 .img-description {
   position: fixed;
   top: 10px;
-  margin-left: 45%;
+  margin-left: 30%;
+  margin-right: 70%;
   font-size: 40px;
   font-family: joyStix;
 }

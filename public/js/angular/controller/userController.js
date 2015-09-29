@@ -1,4 +1,4 @@
-homepage.controller('UserController', ['$scope', function($scope) {
+homepage.controller('UserController', ['$scope', '$timeout', function($scope, $timeout) {
 
   $scope.username;
   $scope.userActionChoice;
@@ -8,8 +8,9 @@ homepage.controller('UserController', ['$scope', function($scope) {
     console.log(Parse.User.current());
   }
 
-  $scope.saveUser = function(username, email, password) {
+  $scope.saveUser = function(username, email, password, rePassword) {
     var user = new Parse.User();
+    if(password.match(rePassword)){
     user.set("username", username);
     user.set("password", password);
     user.set("email", email);
@@ -19,12 +20,21 @@ homepage.controller('UserController', ['$scope', function($scope) {
         $scope.toggleButton();
       },
       error: function(user) {
-        console.log("didn't work");
+        angular.element('.invalidSignUp').show();
+        $timeout(function() {
+          angular.element('.invalidSignUp').hide()
+        }, 1500);
       }
     }).then(function(user) {
       $scope.setUsername();
       $scope.$apply();
     });
+  } else {
+    angular.element('.passwordUnmatch').show();
+    $timeout(function() {
+      angular.element('.passwordUnmatch').hide()
+    }, 1500);
+    }
   }
 
   $scope.signInUser = function(username, password) {
@@ -34,7 +44,10 @@ homepage.controller('UserController', ['$scope', function($scope) {
         $scope.toggleButton();
       },
       error: function(user) {
-        console.log('error');
+        angular.element('.invalidLogin').show();
+        $timeout(function() {
+          angular.element('.invalidLogin').hide()
+        }, 1500);
       }
     }).then(function(user) {
       $scope.setUsername();

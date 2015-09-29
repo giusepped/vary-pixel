@@ -39,7 +39,7 @@
       </div>
     </nav>
 
-    <section class="user-action">
+    <section class="user-action form-length">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form class="sign-in" ng-show="userActionChoice === 'signIn'">
         <label>Username:
@@ -49,6 +49,9 @@
           <input name="password" ng-model="passwordLogIn" type="password">
         </label>
         <button class="btn btn-success" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
+        <section>
+        <div class="invalidLogin">Wrong username or password</div>
+      </section>
       </form>
       <form class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
@@ -64,6 +67,12 @@
           <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
         </label>
         <button class="btn btn-success" ng-click="saveUser(usernameSignUp, email, password, passwordConfirmation)" type="button">Sign up</button>
+        <section>
+          <div class="invalidSignUp">User name or e-mail already taken</div>
+        </section>
+        <section>
+          <div class="passwordUnmatch">Passwords do not match</div>
+        </section>
       </form>
       <form class="sign-out" ng-show="userActionChoice === 'signOut'">
         <p>Are you sure you're ready to sign out?</p>
