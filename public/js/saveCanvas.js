@@ -10,11 +10,10 @@ function updateCanvas(board, imgID) {
   var canvasData = board.toDataURL('image/png');
   var query = new Parse.Query(canvases);
   var currentCanvas;
-  var file = new Parse.File("canvasData.txt", { base64: canvasData });
   query.get(imgID, {
     success:function(currentCanvas) {
       currentCanvas = currentCanvas;
-      currentCanvas.set("picture", file);
+      currentCanvas.set("Base64", canvasData);
       currentCanvas.save();
       var message = $('.save-alert').text('Your drawing has been updated!');
       hideFlashMessage(message);
@@ -23,7 +22,7 @@ function updateCanvas(board, imgID) {
       contributors.add(currentUser);
       contributors.query().find({
         success:function(result){
-          console.log(result);
+          console.log(imgID);
         },
         error:function(){
           console.log("oops");
