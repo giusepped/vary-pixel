@@ -16,14 +16,26 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var chosenCanvas = new Image();
   var colourPaletteImg = new Image();
 
-  function imgID() {
+  board.height = board.width = boardSize;
+  background.height = background.width = boardSize;
+  new Grid(opts).draw(gridContext);
 
+  function imgID() {
     return CanvasProvider.getCurrent()[0];
   }
 
   $scope.imgDesc = function() {
     return CanvasProvider.getCurrent()[1];
   }
+
+  function drawOn() {
+    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
+    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
+  };
+
+  socket.on('coordinates', function(data) {
+    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
+  });
 
   $(board).mousedown(function() {
     $('.colour-palette').fadeOut('slow');
@@ -46,15 +58,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     $(board).off("mousemove");
   })
 
-  function drawOn() {
-    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor, imgID()]);
-  };
-
-  socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
-  });
-
   $('.toggle-grid').click(function() {
     $('.grid').toggle();
   });
@@ -74,15 +77,11 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   $('.home-button').click(function() {
     socket.emit('leave', imgID());
-    CanvasProvider.setCurrent(null);
+    CanvasProvider.setCurrent();
+    console.log('left-  ' + CanvasProvider.getCurrent());
   })
 
   $('.colour-palette').hide();
-
-  board.height = board.width = boardSize;
-  background.height = background.width = boardSize;
-
-  new Grid(opts).draw(gridContext);
 
   CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
     chosenCanvas.src = result[0].attributes.Base64;
@@ -104,7 +103,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   // }, 3000);
 
   $('.save-canvas').click(function() {
-    updateCanvas(board, imgID());
+    CanvasProvider.updateCanvas(board, imgID());
   })
+  console.log('entry-  ' + CanvasProvider.getCurrent());
 
 }])
