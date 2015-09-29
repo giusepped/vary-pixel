@@ -8,8 +8,9 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
     console.log(Parse.User.current());
   }
 
-  $scope.saveUser = function(username, email, password) {
+  $scope.saveUser = function(username, email, password, rePassword) {
     var user = new Parse.User();
+    if(password.match
     user.set("username", username);
     user.set("password", password);
     user.set("email", email);
