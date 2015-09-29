@@ -147,7 +147,7 @@ form {
   border: none;
   background: none;
 }
-.img-rounded {
+.board-list img {
   height: 250px;
   width: 250px;
   border: 2px solid black;
