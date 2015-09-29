@@ -90,7 +90,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   });
 
   $('.home-button').click(function() {
-    socket.emit('leave', imgID());
+    socket.emit('leave', [imgID(), username]);
     AllCanvas.setCurrent(null);
   })
 
@@ -123,4 +123,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     angular.element('.save-canvas').trigger('click');
   }, 3000);
 
+  socket.on('chat message', function(msg) {
+    $('.messages').append($('<li>').text(msg));
+  });
 }])
