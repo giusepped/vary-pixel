@@ -26,10 +26,12 @@ io.on('connection', function(socket) {
     imgID = data[0];
     socket.join(imgID);
     username = data[1];
-    // users.push({ socket.id: username });
-    console.log(username + " joined " + imgID);
+    users.push({ name: username, id: socket.id });
     socket.broadcast.to(imgID).emit('chat message', username + ' has joined the room');
     socket.emit('chat message', 'Welcome to the room ' + username + '!');
+    for (var i = 0; i < users.length - 1; i++) {
+      socket.emit('chat message', users[i]["name"] + " is drawing too");
+    }
   });
 
   socket.on('leave', function(data) {
@@ -37,6 +39,11 @@ io.on('connection', function(socket) {
     username = data[1];
     socket.broadcast.to(imgID).emit('chat message', username + ' has left the room');
     socket.leave(imgID);
+    for (var i = 0; i < users.length; i++) {
+      if (socket.id === users[i]["id"]) {
+        users.splice(i, 1);
+      }
+    }
   })
 
   socket.on('coordinates', function(data) {
