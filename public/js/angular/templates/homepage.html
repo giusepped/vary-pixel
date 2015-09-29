@@ -87,13 +87,8 @@
 
       <ul class="board-list">
         <li ng-repeat="board in boards">
-<<<<<<< HEAD
-          <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg(); joinChat()" ui-sref="canvas">
-            <img src="{{ board.attributes.Base64 }}"/>
-=======
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg()" ui-sref="canvas">
             <img data-ng-src="{{board.attributes.Base64}}"/>
->>>>>>> 769e3adac309f175878eadab25fb7467c422cc03
           </a>
           <h4>{{ board.get('description') }}</h4>
         </li>

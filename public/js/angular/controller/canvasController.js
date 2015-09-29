@@ -98,6 +98,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     paletteCanvas.width = paletteCanvas.height = 300;
     paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
   }
+
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
   function joinRoom() {
