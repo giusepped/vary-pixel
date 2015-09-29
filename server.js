@@ -27,12 +27,14 @@ io.on('connection', function(socket) {
     imgID = data[0];
     socket.join(imgID);
     username = data[1];
-    users.push({ name: username, id: socket.id });
+    users.push({ name: username, id: socket.id , roomID: imgID });
     console.log(users);
     socket.broadcast.to(imgID).emit('chat message', username + ' has joined the room');
     socket.emit('chat message', 'Welcome to the room ' + username + '!');
     for (var i = 0; i < users.length - 1; i++) {
-      socket.emit('chat message', users[i]["name"] + " is drawing too");
+      if (users[i]["roomID"] === imgID) {
+        socket.emit('chat message', users[i]["name"] + " is drawing too");
+      }
     }
   });
 
