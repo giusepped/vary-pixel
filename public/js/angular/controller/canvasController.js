@@ -111,6 +111,10 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     updateCanvas(board, imgID());
   })
 
+  $('.chat-button').click(function() {
+    $('.chatbox').toggle();
+  });
+
   $('.chat').submit(function() {
     socket.emit('chat message', [$('.msg').val(), username, imgID()]);
     $('.msg').val('');
