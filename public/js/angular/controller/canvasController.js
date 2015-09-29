@@ -40,7 +40,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   };
 
   socket.on('coordinates', function(data) {
-    drawOn(data[0], data[1], data[2]);
+    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
   });
 
   $(board).mousedown(function() {
