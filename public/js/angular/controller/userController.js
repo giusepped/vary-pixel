@@ -1,4 +1,4 @@
-homepage.controller('UserController', ['$scope', function($scope) {
+homepage.controller('UserController', ['$scope', '$timeout', function($scope, $timeout) {
 
   $scope.username;
   $scope.userActionChoice;
@@ -34,7 +34,10 @@ homepage.controller('UserController', ['$scope', function($scope) {
         $scope.toggleButton();
       },
       error: function(user) {
-        console.log('error');
+        angular.element('.invalidLogin').show();
+        $timeout(function() {
+          angular.element('.invalidLogin').hide()
+        }, 1500);
       }
     }).then(function(user) {
       $scope.setUsername();

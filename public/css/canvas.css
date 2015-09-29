@@ -4,6 +4,7 @@ body {
 
 .button-container {
   margin-bottom: 50px;
+  background: white;
 }
 .grid {
   position: absolute;
@@ -14,12 +15,11 @@ body {
   border: 1px solid black;
   cursor: url('/images/paintbrush.png'), auto;
 }
-.toggle-grid, .save-canvas, .home-button{
+.toggle-grid, .save-canvas, .home-link {
   position: fixed;
   top: 10px;
   font-family: lato;
 }
-
 .colour-palette-toggle {
   width: 50px;
   height: 50px;
@@ -33,13 +33,10 @@ body {
   bottom: 50px;
 }
 .save-canvas {
-  left: 120px;
+  left: 100px;
 }
 .home-button {
   right: 20px;
-}
-.toggle-grid{
-  left: 10px;
 }
 .save-alert {
   position: fixed;
@@ -62,7 +59,8 @@ body {
 .img-description{
   position: fixed;
   top: 10px;
-  margin-left: 45%;
+  margin-left: 30%;
+  margin-right: 70%;
   font-size: 40px;
   font-family: joyStix;
 }

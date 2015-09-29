@@ -49,6 +49,9 @@
           <input name="password" ng-model="passwordLogIn" type="password">
         </label>
         <button class="btn btn-success" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
+        <section>
+        <div class="invalidLogin">Wrong username or password</div>
+      </section>
       </form>
       <form class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
@@ -64,6 +67,7 @@
           <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
         </label>
         <button class="btn btn-success" ng-click="saveUser(usernameSignUp, email, password, passwordConfirmation)" type="button">Sign up</button>
+        <div class="invalidSignUp">Password's do not match</div>
       </form>
       <form class="sign-out" ng-show="userActionChoice === 'signOut'">
         <p>Are you sure you're ready to sign out?</p>
