@@ -103,8 +103,8 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
 
   drawChosenCanvas.onload = function() {
     boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
-    socket.emit('join', [imgID(), username]);
   }
+
   drawChosenCanvas.src = imgUrl();
 
   colourPaletteImg.onload = function() {
@@ -122,6 +122,14 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   $interval(function() {
     angular.element('.save-canvas').trigger('click');
   }, 3000);
+
+  socket.emit('join', [imgID(), username]);
+
+  $('.chat').submit(function() {
+    socket.emit('chat message', [$('.msg').val(), username, imgID()]);
+    $('.msg').val('');
+    return false;
+  });
 
   socket.on('chat message', function(msg) {
     $('.messages').append($('<li>').text(msg));
