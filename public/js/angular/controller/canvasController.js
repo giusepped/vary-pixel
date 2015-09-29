@@ -36,8 +36,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   }
 
   $(board).mousedown(function() {
-    event.preventDefault();
-    $('.board').addClass('mouseDown');
     $('.colour-palette').fadeOut('slow');
     $('.colour-palette-toggle').fadeIn('slow');
     console.log(event);
@@ -56,7 +54,6 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   })
 
   $(board).mouseup(function() {
-    $('.board').removeClass('mouseDown');
     $(board).off("mousemove");
   })
 
