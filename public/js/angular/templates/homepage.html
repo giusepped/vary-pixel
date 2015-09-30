@@ -42,16 +42,11 @@
     <section class="user-action form-length">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form ng-submit="signInUser(usernameLogIn, passwordLogIn)" class="sign-in" ng-show="userActionChoice === 'signIn'">
-        <label>Username:
-          <input name="username" ng-model="usernameLogIn" type="text">
-        </label>
-        <label>Password:
-          <input name="password" ng-model="passwordLogIn" type="password">
-        </label>
+        <input class="textField" name="username" ng-model="usernameLogIn" type="text" value="value" placeholder="Username" onfocus="this.placeholder=''">
+        <input class="textField" name="password" ng-model="passwordLogIn" type="password" placeholder="Password" onfocus="this.placeholder=''">
         <input class="btn btn-success" type="submit" value="Sign in">
-        <section>
-        <div class="invalidLogin">Wrong username or password</div>
-      </section>
+
+        <div class="invalidLogin">Incorrect login details</div>
       </form>
 
       <form ng-submit="saveUser(usernameSignUp, email, password, passwordConfirmation)" class="sign-up" ng-show="userActionChoice === 'signUp'">
@@ -77,7 +72,9 @@
       </form>
 
       <form ng-show="userActionChoice==='makeNew'">
-        <input ng-model="boardDesc" type="text" required>
+        <label>Title:
+          <input ng-model="boardDesc" type="text" required>
+        </label>
         <input class="btn btn-success" ng-click="addBoard(boardDesc)" type="submit" value="Draw">
       </form>
     </section>
