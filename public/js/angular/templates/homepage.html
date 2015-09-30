@@ -20,7 +20,7 @@
               <button class="btn btn-default navbar-btn signUpButton" ng-click="userAction('signUp')" type="button">Sign up</button>
             </li>
             <li>
-              <button class="btn btn-default navbar-btn signOutButton" ng-click="userAction('signOut')" type="button">Sign out</button>
+              <button class="btn btn-default navbar-btn signOutButton" ng-click="userAction('signOut'); signOutUser()" type="button">Sign out</button>
             </li>
             <li>
               <p class="username">{{ username }}</p>
@@ -76,10 +76,6 @@
         </section>
       </form>
 
-      <form class="sign-out" ng-show="userActionChoice === 'signOut'">
-        <p>Are you sure you're ready to sign out?</p>
-        <button class='btn btn-danger' ng-click="signOutUser()">Sign out</button>
-      </form>
       <form ng-show="userActionChoice==='makeNew'">
         <input ng-model="boardDesc" type="text">
         <input class="btn btn-success" ng-click="addBoard(boardDesc)" type="submit" value="Draw">
