@@ -1,13 +1,14 @@
 .chatbox {
-  height: 500px;
-  border: 2px solid black;
-  width: 400px;
   float: right;
-  display: inline;
+  display: none;
+  height: 500px;
+  width: 400px;
+  border: 2px solid black;
+  margin-top: 20px;
   margin-right: 8px;
   position: relative;
   background: #ffffff;
-  display: none;
+  font-family: 'Inconsolata';
 }
 .messagebox {
   overflow: scroll;
@@ -24,11 +25,11 @@
 .msg {
   border: 0;
   padding: 10px;
-  width: 80%;
+  width: 78%;
   height: 34px;
-  margin-right: 2px;
+  margin-right: 1px;
   margin-top: 5px;
-  margin-left: 3px;
+  margin-left: 5px;
 }
 .send-msg {
   margin-bottom: 4px;
