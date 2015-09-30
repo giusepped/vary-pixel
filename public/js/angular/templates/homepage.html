@@ -39,7 +39,7 @@
       </div>
     </nav>
 
-    <section class="user-action form-length">
+    <section class="user-action">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
       <form ng-submit="signInUser(usernameLogIn, passwordLogIn)" class="sign-in" ng-show="userActionChoice === 'signIn'">
         <input class="textField" name="username" ng-model="usernameLogIn" type="text" value="value" placeholder="Username" onfocus="this.placeholder=''">
@@ -64,10 +64,8 @@
         </section>
       </form>
 
-      <form ng-show="userActionChoice==='makeNew'">
-        <label>Title:
-          <input ng-model="boardDesc" type="text" required>
-        </label>
+      <form class="makeNewForm" ng-show="userActionChoice==='makeNew'">
+        <input class="textField" ng-model="boardDesc" type="text" placeholder="Title" onfocus="this.placeholder=''" required>
         <input class="btn btn-success" ng-click="addBoard(boardDesc)" type="submit" value="Draw">
       </form>
     </section>
