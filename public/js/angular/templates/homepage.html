@@ -50,17 +50,10 @@
       </form>
 
       <form ng-submit="saveUser(usernameSignUp, email, password, passwordConfirmation)" class="sign-up" ng-show="userActionChoice === 'signUp'">
-        <label>Username:
-          <input name="username" ng-model="usernameSignUp" type="text" required>
-        </label>
-        <label>Email:
-          <input name="email" ng-model="email" type="email" required>
-        </label>
-        <label>Password:
-          <input name="password" ng-model="password" type="password">
-        </label>
-        <label>Password Confirmation:
-          <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
+        <input class="textField" name="username" ng-model="usernameSignUp" type="text" placeholder="Username" onfocus="this.placeholder=''" required>
+        <input class="textField" name="email" ng-model="email" type="email" placeholder="Email Address" onfocus="this.placeholder=''" required>
+        <input class="textField" name="password" ng-model="password" type="password" placeholder="Password" onfocus="this.placeholder=''">
+        <input class="textField" name="password-confirmation" ng-model="passwordConfirmation" type="password" placeholder="Confirm Password" onfocus="this.placeholder=''">
         </label>
         <input class="btn btn-success" type="submit" value="Sign up">
         <section>
