@@ -42,7 +42,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     CanvasProvider.getContributors(id).then(function(results) {
       $scope.contributors = results;
       for (var i = 0; i < $scope.contributors.length; i++) {
-
+        console.log($scope.contributors[i]);
       }
     });
   }
