@@ -1,5 +1,6 @@
 homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
   var currentID = [];
+  var contributors = [];
 
   var setCurrent = function(id, description) {
     currentID = [id, description];
@@ -49,7 +50,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         console.log('saved');
         setCurrent(canvas.id);
         $state.go('canvas', {});
-
       },
       error: function(canvas, error) {
         console.log('failed save');
@@ -67,21 +67,35 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         currentCanvas.set("Base64", canvasData);
         currentCanvas.save();
         var currentUser = Parse.User.current();
-        var contributors = currentCanvas.relation("contributors");
-        contributors.add(currentUser);
-        contributors.query().find({
-          success: function(result) {
-            console.log('updated');
-          },
-          error: function() {
-            console.log('not updated');
-          }
-        });
+        var relation = currentCanvas.relation("contributors");
+        relation.add(currentUser);
       },
       error: function(currentCanvas) {
         console.log("Could not find the canvas");
       }
     });
+  }
+
+  var getContributors = function(imgID) {
+    var deferred = $q.defer();
+    var query = new Parse.Query("canvases");
+    var currentCanvas;
+    query.get(imgID, {
+      success: function(result) {
+        currentCanvas = result;
+        var relation = currentCanvas.relation("contributors");
+        relation.query().find({
+          success: function(result) {
+            deferred.resolve(result);
+          },
+          error: function(error) {
+            deferred.reject(error.message);
+            console.log('not updated');
+          }
+        })
+      }
+    })
+    return deferred.promise;
   }
 
   return {
@@ -90,6 +104,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
     fetch: fetch,
     searchBy: searchBy,
     createCanvas: createCanvas,
-    updateCanvas: updateCanvas
+    updateCanvas: updateCanvas,
+    getContributors: getContributors
   }
-}])
+}]);

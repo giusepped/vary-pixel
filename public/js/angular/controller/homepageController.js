@@ -38,4 +38,19 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     $scope.boards = results;
   });
 
+  $scope.showContributors = function(id) {
+    CanvasProvider.getContributors(id).then(function(results) {
+      var cap = 5;
+      $scope.contributors = results;
+      if (results.length < 5) { cap = results.length; }
+      for (var i = 0; i < cap; i++) {
+        angular.element('.contributors').append(angular.element('<li>').text($scope.contributors[i].get("username")));
+      }
+    });
+  }
+
+  $scope.clearContributors = function() {
+    angular.element('.contributors').empty();
+  }
+
 }]);

@@ -4,10 +4,6 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
   $scope.userActionChoice;
   $scope.isLoggedIn;
 
-  $scope.test = function() {
-    console.log(Parse.User.current());
-  }
-
   $scope.saveUser = function(username, email, password, rePassword) {
     var user = new Parse.User();
     if(password.match(rePassword)){

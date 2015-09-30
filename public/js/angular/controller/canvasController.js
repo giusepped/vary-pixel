@@ -148,4 +148,5 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     CanvasProvider.updateCanvas(board, imgID())
     CanvasProvider.setCurrent(null);
   }
+
 }])

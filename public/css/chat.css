@@ -8,6 +8,7 @@
   position: relative;
   /*font-family: lato, sans-serif;*/
   background: #ffffff;
+  display: none;
 }
 .messagebox {
   overflow: scroll;
