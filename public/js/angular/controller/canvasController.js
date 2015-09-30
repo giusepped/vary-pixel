@@ -39,6 +39,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
       $scope.userAction = 'draw';
     }
   }
+
   function drawOn(action, x, y, colour) {
     action = $scope.userAction;
     x = x || event.offsetX;
@@ -73,7 +74,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     $(board).off("mousemove");
   })
 
-  $('.toggle-grid').click(function() {
+  $('.onoffswitch-checkbox').click(function() {
     $('.grid').toggle();
   });
 
@@ -91,6 +92,16 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     $('.colour-palette-toggle').fadeToggle('slow');
   })
 
+  chosenCanvas.onload = function() {
+    joinRoom();
+    boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
+  }
+
+  colourPaletteImg.onload = function() {
+    paletteCanvas.width = paletteCanvas.height = 300;
+    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
+  }
+
   $('.home-button').click(function() {
     leaveRoom();
   })
@@ -105,26 +116,9 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     chosenCanvas.src = result[0].attributes.Base64;
   })
 
-  chosenCanvas.onload = function() {
-    joinRoom();
-    boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
-  }
 
-  colourPaletteImg.onload = function() {
-    paletteCanvas.width = paletteCanvas.height = 300;
-    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
-  }
 
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
-
-  function joinRoom() {
-    socket.emit('joinRoom', [imgID(), username]);
-    socket.on('unsaved coordinates', function(data) {
-      for(var i = 0; i < data.length; i++) {
-        boardInterface.createPixel(data[i][0], data[i][1], data[i][2], pixelSize, data[i][3]);
-      }
-    })
-  }
 
   $('.chat-button').click(function() {
     $('.chatbox').toggle();
@@ -140,6 +134,15 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   function appendMessage(msg) {
     $('.messages').append($('<li>').text(msg));
+  }
+
+  function joinRoom() {
+    socket.emit('joinRoom', [imgID(), username]);
+    socket.on('unsaved coordinates', function(data) {
+      for(var i = 0; i < data.length; i++) {
+        boardInterface.createPixel(data[i][0], data[i][1], data[i][2], pixelSize, data[i][3]);
+      }
+    })
   }
 
   function leaveRoom(){

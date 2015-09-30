@@ -12,9 +12,7 @@ body {
 a {
   cursor: pointer;
 }
-button {
-  height: 30px;
-}
+
 input {
   height: 30px;
 }
@@ -103,7 +101,7 @@ h1 {
 }
 .username {
   color: #ffffff;
-  padding-top: 6px;
+  padding-top: 3px;
 }
 .user-action button {
   margin-top: 5px;
