@@ -107,10 +107,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
-  setInterval(function() {
-    socket.emit('canvas', [imgID(), board.toDataURL('image/png')]);
-  }, 5000);
-
   function joinRoom() {
     socket.emit('joinRoom', [imgID(), username]);
     socket.on('unsaved coordinates', function(data) {
