@@ -29,7 +29,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
   }
 
   $scope.searchBy = function(type, param) {
-    CanvasProvider.searchFor(type, param).then(function(results) {
+    CanvasProvider.searchBy(type, param).then(function(results) {
       $scope.boards = results;
     })
   }
