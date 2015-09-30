@@ -55,7 +55,7 @@ h1 {
   height: 30px;
 }
 .navbar-nav button {
-  padding: 0px;
+  padding-top: 5px;
   margin: 0px 10px;
   background: none;
   border: none;
@@ -64,6 +64,11 @@ h1 {
 }
 .navbar-btn:hover {
   color: white;
+}
+
+.navbar-btn:focus {
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0 !important;
 }
 
 .searchbox {
