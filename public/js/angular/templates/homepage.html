@@ -98,7 +98,7 @@
         <li ng-repeat="board in boards">
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg();" ui-sref="canvas">
             <div class="image-container">
-              <img ng-mouseover="show(board.id)" class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
+              <img ng-mouseover="showContributors(board.id)" ng-mouseleave="clearContributors()" class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
               <div class="after">
                 <h4>Contributors</h4>
                 <ul class="contributors"></ul>
