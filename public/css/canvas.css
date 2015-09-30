@@ -31,7 +31,7 @@ button:focus {
   cursor: url('/images/eraser-cursor.png') 5 38, auto;
 }
 .canvases {
-  margin-top: 70px;
+  margin-top: -20px;
   z-index: 1;
 }
 .toggle-grid, .home-button, .chat-button {
@@ -39,7 +39,6 @@ button:focus {
   background: none;
   margin-top: 10px;
   margin-left: 10px;
-  /*font-family: lato;*/
   vertical-align: middle;
   height: 50px;
   width: 50px;
@@ -89,8 +88,7 @@ button:focus {
 .pixel-limit {
   position: fixed;
   bottom: 20px;
-  left: 100px;
-  /*font-family: lato, sans-serif;*/
+  left: 100px; 
   font-size: 30px;
 }
 .img-description {
@@ -147,3 +145,26 @@ button:focus {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
    right: 0px;
 }
+
+.canvas .navbar .navbar-default{
+  margin-bottom: 0px;
+}
+/*---------------------------------------------------------------------------------
+MOBILE
+---------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 768px) {
+  .canvas-navbar{
+    margin-top: 50px !important;
+  }
+  .img-description{
+    display: none;
+  }
+  .home-button {
+  float: left;
+  }
+  .onoffswitch-inner:before {
+    padding-right: 18px;
+  }
+}
+
