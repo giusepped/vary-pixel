@@ -62,6 +62,10 @@ h1 {
   color: black;
   font-size: 18px;
 }
+.navbar-btn:hover {
+  color: white;
+}
+
 .searchbox {
   padding: 0px;
   height: 30px;
@@ -183,14 +187,16 @@ h1 {
 }
 .jumbotron {
   background: none;
-  color: black;
-  margin-bottom: -30px;
-  margin-top: -40px;
+  color: white;
+  margin-bottom: 50px;
+  margin-top: 20px;
   text-align: center;
+  font-family: joyStix;
 }
-.jumbotron p {
-  margin-top: 10px;
+.jumbotron h1 {
+  font-size: 40px;
 }
+
 .board-list {
   list-style-type: none;
   z-index: 1;
