@@ -60,8 +60,12 @@ body {
 }
 .home-button {
   float: right;
-  margin-top: 20px;
-}
+  margin-top: 10px;
+  background: url('../images/home.gif') center no-repeat;
+  background-size: 50px;
+  height: 50px;
+  width: 50px;
+ }
 .searchbox {
   border: 10px solid black;
 }
