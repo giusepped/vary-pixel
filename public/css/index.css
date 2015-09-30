@@ -119,6 +119,9 @@ h1 {
   z-index: 2;
 }
 .userRegistrationBox {
+  position:fixed;
+  top: 50%;
+  left: 50%;
   display: none;
   border: 2px solid black;
   border-radius: 8px;
