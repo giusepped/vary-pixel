@@ -41,14 +41,14 @@
 
     <section class="user-action form-length">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
-      <form class="sign-in" ng-show="userActionChoice === 'signIn'">
+      <form ng-submit="signInUser(usernameLogIn, passwordLogIn)" class="sign-in" ng-show="userActionChoice === 'signIn'">
         <label>Username:
           <input name="username" ng-model="usernameLogIn" type="text">
         </label>
         <label>Password:
           <input name="password" ng-model="passwordLogIn" type="password">
         </label>
-        <button class="btn btn-success" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
+        <button class="btn btn-success" type="button">Sign in</button>
         <section>
         <div class="invalidLogin">Wrong username or password</div>
       </section>
