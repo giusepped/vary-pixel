@@ -18,6 +18,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var userObj = Parse.User.current();
   var username = userObj.get("username");
 
+  $scope.userAction = 'draw';
+
   board.height = board.width = boardSize;
   background.height = background.width = boardSize;
   new Grid(opts).draw(gridContext);
@@ -30,17 +32,24 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[1];
   }
 
-  function drawOn(x, y, colour) {
+  $scope.action = function () {
+    if ($scope.userAction === 'draw') {
+      $scope.userAction = 'erase';
+    } else {
+      $scope.userAction = 'draw';
+    }
+  }
+  function drawOn(action, x, y, colour) {
+    action = $scope.userAction;
     x = x || event.offsetX;
     y = y || event.offsetY;
     colour = colour || pixelColor;
-
-    boardInterface.createPixel(x, y, pixelSize, colour);
-    socket.emit('coordinates', [x, y, colour, imgID()]);
+    boardInterface.createPixel(action, x, y, pixelSize, colour);
+    socket.emit('coordinates', [action, x, y, colour, imgID()]);
   };
 
   socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
+    boardInterface.createPixel(data[0], data[1], data[2], pixelSize, data[3]);
   });
 
   $(board).mousedown(function() {
@@ -77,6 +86,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     var x = event.offsetX;
     var y = event.offsetY;
     pixelColor = WhatColour.pickColour(paletteCtx, x, y);
+    $scope.userAction = 'draw';
     $('.colour-palette').fadeToggle('slow');
     $('.colour-palette-toggle').fadeToggle('slow');
   })
