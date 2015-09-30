@@ -28,8 +28,8 @@
           </ul>
           <div class="nav-forms">
             <form ng-submit="searchBy('description', searchString)" class="searchbox navbar-form navbar-right">
-              <input ng-model="searchString"class="form-horizontal" type="text"/>
-              <input class="btn btn-default" type="button" type="submit" value="Search">
+              <input class="searchInput" ng-model="searchString"class="form-horizontal" type="text"/>
+              <input class="searchButton" type="submit" value="Search">
             </form>
             <form class="makenew navbar-form navbar-right">
               <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>

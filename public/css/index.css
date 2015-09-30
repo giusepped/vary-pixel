@@ -73,7 +73,7 @@ h1 {
   margin-bottom: 10px;
   color: black;
 }
-.searchbox input {
+.searchInput {
   width: 180px;
   border-style: none;
   border-radius: 5px;
@@ -82,7 +82,7 @@ h1 {
   font-size: 18px;
   color: black;
 }
-.searchbox button {
+.searchButton {
   padding: 0px;
   margin: 0px;
   background: none;
