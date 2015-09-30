@@ -2,8 +2,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   var socket = io();
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
-  var boardSize = $(window).width();
-  var pixelSize = boardSize / 125;
+  var boardSize = 1500;
+  var pixelSize = boardSize / 100;
   var boardInterface = new BoardInterface(boardCtx);
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
@@ -28,29 +28,17 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[0];
   }
 
-  function pageResize() {
-    boardSize = $(window).width();
-    pixelSize = boardSize / 125;
-    board.height = board.width = boardSize;
-    background.height = background.width = boardSize;
-    opts = {
-      distance: pixelSize
-    };
-    new Grid(opts).draw(gridContext);
-  }
-
   $scope.imgDesc = function() {
     return CanvasProvider.getCurrent()[1];
   }
 
-  $scope.action = function() {
+  $scope.action = function () {
     if ($scope.userAction === 'draw') {
       $scope.userAction = 'erase';
     } else {
       $scope.userAction = 'draw';
     }
   }
-
   function drawOn(action, x, y, colour) {
     action = $scope.userAction;
     x = x || event.offsetX;
@@ -73,7 +61,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     $(board).mousemove(function() {
       x = Math.floor(event.offsetX / pixelSize) * pixelSize;
       y = Math.floor(event.offsetY / pixelSize) * pixelSize;
-      if (Math.abs(prevX - x) > (pixelSize - 1) || Math.abs(prevY - y) > (pixelSize - 1)) {
+      if (Math.abs(prevX - x) > 14 || Math.abs(prevY - y) > 14) {
         drawOn();
         prevX = x;
         prevY = y;
@@ -83,10 +71,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   $(board).mouseup(function() {
     $(board).off("mousemove");
-  })
-
-  $(window).resize(function() {
-    pageResize();
   })
 
   $('.toggle-grid').click(function() {
@@ -136,7 +120,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   function joinRoom() {
     socket.emit('joinRoom', [imgID(), username]);
     socket.on('unsaved coordinates', function(data) {
-      for (var i = 0; i < data.length; i++) {
+      for(var i = 0; i < data.length; i++) {
         boardInterface.createPixel(data[i][0], data[i][1], pixelSize, data[i][2]);
       }
     })
@@ -158,7 +142,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     $('.messages').append($('<li>').text(msg));
   }
 
-  function leaveRoom() {
+  function leaveRoom(){
     socket.emit('leaveRoom', [imgID(), username]);
     socket.removeListener('chat message', appendMessage);
     CanvasProvider.updateCanvas(board, imgID())
