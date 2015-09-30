@@ -65,10 +65,10 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
       success: function(result) {
         currentCanvas = result;
         currentCanvas.set("Base64", canvasData);
-        currentCanvas.save();
         var currentUser = Parse.User.current();
         var relation = currentCanvas.relation("contributors");
         relation.add(currentUser);
+        currentCanvas.save();
       },
       error: function(currentCanvas) {
         console.log("Could not find the canvas");
