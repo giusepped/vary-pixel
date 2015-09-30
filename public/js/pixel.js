@@ -5,7 +5,7 @@ function BoardInterface(context) {
 BoardInterface.prototype.createPixel = function(action, x, y, size, pixelColor) {
 
   x = Math.floor(x / size) * size;
-  y = Math.floor(y / size) * size; //this adjustment at the end is for the paintbrush cursor
+  y = Math.floor(y / size) * size;
 
   PixelGenerator.createDot(this.context, action, x, y, size, pixelColor);
 };
