@@ -32,12 +32,13 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     return CanvasProvider.getCurrent()[1];
   }
 
-  $scope.action = function () {
-    if ($scope.userAction === 'draw') {
-      $scope.userAction = 'erase';
-    } else {
+  $scope.action = function (action) {
+    action = action || 'draw';
+    if ($scope.userAction === 'erase') {
       $scope.userAction = 'draw';
-    }
+    } else {
+      $scope.userAction = action;
+    };
   }
 
   function drawOn(action, x, y, colour) {
@@ -87,7 +88,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     var x = event.offsetX;
     var y = event.offsetY;
     pixelColor = WhatColour.pickColour(paletteCtx, x, y);
-    $scope.userAction = 'draw';
     $('.colour-palette').fadeToggle('slow');
     $('.colour-palette-toggle').fadeToggle('slow');
   })
