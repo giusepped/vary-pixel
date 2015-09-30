@@ -28,7 +28,7 @@ body {
   float: left;
   margin-top: 20px;
   margin-left: 10px;
-  font-family: lato;
+  /*font-family: lato;*/
   vertical-align: middle;
 }
 .colour-palette-toggle {
@@ -55,7 +55,7 @@ body {
   position: fixed;
   bottom: 20px;
   left: 100px;
-  font-family: lato, sans-serif;
+  /*font-family: lato, sans-serif;*/
   font-size: 30px;
 }
 .img-description {
