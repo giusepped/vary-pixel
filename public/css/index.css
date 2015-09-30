@@ -73,7 +73,7 @@ h1 {
   margin-bottom: 10px;
   color: black;
 }
-.searchbox input {
+.searchInput {
   width: 180px;
   border-style: none;
   border-radius: 5px;
@@ -82,7 +82,7 @@ h1 {
   font-size: 18px;
   color: black;
 }
-.searchbox button {
+.searchButton {
   padding: 0px;
   margin: 0px;
   background: none;
@@ -116,6 +116,7 @@ h1 {
   border: 2px solid black;
   border-radius: 8px;
   text-align: center;
+  z-index: 2;
 }
 .userRegistrationBox {
   display: none;
@@ -124,11 +125,12 @@ h1 {
   width: 400px;
   height: 50px;
   padding-top: 10px;
-  position: fixed;
+  margin: 0 auto;
   left: 50%;
   top: 50%;
   background: #ffffff;
   text-align: center;
+  z-index: 2;
 }
 .user-action input {
   margin-top: 5px;
@@ -145,7 +147,7 @@ h1 {
   height: 250px;
   width: 250px;
   border: 2px solid black;
-  background-color: rgba(200, 200, 200, 0.5)
+  background-color: rgba(200, 200, 200, 0.5);
 }
 .jumbotron {
   background: none;
@@ -174,7 +176,7 @@ h1 {
   height: 50px;
   position: absolute;
   font-size: 18px;
-  color: brown;
+  color: rgb(127, 70, 44);
   font-weight: bold;
   width: 250px;
   display: block;

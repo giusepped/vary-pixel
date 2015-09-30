@@ -20,16 +20,16 @@
               <button class="btn btn-default navbar-btn signUpButton" ng-click="userAction('signUp')" type="button">Sign up</button>
             </li>
             <li>
-              <button class="btn btn-default navbar-btn signOutButton" ng-click="userAction('signOut')" type="button">Sign out</button>
+              <button class="btn btn-default navbar-btn signOutButton" ng-click="userAction('signOut'); signOutUser()" type="button">Sign out</button>
             </li>
             <li>
               <p class="username">{{ username }}</p>
             </li>
           </ul>
           <div class="nav-forms">
-            <form class="searchbox navbar-form navbar-right">
-              <input ng-model="searchString"class="form-horizontal" type="text"/>
-              <button class="btn btn-default" type="button" ng-click="searchBy('description', searchString)">Search</button>
+            <form ng-submit="searchBy('description', searchString)" class="searchbox navbar-form navbar-right">
+              <input class="searchInput" ng-model="searchString"class="form-horizontal" type="text"/>
+              <input class="searchButton" type="submit" value="Search">
             </form>
             <form class="makenew navbar-form navbar-right">
               <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
@@ -41,19 +41,20 @@
 
     <section class="user-action form-length">
       <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
-      <form class="sign-in" ng-show="userActionChoice === 'signIn'">
+      <form ng-submit="signInUser(usernameLogIn, passwordLogIn)" class="sign-in" ng-show="userActionChoice === 'signIn'">
         <label>Username:
           <input name="username" ng-model="usernameLogIn" type="text">
         </label>
         <label>Password:
           <input name="password" ng-model="passwordLogIn" type="password">
         </label>
-        <button class="btn btn-success" ng-click="signInUser(usernameLogIn, passwordLogIn)" type="button">Sign in</button>
+        <input class="btn btn-success" type="submit" value="Sign in">
         <section>
         <div class="invalidLogin">Wrong username or password</div>
       </section>
       </form>
-      <form class="sign-up" ng-show="userActionChoice === 'signUp'">
+
+      <form ng-submit="saveUser(usernameSignUp, email, password, passwordConfirmation)" class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
           <input name="username" ng-model="usernameSignUp" type="text">
         </label>
@@ -66,7 +67,7 @@
         <label>Password Confirmation:
           <input name="password-confirmation" ng-model="passwordConfirmation" type="password">
         </label>
-        <button class="btn btn-success" ng-click="saveUser(usernameSignUp, email, password, passwordConfirmation)" type="button">Sign up</button>
+        <input class="btn btn-success" type="submit" value="Sign up">
         <section>
           <div class="invalidSignUp">User name or e-mail already taken</div>
         </section>
@@ -74,13 +75,10 @@
           <div class="passwordUnmatch">Passwords do not match</div>
         </section>
       </form>
-      <form class="sign-out" ng-show="userActionChoice === 'signOut'">
-        <p>Are you sure you're ready to sign out?</p>
-        <button class='btn btn-danger' ng-click="signOutUser()">Sign out</button>
-      </form>
+
       <form ng-show="userActionChoice==='makeNew'">
         <input ng-model="boardDesc" type="text">
-        <button class="btn btn-success" ng-click="addBoard(boardDesc)" type="button">This is my fun</button>
+        <input class="btn btn-success" ng-click="addBoard(boardDesc)" type="submit" value="Draw">
       </form>
     </section>
 
