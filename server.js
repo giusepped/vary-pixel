@@ -31,6 +31,7 @@ io.on('connection', function(socket) {
     socket.broadcast.to(imgID).emit('chat message', username + ' has joined the room');
     socket.emit('chat message', 'Welcome to the room ' + username + '!');
     socket.emit('unsaved coordinates', unsavedCoordinates);
+    console.log(unsavedCoordinates);
     for (var i = 0; i < users.length - 1; i++) {
       if (users[i]["roomID"] === imgID) {
         socket.emit('chat message', users[i]["name"] + " is drawing too");
@@ -61,7 +62,7 @@ io.on('connection', function(socket) {
   socket.on('coordinates', function(data) {
     imgID = data[4];
     socket.broadcast.to(imgID).emit('coordinates', data);
-    unsavedCoordinates.push([data[0], data[1], data[2]]);
+    unsavedCoordinates.push([data[0], data[1], data[2], data[3]]);
   });
 
 });
