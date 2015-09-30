@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand navbar-header" ng-click="searchFor('')">VARY-PIXEL</a>
+          <a class="navbar-brand navbar-header" ng-click="searchBy('description', '')">VARY-PIXEL</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -29,7 +29,7 @@
           <div class="nav-forms">
             <form class="searchbox navbar-form navbar-right">
               <input ng-model="searchString"class="form-horizontal" type="text"/>
-              <button class="btn btn-default" type="button" ng-click="searchBy('objectId', searchString)">Search</button>
+              <button class="btn btn-default" type="button" ng-click="searchBy('description', searchString)">Search</button>
             </form>
             <form class="makenew navbar-form navbar-right">
               <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
@@ -110,6 +110,3 @@
     </section>
   </section>
 </section>
-
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560acde0be60b897" async="async">
-</script>
