@@ -131,6 +131,8 @@ h1 {
   padding-top: 10px;
   background: #ffffff;
   horizontal-align: center;
+  text-align: center;
+  vertical-align: middle;
   z-index: 2;
 }
 .user-action input {
