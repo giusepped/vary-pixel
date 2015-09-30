@@ -92,14 +92,11 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   })
 
   $('.home-button').click(function() {
-    socket.emit('leaveRoom', [imgID(), username]);
-    socket.removeListener('chat message', appendMessage);
-    CanvasProvider.setCurrent(null);
+    leaveRoom();
   })
 
   window.onunload = function() {
-    socket.emit('leaveRoom', [imgID(), username]);
-    socket.removeListener('chat message', appendMessage);
+    leaveRoom();
   }
 
   $('.colour-palette').hide();
@@ -122,11 +119,12 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   function joinRoom() {
     socket.emit('joinRoom', [imgID(), username]);
+    socket.on('unsaved coordinates', function(data) {
+      for(var i = 0; i < data.length; i++) {
+        boardInterface.createPixel(data[i][0], data[i][1], pixelSize, data[i][2]);
+      }
+    })
   }
-
-  $('.save-canvas').click(function() {
-    CanvasProvider.updateCanvas(board, imgID());
-  })
 
   $('.chat-button').click(function() {
     $('.chatbox').toggle();
@@ -142,5 +140,12 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   function appendMessage(msg) {
     $('.messages').append($('<li>').text(msg));
+  }
+
+  function leaveRoom(){
+    socket.emit('leaveRoom', [imgID(), username]);
+    socket.removeListener('chat message', appendMessage);
+    CanvasProvider.updateCanvas(board, imgID())
+    CanvasProvider.setCurrent(null);
   }
 }])

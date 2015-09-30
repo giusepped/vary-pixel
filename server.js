@@ -6,6 +6,7 @@ var Parse = require('parse/node').Parse;
 var username;
 var users = [];
 var imgID;
+var unsavedCoordinates = [];
 
 Parse.initialize("U5tqKkqGtSb4VBBDRGmmtpjofTvtoyyrpWkN4BN8", "f5qinAxXHxneK1rrw8NPn787gglu20AGl6S0PeuD");
 
@@ -29,6 +30,7 @@ io.on('connection', function(socket) {
     users.push({ name: username, id: socket.id , roomID: imgID });
     socket.broadcast.to(imgID).emit('chat message', username + ' has joined the room');
     socket.emit('chat message', 'Welcome to the room ' + username + '!');
+    socket.emit('unsaved coordinates', unsavedCoordinates);
     for (var i = 0; i < users.length - 1; i++) {
       if (users[i]["roomID"] === imgID) {
         socket.emit('chat message', users[i]["name"] + " is drawing too");
@@ -52,12 +54,14 @@ io.on('connection', function(socket) {
         users.splice(i, 1);
       }
     }
+    unsavedCoordinates = [];
     socket.leave(imgID);
   });
 
   socket.on('coordinates', function(data) {
     imgID = data[4];
     socket.broadcast.to(imgID).emit('coordinates', data);
+    unsavedCoordinates.push([data[0], data[1], data[2]]);
   });
 
 });
