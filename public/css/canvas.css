@@ -68,7 +68,7 @@ button:focus {
   position: fixed;
   top: 150px;
 }
-.home-button {
+.home-button, .chat-button {
   float: right;
   margin-top: 10px;
   background: none;
@@ -79,7 +79,7 @@ button:focus {
   border: none;
  }
 
- .home-image {
+.home-image {
    height: 50px;
    width: 50px;
  }
