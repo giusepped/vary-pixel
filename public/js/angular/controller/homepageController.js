@@ -1,5 +1,6 @@
 homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootScope', '$timeout', '$state', function($scope, $q, CanvasProvider, $rootScope, $timeout, $state) {
   var canvases = Parse.Object.extend("canvases");
+  $scope.usernames = [];
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
@@ -41,7 +42,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
   $scope.show = function(id) {
     CanvasProvider.getContributors(id).then(function(results) {
       $scope.contributors = results;
-      for (var i = 0; i < $scope.contributors.length; i++) {
+      for (var i = 0; i < results.length; i++) {
         console.log($scope.contributors[i].get("username"));
       }
     });

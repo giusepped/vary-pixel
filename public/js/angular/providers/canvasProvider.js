@@ -69,14 +69,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         var currentUser = Parse.User.current();
         var relation = currentCanvas.relation("contributors");
         relation.add(currentUser);
-        relation.query().find({
-          success: function(result) {
-            console.log(result);
-          },
-          error: function() {
-            console.log('not updated');
-          }
-        })
       },
       error: function(currentCanvas) {
         console.log("Could not find the canvas");
@@ -95,9 +87,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         relation.query().find({
           success: function(result) {
             deferred.resolve(result);
-            // for (var i = 0; i < result.length; i++) {
-            //   contributors.push(result[i].get("username"));
-            // }
           },
           error: function(error) {
             deferred.reject(error.message);
