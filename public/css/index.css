@@ -139,7 +139,7 @@ h1 {
   vertical-align: middle;
   z-index: 2;
 }
-.user-action .textField {
+.textField {
   clear: both;
   margin: 5px auto;
   vertical-align: center;
@@ -156,12 +156,14 @@ h1 {
   padding-top: -2px;
 }
 
-.sign-in {
+.sign-in, .makeNewForm {
+  padding-top: 30px;
   width: 200px;
   height: 200px;
 }
 
 .sign-up {
+  padding-top: 30px;
   width: 250px;
   height: 300px;
 }
@@ -169,7 +171,8 @@ h1 {
 .user-action .glyphicon-remove {
   display: block;
   float: right;
-  margin: 0px;
+  margin-right: 3px;
+  margin-top: 3px;
   border: none;
   background: none;
 }
