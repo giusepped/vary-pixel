@@ -41,7 +41,9 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
   $scope.show = function(id) {
     CanvasProvider.getContributors(id).then(function(results) {
       $scope.contributors = results;
-      console.log($scope.contributors);
+      for (var i = 0; i < $scope.contributors.length; i++) {
+
+      }
     });
   }
 }]);
