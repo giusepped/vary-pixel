@@ -217,9 +217,23 @@ h1 {
   padding-top: 20px;
 }
 
+.image-container .after h4 {
+  color: #ffffff;
+}
+
+.image-container .after .contributors li {
+  display: block;
+}
+
 .image-container:hover .after {
   display: block;
   background: rgba(0, 0, 0, 0.6);
+}
+
+.contributors {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 /*---------------------------------------------------------------------------------
 MOBILE
