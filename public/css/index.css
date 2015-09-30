@@ -1,5 +1,5 @@
 html{
-  font-family: lato;
+  font-family: 'Inconsolata', sans-serif;
   font-size: 18px;
 }
 body {
@@ -48,20 +48,29 @@ h1 {
   margin-left: 10px;
   margin-top: 10px;
   height: 30px;
-  font-family: lato, sans-serif;
+  font-family: 'Inconsolata', sans-serif;
 }
 .navbar-nav li {
   padding-right: 5px;
   height: 30px;
 }
 .navbar-nav button {
-  padding: 0px;
+  padding-top: 5px;
   margin: 0px 10px;
   background: none;
   border: none;
   color: black;
   font-size: 18px;
 }
+.navbar-btn:hover {
+  color: white;
+}
+
+.navbar-btn:focus {
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0 !important;
+}
+
 .searchbox {
   padding: 0px;
   height: 30px;
@@ -72,7 +81,7 @@ h1 {
   color: black;
 }
 .searchInput {
-  width: 180px;
+  width: 170px;
   border-style: none;
   border-radius: 5px;
   margin-right: 10px;
@@ -120,7 +129,6 @@ h1 {
   font-size: 12px;
   -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
   box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
-
 }
 .userRegistrationBox {
   position:fixed;
@@ -184,15 +192,16 @@ h1 {
 }
 .jumbotron {
   background: none;
-  color: black;
-  margin-bottom: -30px;
-  margin-top: -40px;
-  /*font-family: lato;*/
+  color: white;
+  margin-bottom: 50px;
+  margin-top: 20px;
   text-align: center;
+  font-family: joyStix;
 }
-.jumbotron p {
-  margin-top: 10px;
+.jumbotron h1 {
+  font-size: 40px;
 }
+
 .board-list {
   list-style-type: none;
   z-index: 1;
@@ -213,7 +222,7 @@ h1 {
   font-weight: bold;
   width: 250px;
   display: block;
-  font-family: lato;
+  font-family: 'Inconsolata';
 }
 
 .invalidLogin{
@@ -249,6 +258,7 @@ h1 {
 .image-container .after h4 {
   font-size: 20px;
   color: #ffffff;
+  font-family: 'Inconsolata', sans-serif;
 }
 
 .image-container .after .contributors {
@@ -257,6 +267,7 @@ h1 {
 .image-container .after .contributors li {
   display: block;
   margin-bottom: 5px;
+  font-family: 'Inconsolata', sans-serif;
 }
 
 .image-container:hover .after {
