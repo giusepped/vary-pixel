@@ -74,7 +74,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     $(board).off("mousemove");
   })
 
-  $('.toggle-grid').click(function() {
+  $('.onoffswitch-checkbox').click(function() {
     $('.grid').toggle();
   });
 
