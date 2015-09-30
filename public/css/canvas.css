@@ -25,12 +25,15 @@ body {
   z-index: 1;
 }
 .toggle-grid, .save-canvas, .home-button, .chat-button {
-  display: inline;
-  font-family: lato;
+  float: left;
+  margin-top: 20px;
+  margin-left: 10px;
+  /*font-family: lato;*/
   vertical-align: middle;
 }
 .colour-palette-toggle {
-  display: inline;
+  float: left;
+  margin-top: 10px;
   width: 50px;
   height: 50px;
   margin-left: 10px;
@@ -45,13 +48,6 @@ body {
   float: right;
   margin-top: 20px;
 }
-.save-alert {
-  position: fixed;
-  bottom: 20px;
-  left: 200px;
-  font-family: lato, sans-serif;
-  font-size: 30px;
-}
 .searchbox {
   border: 10px solid black;
 }
@@ -59,12 +55,13 @@ body {
   position: fixed;
   bottom: 20px;
   left: 100px;
-  font-family: lato, sans-serif;
+  /*font-family: lato, sans-serif;*/
   font-size: 30px;
 }
 .img-description {
-
-  display: inline;
+  line-height: 65px;
+  left: 40%;
+  position:fixed;
   font-size: 40px;
   font-family: joyStix;
 }

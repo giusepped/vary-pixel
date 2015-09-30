@@ -1,3 +1,7 @@
+html{
+  font-family: lato;
+  font-size: 18px;
+}
 body {
   background: url(../images/wallpaper.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -16,9 +20,6 @@ input {
 }
 h1 {
   font-size: 35px;
-}
-form {
-  font-family: lato, sans-serif;
 }
 ::-webkit-input-placeholder {
   color: black;
@@ -58,11 +59,10 @@ form {
 .navbar-nav button {
   padding: 0px;
   margin: 0px 10px;
-  font-size: 14px;
   background: none;
   border: none;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
 }
 .searchbox {
   padding: 0px;
@@ -79,8 +79,7 @@ form {
   border-radius: 5px;
   margin-right: 10px;
   background-color: rgba(200, 200, 200, 0.3);
-  font-family: lato;
-  font-size: 16px;
+  font-size: 18px;
   color: black;
 }
 .searchbox button {
@@ -90,7 +89,6 @@ form {
   border: none;
   color: black;
   font-size: 18px;
-  font-family: lato;
 }
 .makenew {
   height: 30px;
@@ -105,7 +103,7 @@ form {
 }
 .username {
   color: #ffffff;
-  padding-top: 8px;
+  padding-top: 6px;
 }
 .user-action button {
   margin-top: 5px;
@@ -156,7 +154,7 @@ form {
   color: black;
   margin-bottom: -30px;
   margin-top: -40px;
-  font-family: lato;
+  /*font-family: lato;*/
   text-align: center;
 }
 .jumbotron p {
