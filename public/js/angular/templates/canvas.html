@@ -3,22 +3,39 @@
   <link href='css/chat.css' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="CanvasController">
-  <div class="button-container container">
-    <!-- <button class="btn toggle-grid" type="button"> -->
-    <div class="onoffswitch toggle-grid">
-     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-     <label class="onoffswitch-label" for="myonoffswitch">
-     <span class="onoffswitch-inner"></span>
-     <span class="onoffswitch-switch"></span>
-     </label>
+
+
+  <nav class="navbar navbar-default" >
+    <div class="container-fluid">
+      <div class=" navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <div class=" collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="canvas-navbar button-container container">
+          <div class="onoffswitch toggle-grid">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+          <button class="btn chat-button" type="button"><img class="chat-image" src="images/chat.png"></button>
+          <img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
+          <img src="images/eraser.png" alt="eraser" class="eraser" ng-click="action()"/>
+          <span class="img-description">{{imgDesc()}}</span>
+          <button class="btn home-button" type="button" ui-sref="home"><img class="home-image" src="images/home.gif"></button>
+        </div>
+      </div>
     </div>
-  </button>
-    <img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
-    <img src="images/eraser.png" alt="eraser" class="eraser" ng-click="action()"/>
-    <span class="img-description">{{imgDesc()}}</span>
-    <button class="btn home-button" type="button" ui-sref="home"><img class="home-image" src="images/home.gif"></button>
-    <button class="btn chat-button" type="button"><img class="chat-image" src="images/chat.png"></button>
-  </div>
+  </nav>
+
   <section class="canvases">
     <canvas class="grid"></canvas>
     <canvas class="board board-{{userAction}}"></canvas>
