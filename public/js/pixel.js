@@ -2,23 +2,22 @@ function BoardInterface(context) {
   this.context = context;
 }
 
-BoardInterface.prototype.createPixel = function(x, y, size, pixelColor) {
+BoardInterface.prototype.createPixel = function(action, x, y, size, pixelColor) {
 
   x = Math.floor(x / size) * size;
-  y = Math.floor(y / size) * size + (3 * size); //this adjustment at the end is for the paintbrush cursor
+  y = Math.floor(y / size) * size; //this adjustment at the end is for the paintbrush cursor
 
-  PixelGenerator.createDot(this.context, x, y, size, pixelColor);
+  PixelGenerator.createDot(this.context, action, x, y, size, pixelColor);
 };
 
 var PixelGenerator = (function() {
 
-  function createDot(ctx, x, y, size, pixelColor) {
-    var colour = WhatColour.pickColour(ctx, x, y);
-    if (colour === 'rgba(0,0,0,0)') {
+  function createDot(ctx, action, x, y, size, pixelColor) {
+    if (action === 'erase') {
+      ctx.clearRect(x, y, size, size);
+    } else if (action === 'draw') {
       ctx.fillStyle = pixelColor;
       ctx.fillRect(x, y, size, size);
-    } else {
-      ctx.clearRect(x, y, size, size);
     }
   };
 

@@ -56,7 +56,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('coordinates', function(data) {
-    imgID = data[3];
+    imgID = data[4];
     socket.broadcast.to(imgID).emit('coordinates', data);
   });
 
