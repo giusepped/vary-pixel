@@ -97,7 +97,10 @@
       <ul class="board-list">
         <li ng-repeat="board in boards">
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg();" ui-sref="canvas">
-            <img ng-mouseover="show(board.id)" class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
+            <div ng-mouseover="show(board.id)" class="image-container">
+              <img class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
+              <div class="after"></div>
+            </div>
           </a>
           <h4>{{ board.get('description') }}</h4>
         </li>
