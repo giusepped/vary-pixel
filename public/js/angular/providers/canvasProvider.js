@@ -40,21 +40,23 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
   }
 
   var createCanvas = function(object, description) {
-    var blankCanvas = document.createElement('canvas');
-    var base64 = blankCanvas.toDataURL('image/png');
-    object.save({
-      Base64: base64,
-      description: description
-    }, {
-      success: function(canvas) {
-        console.log('saved');
-        setCurrent(canvas.id);
-        $state.go('canvas', {});
-      },
-      error: function(canvas, error) {
-        console.log('failed save');
-      }
-    });
+    if (description !== undefined) {
+      var blankCanvas = document.createElement('canvas');
+      var base64 = blankCanvas.toDataURL('image/png');
+      object.save({
+        Base64: base64,
+        description: description
+      }, {
+        success: function(canvas) {
+          console.log('saved');
+          setCurrent(canvas.id);
+          $state.go('canvas', {});
+        },
+        error: function(canvas, error) {
+          console.log('failed save');
+        }
+      });
+    }
   }
 
   var updateCanvas = function(board, imgID) {
