@@ -56,10 +56,10 @@
 
       <form ng-submit="saveUser(usernameSignUp, email, password, passwordConfirmation)" class="sign-up" ng-show="userActionChoice === 'signUp'">
         <label>Username:
-          <input name="username" ng-model="usernameSignUp" type="text">
+          <input name="username" ng-model="usernameSignUp" type="text" required>
         </label>
         <label>Email:
-          <input name="email" ng-model="email" type="email">
+          <input name="email" ng-model="email" type="email" required>
         </label>
         <label>Password:
           <input name="password" ng-model="password" type="password">
@@ -77,7 +77,7 @@
       </form>
 
       <form ng-show="userActionChoice==='makeNew'">
-        <input ng-model="boardDesc" type="text">
+        <input ng-model="boardDesc" type="text" required>
         <input class="btn btn-success" ng-click="addBoard(boardDesc)" type="submit" value="Draw">
       </form>
     </section>
