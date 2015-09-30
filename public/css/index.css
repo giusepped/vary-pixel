@@ -214,15 +214,20 @@ h1 {
   display: none;
   color: #ffffff;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .image-container .after h4 {
+  font-size: 20px;
   color: #ffffff;
 }
 
+.image-container .after .contributors {
+  margin-top: 10px;
+}
 .image-container .after .contributors li {
   display: block;
+  margin-bottom: 5px;
 }
 
 .image-container:hover .after {
