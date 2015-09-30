@@ -121,7 +121,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     socket.emit('joinRoom', [imgID(), username]);
     socket.on('unsaved coordinates', function(data) {
       for(var i = 0; i < data.length; i++) {
-        boardInterface.createPixel(data[i][0], data[i][1], pixelSize, data[i][2]);
+        boardInterface.createPixel(data[i][0], data[i][1], data[i][2], pixelSize, data[i][3]);
       }
     })
   }
