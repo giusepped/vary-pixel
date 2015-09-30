@@ -123,17 +123,20 @@ h1 {
 
 }
 .userRegistrationBox {
+  position:fixed;
+  top: 50%;
+  left: 50%;
   display: none;
   border: 2px solid black;
   border-radius: 8px;
   width: 400px;
+  margin-left: -200px;
   height: 50px;
   padding-top: 10px;
-  margin: 0 auto;
-  left: 50%;
-  top: 50%;
   background: #ffffff;
+  horizontal-align: center;
   text-align: center;
+  vertical-align: middle;
   z-index: 2;
 }
 .user-action .textField {
