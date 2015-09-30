@@ -24,7 +24,7 @@ body {
   margin-top: 70px;
   z-index: 1;
 }
-.toggle-grid, .save-canvas, .home-button, .chat-button {
+.toggle-grid, .home-button, .chat-button {
   float: left;
   margin-top: 20px;
   margin-left: 10px;
