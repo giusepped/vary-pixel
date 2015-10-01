@@ -61,12 +61,14 @@ button:focus {
   background: none;
   vertical-align: middle;
 }
+
 .colour-palette {
   left: 50px;
   position: fixed;
   top: 150px;
 }
-.home-button, .chat-button {
+
+.home-button, .chat-button, .chat-alert {
   float: right;
   margin-top: 10px;
   background: none;
@@ -77,19 +79,29 @@ button:focus {
   border: none;
  }
 
+.chat-alert {
+  height: 20px;
+  width: 20px;
+  margin-top: 5px;
+  margin-right: -65px;
+}
+
 .home-image {
    height: 50px;
    width: 50px;
  }
+
 .searchbox {
   border: 10px solid black;
 }
+
 .pixel-limit {
   position: fixed;
   bottom: 20px;
   left: 100px;
   font-size: 30px;
 }
+
 .img-description {
   line-height: 65px;
   left: 40%;
@@ -103,9 +115,11 @@ button:focus {
   position: relative; width: 50px;
   -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
+
 .onoffswitch-checkbox {
    display: none;
 }
+
 .onoffswitch-label {
    display: block; overflow: hidden; cursor: pointer;
    border: 2px solid #121212 ; border-radius: 20px;

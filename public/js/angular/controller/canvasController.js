@@ -120,11 +120,13 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
 
   $('.chat-button').click(function() {
     $('.chatbox').toggle();
+    $('.chat-alert').hide();
   });
 
   $('.chat').submit(function() {
     socket.emit('chat message', [$('.msg').val(), username, imgID()]);
     $('.msg').val('');
+    $('.chat-alert').show();
     return false;
   });
 
