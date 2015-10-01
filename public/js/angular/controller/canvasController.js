@@ -116,8 +116,6 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
     chosenCanvas.src = result[0].attributes.Base64;
   })
 
-
-
   colourPaletteImg.src = 'images/ColorWheel-Base.png';
 
   $('.chat-button').click(function() {
