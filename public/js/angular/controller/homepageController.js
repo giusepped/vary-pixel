@@ -41,7 +41,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
   $scope.getContributors = function(id) {
     CanvasProvider.getContributors(id).then(function(results) {
       var cap = 6;
-      $scope.contributors = results;
+      $scope.contributors = results.reverse();
       if (results.length < 6) {
         cap = results.length;
       }
@@ -53,9 +53,9 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
   }
 
   $scope.clearContributors = function() {
-    console.log("leaving");
     angular.element('.contributors').empty();
     $scope.contributors = [];
+    console.log(angular.element('.contributors'));
   }
 
 }]);
