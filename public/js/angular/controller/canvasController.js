@@ -122,6 +122,12 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
     })
   })
 
+  $(board).dblclick(function() {
+    $scope.userAction = 'erase';
+    drawOn();
+    $scope.userAction = 'draw';
+  });
+
   $(board).mouseup(function() {
     $(board).off("mousemove");
   })
