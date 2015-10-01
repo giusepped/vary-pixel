@@ -132,24 +132,24 @@ h1 {
   -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
   box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
 }
+
 .userRegistrationBox {
   position:fixed;
   top: 50%;
   left: 50%;
   display: none;
   border-radius: 8px;
-  width: 450px;
+  width: 350px;
   margin-left: -200px;
   height: 50px;
-  padding-top: 10px;
+  padding-top: 15px;
   background: #ffffff;
-  horizontal-align: center;
   text-align: center;
-  vertical-align: middle;
   -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
   box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
   z-index: 2;
 }
+
 .textField {
   clear: both;
   margin: 5px auto;
