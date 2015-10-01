@@ -1,8 +1,8 @@
 describe('homepage', function() {
 
-  beforeEach(function() {
-    browser.get('http://localhost:3000');
-  });
+  // beforeEach(function() {
+  //   browser.get('http://localhost:3000');
+  // });
 
   var board = element.all(by.repeater('board in boards'));
   var userReg = element(by.css('div.user-reg'));
@@ -14,13 +14,14 @@ describe('homepage', function() {
   var submitLogOut = element(by.className('logOutSubmit'));
   var signInUsername = element(by.model('usernameLogIn'));
   var signInPassword = element(by.model('passwordLogIn'));
-  var signUpusername = element(by.model('username'));
+  var signUpUsername = element(by.model('username'));
   var signUpEmail = element(by.model('email'));
   var signUpPassword = element(by.model('password'));
   var signUpPasswordConfirmation = element(by.model('passwordConfirmation'));
   var submitSignUpBtn = element(by.className('signUpSubmit'));
 
   it('should have a title', function() {
+    browser.get('http://localhost:3000');
     expect(browser.getTitle()).toEqual('Vary Pixel');
   });
 
@@ -40,7 +41,7 @@ describe('homepage', function() {
 
     xit('should be able to sign up a user', function(){
       signUpBtn.click();
-      signUpusername.sendKeys('benja');
+      signUpUsername.sendKeys('benja');
       signUpEmail.sendKeys('b@test.com');
       signUpPassword.sendKeys('12345');
       signUpPasswordConfirmation.sendKeys('12345');
