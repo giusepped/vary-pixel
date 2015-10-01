@@ -31,10 +31,7 @@ h1 {
   font-family: joyStix;
   src: url(../images/joystix.ttf);
 }
-@font-face {
-  font-family: lato;
-  src: url(../images/lato.ttf)
-}
+
 .navbar-brand {
   font-size: 25px;
   color: #e0e0e0;
@@ -68,7 +65,7 @@ h1 {
 
 .navbar-btn:focus {
   background-color: rgba(0, 0, 0, 0);
-  outline: 0 !important;
+  outline: 0;
 }
 
 .searchbox {
@@ -108,6 +105,11 @@ h1 {
   font-size: 25px;
   color: #e0e0e0
 }
+
+.makenew button:focus {
+  outline: 0;
+}
+
 .username {
   margin-top: 2px;
   color: #ffffff;
@@ -123,7 +125,6 @@ h1 {
   left: 50%;
   background-color: white;
   margin-left: -100px;
-  border: 2px solid black;
   border-radius: 8px;
   text-align: center;
   z-index: 2;
@@ -131,23 +132,24 @@ h1 {
   -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
   box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
 }
+
 .userRegistrationBox {
   position:fixed;
   top: 50%;
   left: 50%;
   display: none;
-  border: 2px solid black;
   border-radius: 8px;
-  width: 400px;
+  width: 350px;
   margin-left: -200px;
   height: 50px;
-  padding-top: 10px;
+  padding-top: 15px;
   background: #ffffff;
-  horizontal-align: center;
   text-align: center;
-  vertical-align: middle;
+  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
+  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
   z-index: 2;
 }
+
 .textField {
   clear: both;
   margin: 5px auto;
@@ -185,6 +187,11 @@ h1 {
   border: none;
   background: none;
 }
+
+.user-action .glyphicon-remove:hover {
+  outline: 0;
+}
+
 .board-list img {
   height: 250px;
   width: 250px;
