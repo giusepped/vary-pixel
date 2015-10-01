@@ -2,6 +2,7 @@ html{
   font-family: 'Inconsolata', sans-serif;
   font-size: 18px;
 }
+
 body {
   background: url(../images/wallpaper.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -9,6 +10,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
 a {
   cursor: pointer;
 }
@@ -16,17 +18,21 @@ a {
 input {
   height: 30px;
 }
+
 h1 {
   font-size: 35px;
 }
+
 ::-webkit-input-placeholder {
   color: black;
   padding-left: 5px;
 }
+
 .navbar {
   background-color: rgba(200, 200, 200, 0.3);
   height: 50px;
 }
+
 @font-face {
   font-family: joyStix;
   src: url(../images/joystix.ttf);
