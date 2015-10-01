@@ -19,8 +19,8 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'spec/unit/*.spec.js',
-      'public/js/angular/homepage.js',
-      'public/js/angular/controller/homepageController.js'
+      'public/js/angular/providers/pixelFactory.js',
+      'public/js/angular/providers/canvasProvider.js'
     ],
 
 
