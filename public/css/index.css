@@ -292,7 +292,17 @@ h1 {
 MOBILE
 ---------------------------------------------------------------------------------*/
 
+@media only screen and (max-width: 992px) {
+  .username {
+    display: none;
+  }
+}
+
+
 @media only screen and (max-width: 768px) {
+  .username {
+    display: inline;
+  }
   .navbar-brand{
     font-size: 20px;
   }
