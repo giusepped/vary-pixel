@@ -13,6 +13,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
   var fetch = function() {
     var deferred = $q.defer();
     var query = new Parse.Query('canvases');
+    query.descending("updatedAt");
     query.find({
       success: function(results) {
         deferred.resolve(results);
@@ -28,6 +29,7 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
     var deferred = $q.defer();
     var query = new Parse.Query('canvases');
     query.startsWith(type, param)
+    query.ascending("description")
     query.find({
       success: function(results) {
         deferred.resolve(results);

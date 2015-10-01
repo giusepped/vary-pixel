@@ -13,6 +13,12 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     $scope.boards = results;
   });
 
+  $scope.reFetch = function () {
+    CanvasProvider.fetch().then(function(results) {
+      $scope.boards = results;
+    });
+  }
+
   $scope.checkUserReg = function() {
     if (Parse.User.current() === null) {
       angular.element('.userRegistrationBox').show();
