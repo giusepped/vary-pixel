@@ -1,8 +1,8 @@
 describe('homepage', function() {
 
-  beforeEach(function() {
-    browser.get('http://localhost:3000');
-  });
+  // beforeEach(function() {
+  //   browser.get('http://localhost:3000');
+  // });
 
   var board = element.all(by.repeater('board in boards'));
   var userReg = element(by.css('div.user-reg'));
@@ -21,6 +21,7 @@ describe('homepage', function() {
   var submitSignUpBtn = element(by.className('signUpSubmit'));
 
   it('should have a title', function() {
+    browser.get('http://localhost:3000');
     expect(browser.getTitle()).toEqual('Vary Pixel');
   });
 

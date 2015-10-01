@@ -1,15 +1,28 @@
-describe('Homepage', function() {
-  beforeEach(module('Homepage'));
+// describe('factory: PixelFactory', function() {
+//   beforeEach(module('Homepage', ['ui.router']));
 
-  var scope, controller;
+//   var pixelFactory;
 
-  beforeEach(inject(function($rootScope, $controller) {
-    scope = $rootScope.$new();
-    controller = $controller('HomeController', {
-      $scope: scope
-    });
-  }));
+//   beforeEach(inject(function(PixelFactory) {
+//     pixelFactory = PixelFactory;
+//   }));
 
+//   var ctx = {
+//     fillRect: function() {},
+//     clearRect: function() {},
+//     fillStyle: rgb(0, 0, 0),
+//     getImageData: function() {}
+//   }
+
+//   xit('can draw a pixel', function() {
+//     spyOn(ctx, "fillRect");
+//     pixelFactory.createPixel(ctx, 'draw', 0, 0, 15, rgb(0, 0, 0));
+//     expect(ctx.fillRect).toHaveBeenCalledWith(0, 0, 15, 15);
+//   });
+
+//   xit('can erase a pixel', function() {
+
+//   });
   // it('can add a board', function() {
   //   var saveToParse = { saving: function() {} }
   //   spyOn(saveToParse, 'saving');
