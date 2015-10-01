@@ -1,25 +1,343 @@
-.thumbnail {
+html{
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 18px;
+}
+
+body {
+  background: url(../images/wallpaper.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  cursor: pointer;
+}
+
+input {
+  height: 30px;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+::-webkit-input-placeholder {
+  color: black;
+  padding-left: 5px;
+}
+
+.navbar {
+  background-color: rgba(200, 200, 200, 0.3);
+  height: 50px;
+}
+
+@font-face {
+  font-family: joyStix;
+  src: url(../images/joystix.ttf);
+}
+
+.navbar-brand {
+  font-size: 25px;
+  color: #e0e0e0;
+  font-family: joyStix;
+}
+.navbar-default .navbar-brand {
+  color: #e0e0e0;
+}
+.navbar-nav {
+  padding: none;
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 30px;
+  font-family: 'Inconsolata', sans-serif;
+}
+.navbar-nav li {
+  padding-right: 5px;
+  height: 30px;
+}
+.navbar-nav button {
+  padding-top: 5px;
+  margin: 0px 10px;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 18px;
+}
+.navbar-btn:hover {
+  color: white;
+}
+
+.navbar-btn:focus {
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0;
+}
+
+.searchbox {
+  padding: 0px;
+  height: 30px;
+  width: 250px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: black;
+}
+.searchInput {
+  width: 170px;
+  border-style: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: rgba(200, 200, 200, 0.3);
+  font-size: 18px;
+  color: black;
+}
+.searchButton {
+  padding: 0px;
+  margin: 0px;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 18px;
+}
+.makenew {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.makenew button {
+  background: none;
+  border: none;
+  font-size: 25px;
+  color: #e0e0e0
+}
+
+.makenew button:focus {
+  outline: 0;
+}
+
+.username {
+  margin-top: 2px;
+  color: #ffffff;
+  padding-top: 3px;
+}
+.user-action button {
+  margin-top: 5px;
+}
+.user-action {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  background-color: white;
+  margin-left: -100px;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 2;
+  font-size: 12px;
+  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
+  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
+}
+
+.userRegistrationBox {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  border-radius: 8px;
+  width: 350px;
+  margin-left: -200px;
+  height: 50px;
+  padding-top: 15px;
+  background: #ffffff;
+  text-align: center;
+  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
+  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .65);
+  z-index: 2;
+}
+
+.textField {
+  clear: both;
+  margin: 5px auto;
+  vertical-align: center;
+  display: block;
+  box-shadow: inset 0 1px 3px #E0E3DC;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+.user-action .btn {
+  clear: both;
+  margin: 10px auto;
+  vertical-align: center;
+  display: block;
+  padding-top: -2px;
+}
+
+.sign-in, .makeNewForm {
+  padding-top: 30px;
+  width: 200px;
+  height: 200px;
+}
+
+.sign-up {
+  padding-top: 30px;
+  width: 250px;
   height: 300px;
-  width: 300px;
+}
+
+.user-action .glyphicon-remove {
+  display: block;
+  float: right;
+  margin-right: 3px;
+  margin-top: 3px;
+  border: none;
+  background: none;
+}
+
+.user-action .glyphicon-remove:hover {
+  outline: 0;
+}
+
+.board-list img {
+  height: 250px;
+  width: 250px;
+  border: 2px solid black;
+  background-color: rgba(200, 200, 200, 0.5);
+}
+.jumbotron {
+  background: none;
+  color: white;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  text-align: center;
+  font-family: joyStix;
+}
+.jumbotron h1 {
+  font-size: 40px;
 }
 
 .board-list {
   list-style-type: none;
   z-index: 1;
+  height: 300px;
 }
-
 .board-list li {
   display: inline-block;
-  margin: 50px;
+  margin-top: 0px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 100px;
+}
+.board-list h4 {
+  height: 50px;
+  position: absolute;
+  font-size: 18px;
+  color: rgb(127, 70, 44);
+  font-weight: bold;
+  width: 250px;
+  display: block;
+  font-family: 'Inconsolata';
 }
 
-.user-reg {
-  margin: 0 auto;
-  border: 2px solid black;
-  border-radius: 8px;
-  width: 200px;
-  height: 200px;
-  padding-top: 40px;
+.invalidLogin{
+  display: none;
+}
+
+.invalidSignUp{
+  display: none;
+}
+
+.passwordUnmatch{
+  display: none;
+}
+
+.image-container {
+  position: relative;
+  height: 250px;
+  width: 250px;
+}
+
+.image-container .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  color: #ffffff;
   text-align: center;
+  padding-top: 40px;
 }
 
+.image-container .after h4 {
+  font-size: 20px;
+  color: #ffffff;
+  font-family: 'Inconsolata', sans-serif;
+}
+
+.image-container .after .contributors {
+  margin-top: 10px;
+}
+.image-container .after .contributors li {
+  display: block;
+  margin-bottom: 5px;
+  font-family: 'Inconsolata', sans-serif;
+}
+
+.image-container:hover .after {
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.contributors {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/*---------------------------------------------------------------------------------
+MOBILE
+---------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 992px) {
+  .username {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .username {
+    display: inline;
+  }
+  .navbar-brand{
+    font-size: 20px;
+  }
+  .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: 5px !important;
+  }
+  .navbar-collapse {
+    width: 100%;
+    background: #5a90af;
+    text-align: center;
+    border-color: transparent !important;
+  }
+  .navbar-collapse li {
+    padding: 0 0 0 0 !important;
+    margin: 0 0 0 0 !important;
+    height: auto !important;
+  }
+  .navbar-collapse .nav-forms {
+    padding-bottom: 10px;
+    padding-top: 37px;
+    margin-left: 10%;
+    margin-right: 33%;
+  }
+  .navbar-form {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}

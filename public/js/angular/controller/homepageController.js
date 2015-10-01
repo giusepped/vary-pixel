@@ -1,56 +1,59 @@
-homepage.controller('HomeController', ['$scope', '$q', 'AllCanvas', '$rootScope', function($scope, $q, AllCanvas, $rootScope) {
+homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootScope', '$timeout', '$state', function($scope, $q, CanvasProvider, $rootScope, $timeout, $state) {
   var canvases = Parse.Object.extend("canvases");
 
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams){
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
 
-    if(requireLogin && Parse.User.current() === null) {
+    if (requireLogin && Parse.User.current() === null) {
       event.preventDefault();
     }
   })
 
-  function getBoard() {
-    var deferred = $q.defer();
-    var query = new Parse.Query(canvases);
-
-    query.find({
-      success: function(results) {
-        deferred.resolve(results);
-      },
-      error: function(error) {
-        deferred.reject(error.message);
-      }
-    });
-    return deferred.promise;
-  }
-
-  getBoard().then(function(boards) {
-    AllCanvas.setBoard(boards);
-    $scope.boards = boards;
+  CanvasProvider.fetch().then(function(results) {
+    $scope.boards = results;
   });
 
-  function saveToParse(object, description) {
-    object.save({
-      picture: null,
-      description: description
-    }, {
-      success: function(canvas) {
-        console.log('saved');
-        AllCanvas.setCurrent(canvas.id);
-      },
-      error: function(canvas, error) {
-        console.log('failed');
-      }
-    });
+  $scope.checkUserReg = function() {
+    if (Parse.User.current() === null) {
+      angular.element('.userRegistrationBox').show();
+      $timeout(function() {
+        angular.element('.userRegistrationBox').hide()
+      }, 2000);
+    }
   }
 
   $scope.addBoard = function(description) {
     var object = new canvases();
-    saveToParse(object, $scope.boardDesc);
+    CanvasProvider.createCanvas(object, description);
     $scope.boardDesc = '';
   };
 
-  $scope.setCurrent = function(id) {
-    AllCanvas.setCurrent(id);
+  $scope.setCurrent = function(id, description) {
+    CanvasProvider.setCurrent(id, description);
   }
+
+  $scope.searchBy = function(type, param) {
+    CanvasProvider.searchBy(type, param).then(function(results) {
+      $scope.boards = results;
+    })
+  }
+
+  $scope.getContributors = function(id) {
+    CanvasProvider.getContributors(id).then(function(results) {
+      var cap = 6;
+      $scope.contributors = results.reverse();
+      if (results.length < 6) {
+        cap = results.length;
+      }
+      for (var i = 0; i < cap; i++) {
+        angular.element('.contributors').append(angular.element('<li>').text($scope.contributors[i].get("username")));
+      }
+    });
+  }
+
+  $scope.clearContributors = function() {
+    angular.element('.contributors').empty();
+    $scope.contributors = [];
+  }
+
 }]);

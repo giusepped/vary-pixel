@@ -5,7 +5,9 @@ describe('homepage', function() {
   });
 
   var board = element.all(by.repeater('board in boards'));
-  var signInBtn = element(by.className('logInButton'));
+  var userReg = element(by.css('div.user-reg'));
+  var username = element(by.className('username'));
+  var signInBtn = element(by.className('signInButton'));
   var signUpBtn = element(by.className('signUpButton'));
   var logOutBtn = element(by.className('logOutButton'));
   var submitBtn = element(by.className('signInSubmit'));
@@ -33,7 +35,7 @@ describe('homepage', function() {
       signInUsername.sendKeys('bex');
       signInPassword.sendKeys('12345678');
       submitBtn.click();
-      expect(element(by.className('sign-in')).isDisplayed()).toBe(false);
+      expect(userReg.isDisplayed()).toBeFalsy();
     });
 
     xit('should be able to sign up a user', function(){
@@ -46,7 +48,7 @@ describe('homepage', function() {
       expect(element(by.className('sign-up')).isDisplayed()).toBe(false);
     });
 
-    it('should be able to log out a user', function(){
+    xit('should be able to log out a user', function(){
       logOutBtn.click();
       submitLogOut.click();
       expect(element(by.className('sign-out')).isDisplayed()).toBe(false);

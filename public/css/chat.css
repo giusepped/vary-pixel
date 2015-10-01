@@ -1,0 +1,50 @@
+.chatbox {
+  float: right;
+  display: none;
+  height: 500px;
+  width: 400px;
+  border: 2px solid black;
+  margin-right: 8px;
+  position: relative;
+  background: #ffffff;
+  font-family: 'Inconsolata';
+}
+.messagebox {
+  overflow: scroll;
+  height: 460px;
+}
+.chat {
+  background: #000000;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 398px;
+  position: absolute;
+}
+.msg {
+  border: 0;
+  padding: 10px;
+  width: 78%;
+  height: 34px;
+  margin-right: 1px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.send-msg {
+  margin-bottom: 4px;
+  font-size: 16px;
+  padding: 6px 6px;
+  margin-left: 5px;
+  width: 60px;
+}
+.messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.messages li {
+  padding: 5px 10px;
+}
+.messages li:nth-child(odd) {
+  background: #eee;
+}

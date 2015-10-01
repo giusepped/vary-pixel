@@ -1,52 +1,100 @@
 
-  <h1>Here is all the fun you can partake in</h1>
-  <section ng-controller="HomeController">
-    <div class="user-reg">
-      <form class="sign-up">
-        <label>Username:
-          <input name="username" ng-model="username" placeholder="your username" type="text">
-        </label>
-        <label>Email:
-          <input name="email" ng-model="email" placeholder="your email address" type="email">
-        </label>
-        <label>Password:
-          <input name="password" ng-model="password" placeholder="password" type="password">
-        </label>
-        <label>Password Confirmation:
-          <input name="password-confirmation" ng-model="passwordConfirmation" placeholder="password   confirmation" type="password">
-        </label>
-        <input ng-click="saveUser(username, email, password, passwordConfirmation)" type="submit" value="submit">
-        <input class="signUpSubmit" ng-click="saveUser(username, email, password, passwordConfirmation); showSignUp=false" type="submit" value="submit">
-      </form>
-    </div>
-    <div class="user-reg">
-      <form class="sign-in">
-        <label>Email:
-          <input name="username" ng-model="usernameLogIn" placeholder="your username" type="text">
-        </label>
-        <label>Password:
-          <input name="password" ng-model="passwordLogIn" placeholder="password" type="password">
-        </label>
-        <input class="signInSubmit" ng-click="signInUser(usernameLogIn, passwordLogIn); showLogIn=false" type="submit" value="submit">
-      </form>
-    </div>
-    <div class="user-reg sign-out" ng-show="showSignOut">
-      <p> Are you sure you're ready to sign out?</p>
-      <button class="logOutSubmit" ng-click="signOutUser(); showSignOut=false">Sign out</button>
-    </div>
-  </section>
+<section class="homepage" ng-controller="HomeController">
+  <section ng-controller="UserController">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand navbar-header" ng-click="searchBy('description', '')">VARY-PIXEL</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <button class="navbar-btn signInButton" ng-click="userAction('signIn')" type="button">Sign in</button>
+            </li>
+            <li>
+              <button class="navbar-btn signUpButton" ng-click="userAction('signUp')" type="button">Sign up</button>
+            </li>
+            <li>
+              <button class="navbar-btn signOutButton" ng-click="userAction('signOut'); signOutUser()" type="button">Sign out</button>
+            </li>
+            <li>
+              <p class="username">{{ username }}</p>
+            </li>
+          </ul>
+          <div class="nav-forms">
+            <form ng-submit="searchBy('description', searchString)" class="searchbox navbar-form navbar-right">
+              <input class="searchInput" ng-model="searchString"class="form-horizontal" type="text"/>
+              <input class="searchButton navbar-btn" type="submit" value="Search">
+            </form>
+            <form class="makenew navbar-form navbar-right">
+              <button class="glyphicon glyphicon-plus" ng-click="userAction('makeNew')"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  <form>
-    <input ng-model="boardDesc" placeholder="name your fun" type="text">
-    <button class="btn-info addBoardBtn" ui-sref="canvas" ng-click="addBoard(boardDesc)">New Board</button>
-  </form>
+    <section class="user-action">
+      <button class="glyphicon glyphicon-remove" ng-click="userAction(userActionChoice)"></button>
+      <form ng-submit="signInUser(usernameLogIn, passwordLogIn)" class="sign-in" ng-show="userActionChoice === 'signIn'">
+        <input class="textField" name="username" ng-model="usernameLogIn" type="text" value="value" placeholder="Username" onfocus="this.placeholder=''">
+        <input class="textField" name="password" ng-model="passwordLogIn" type="password" placeholder="Password" onfocus="this.placeholder=''">
+        <input class="btn btn-success" type="submit" value="Sign in">
+
+        <div class="invalidLogin">Incorrect login details</div>
+      </form>
+
+      <form ng-submit="saveUser(usernameSignUp, email, password, passwordConfirmation)" class="sign-up" ng-show="userActionChoice === 'signUp'">
+        <input class="textField" name="username" ng-model="usernameSignUp" type="text" placeholder="Username" onfocus="this.placeholder=''" required>
+        <input class="textField" name="email" ng-model="email" type="email" placeholder="Email Address" onfocus="this.placeholder=''" required>
+        <input class="textField" name="password" ng-model="password" type="password" placeholder="Password" onfocus="this.placeholder=''">
+        <input class="textField" name="password-confirmation" ng-model="passwordConfirmation" type="password" placeholder="Confirm Password" onfocus="this.placeholder=''">
+        </label>
+        <input class="btn btn-success" type="submit" value="Sign up">
+        <section>
+          <div class="invalidSignUp">User name or e-mail already taken</div>
+        </section>
+        <section>
+          <div class="passwordUnmatch">Passwords do not match</div>
+        </section>
+      </form>
+
+      <form class="makeNewForm" ng-show="userActionChoice==='makeNew'">
+        <input class="textField" ng-model="boardDesc" type="text" placeholder="Title" onfocus="this.placeholder=''" required>
+        <input class="btn btn-success" ng-click="addBoard(boardDesc)" type="submit" value="Draw">
+      </form>
+    </section>
 
     <section>
+      <div class="jumbotron">
+        <h1>GRAB A BUDDY, GRAB A CANVAS, PLAY WITH PIXELS</h1>
+      </div>
+
       <ul class="board-list">
-        <li ng-repeat="board in boards">
-          <img class="thumbnail" ng-src="{{ board.get(&quot;picture&quot;).url()}}"/>
-          <a ui-sref="canvas" ng-click="setCurrent(board.id)">{{ board.get("description") }}</a>
+        <li ng-repeat="board in boards" ng-mouseenter="getContributors(board.id)" ng-mouseleave="clearContributors()">
+          <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg();" ui-sref="canvas">
+            <div class="image-container">
+              <img class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
+              <div class="after">
+                <h4>Recent Contributors</h4><br>
+                <ul class="contributors"></ul>
+              </div>
+            </div>
+          </a>
+          <h4 class="board-description">{{ board.get('description') }}</h4>
         </li>
       </ul>
     </section>
-
+    <section>
+      <div class="userRegistrationBox">
+        Sign in to join the fun!
+      </div>
+    </section>
+  </section>
+</section>

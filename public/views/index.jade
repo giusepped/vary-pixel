@@ -1,8 +1,7 @@
 extends ./layout.jade
 
 block scripts
-
+  link(rel='stylesheet', type='text/css', href='css/index.css')
+  meta(name='viewport', content='initial-scale = 1.0,maximum-scale = 1.0')
 block content
-
-  div(ui-view)
-
+  body(ui-view ng-app="Homepage")

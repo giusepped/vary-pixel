@@ -1,39 +1,108 @@
-homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$interval', function($scope, AllCanvas, $timeout, $interval) {
+homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFactory', '$timeout', '$interval', '$q', function($scope, CanvasProvider, PixelFactory, $timeout, $interval, $q) {
+
+  $scope.userAction = 'draw';
+
+  $scope.imgDesc = function() {
+    return CanvasProvider.getCurrent()[1];
+  }
+
+  $scope.action = function(action) {
+    action = action || 'draw';
+    if ($scope.userAction === 'erase') {
+      $scope.userAction = 'draw';
+    } else {
+      $scope.userAction = action;
+    };
+  }
+
   var socket = io();
+  var boardSize = 1500;
+  var pixelSize = boardSize / 100;
+
   var board = $(".board")[0];
   var boardCtx = board.getContext("2d");
-  var boardInterface = new BoardInterface(boardCtx);
-  var boardSize = 1500;
-  var pixelSize = 15;
+
   var background = $('.grid')[0];
   var gridContext = background.getContext('2d');
+
   var paletteCanvas = $('.colour-palette')[0];
   var paletteCtx = paletteCanvas.getContext('2d');
-  var pixelColor;
+  var pixelColor = 'rgba(0,0,0,255)';
+
   var opts = {
     distance: pixelSize
   };
 
-  var drawChosenCanvas = new Image();
-
+  var chosenCanvas = new Image();
   var colourPaletteImg = new Image();
 
+  var userObj = Parse.User.current();
+  var username = userObj.get("username");
+
+  board.height = board.width = boardSize;
+  background.height = background.width = boardSize;
+  paletteCanvas.width = paletteCanvas.height = 300;
+  new Grid(opts).draw(gridContext);
+
+  $('.colour-palette').hide();
+
+  CanvasProvider.searchBy('objectId', imgID()).then(function(result) {
+    chosenCanvas.src = result[0].attributes.Base64;
+  })
+  colourPaletteImg.src = 'images/ColorWheel-Base.png';
+
+  socket.on('chat message', appendMessage);
+
+  socket.on('coordinates', function(data) {
+    PixelFactory.createPixel(boardCtx, data[0], data[1], data[2], pixelSize, data[3]);
+  });
+
+  chosenCanvas.onload = function() {
+    joinRoom();
+    boardCtx.drawImage(chosenCanvas, 0, 0, boardSize, boardSize);
+  }
+
+  colourPaletteImg.onload = function() {
+    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
+  }
+  window.onunload = function() {
+    leaveRoom();
+  }
+
   function imgID() {
-   return AllCanvas.getCurrent();
+    return CanvasProvider.getCurrent()[0];
   }
 
-  function imgUrl() {
-    var array = AllCanvas.allBoards();
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === imgID()) return array[i].attributes.picture.url();
+  function drawOn(action, x, y, colour) {
+    action = $scope.userAction;
+    x = x || event.offsetX;
+    y = y || event.offsetY;
+    colour = colour || pixelColor;
+    PixelFactory.createPixel(boardCtx, action, x, y, pixelSize, colour);
+    socket.emit('coordinates', [action, x, y, colour, imgID()]);
+  };
+
+  function appendMessage(msg) {
+    if ($('.chat-alert').css('display') === 'none' && $('.chatbox').css('display') === 'none') {
+      $('.chat-alert').show();
     }
+    $('.messages').append($('<li>').text(msg));
   }
 
-  function imgDesc() {
-    var array = AllCanvas.allBoards();
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id === imgID()) return array[i].attributes.description;
-    }
+  function joinRoom() {
+    socket.emit('joinRoom', [imgID(), username]);
+    socket.on('unsaved coordinates', function(data) {
+      for (var i = 0; i < data.length; i++) {
+        PixelFactory.createPixel(boardCtx, data[i][0], data[i][1], data[i][2], pixelSize, data[i][3]);
+      }
+    })
+  }
+
+  function leaveRoom() {
+    socket.emit('leaveRoom', [imgID(), username]);
+    socket.removeListener('chat message', appendMessage);
+    CanvasProvider.updateCanvas(board, imgID())
+    CanvasProvider.setCurrent(null);
   }
 
   $(board).mousedown(function() {
@@ -42,7 +111,7 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     var prevX = Math.floor(event.offsetX / pixelSize) * pixelSize;
     var prevY = Math.floor(event.offsetY / pixelSize) * pixelSize;
     drawOn()
-    $(board).mousemove(function(e) {
+    $(board).mousemove(function() {
       x = Math.floor(event.offsetX / pixelSize) * pixelSize;
       y = Math.floor(event.offsetY / pixelSize) * pixelSize;
       if (Math.abs(prevX - x) > 14 || Math.abs(prevY - y) > 14) {
@@ -53,20 +122,17 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
     })
   })
 
+  $(board).dblclick(function() {
+    $scope.userAction = 'erase';
+    drawOn();
+    $scope.userAction = 'draw';
+  });
+
   $(board).mouseup(function() {
     $(board).off("mousemove");
   })
 
-  function drawOn() {
-    boardInterface.createPixel(event.offsetX, event.offsetY, pixelSize, pixelColor);
-    socket.emit('coordinates', [event.offsetX, event.offsetY, pixelColor]);
-  }
-
-  socket.on('coordinates', function(data) {
-    boardInterface.createPixel(data[0], data[1], pixelSize, data[2]);
-  });
-
-  $('.toggle-grid').click(function() {
+  $('.onoffswitch-checkbox').click(function() {
     $('.grid').toggle();
   });
 
@@ -78,44 +144,24 @@ homepage.controller('CanvasController', ['$scope', 'AllCanvas', '$timeout', '$in
   $('.colour-palette').click(function() {
     var x = event.offsetX;
     var y = event.offsetY;
-    pixelColor = WhatColour.pickColour(paletteCtx, x, y);
+    pixelColor = PixelFactory.whatColour(paletteCtx, x, y);
     $('.colour-palette').fadeToggle('slow');
     $('.colour-palette-toggle').fadeToggle('slow');
   })
 
-  $('.save-canvas').click(function() {
-    updateCanvas(board, imgID());
+  $('.home-button').click(function() {
+    leaveRoom();
+  })
+
+  $('.chat-button').click(function() {
+    $('.chatbox').toggle();
+    $('.chat-alert').hide();
   });
 
-  $('.colour-palette').hide();
-
-  drawChosenCanvas.crossOrigin = "Anonymous";
-
-  drawChosenCanvas.onload = function() {
-    boardCtx.drawImage(drawChosenCanvas, 0, 0, boardSize, boardSize);
-  }
-
-  drawChosenCanvas.src = imgUrl();
-  board.height = board.width = boardSize;
-  background.height = background.width = boardSize;
-
-  new Grid(opts).draw(gridContext);
-
-  colourPaletteImg.onload = function() {
-    paletteCanvas.width = paletteCanvas.height = 300;
-    paletteCtx.drawImage(colourPaletteImg, 0, 0, paletteCanvas.width, paletteCanvas.height);
-  }
-  colourPaletteImg.src = 'images/ColorWheel-Base.png';
-
-  if(imgUrl() === undefined){
-    $timeout(function(){
-      angular.element('.save-canvas').trigger('click');
-    }, 300);
-  }
-
-  $interval(function(){
-    console.log("I am happening");
-    angular.element('.save-canvas').trigger('click');
-  }, 6000);
+  $('.chat').submit(function() {
+    socket.emit('chat message', [$('.msg').val(), username, imgID()]);
+    $('.msg').val('');
+    return false;
+  });
 
 }])

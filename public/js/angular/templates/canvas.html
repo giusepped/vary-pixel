@@ -1,11 +1,58 @@
+<head>
+  <link href='css/canvas.css' rel='stylesheet' type='text/css'>
+  <link href='css/chat.css' rel='stylesheet' type='text/css'>
+</head>
 <body ng-controller="CanvasController">
-  <canvas class="grid"></canvas>
-  <canvas class="board"></canvas>
-  <canvas class="colour-palette"></canvas>
-  <button class="btn toggle-grid" type="button">Toggle Grid</button>
-  <button class="btn save-canvas" type="button">Save Drawing</button>
-  <p class="save-alert"></p><img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
-  <script src="/js/pixel.js"></script>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class=" navbar-header">
+        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class=" collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="canvas-navbar button-container container">
+          <div class="onoffswitch toggle-grid">
+            <input checked class="onoffswitch-checkbox" id="myonoffswitch" name="onoffswitch" type="checkbox">
+            <label class="onoffswitch-label" for="myonoffswitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+          <img alt="colour palette toggle" class="colour-palette-toggle" src="images/ColorWheel-Base.png"/>
+          <img alt="eraser" class="eraser" ng-click="action('erase')" src="images/eraser.png"/>
+          <span class="img-description">{{imgDesc()}}</span>
+          <button class="btn home-button" type="button" ui-sref="home"><img class="home-image" src="images/home.gif"></button>
+          <button class="btn chat-button" type="button"><img class="chat-image" src="images/chat.png">
+          </button>
+          <img class="chat-alert" alt="chat notification" src="images/notification.png">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="canvases">
+    <canvas class="grid"></canvas>
+    <canvas class="board board-{{userAction}}"></canvas>
+    <canvas class="colour-palette" ng-click="action('draw')"></canvas>
+    <canvas class="recent-colors" width="20" height="40"></canvas>
+  </section>
+  <section class="chatroom">
+    <div class="chatbox">
+      <div class="messagebox">
+        <ul class="messages"></ul>
+      </div>
+      <form class="chat">
+        <input autocomplete="off" class="msg">
+        <button class="btn btn-success send-msg">Send</button>
+      </form>
+    </div>
+  </section>
+  <p class="save-alert"></p>
   <script src="/js/grid.js"></script>
-  <script src="/js/saveCanvas.js"></script>
 </body>
