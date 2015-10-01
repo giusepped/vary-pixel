@@ -31,7 +31,6 @@ button:focus {
   cursor: url('/images/eraser-cursor.png') 5 38, auto;
 }
 .canvases {
-  margin-top: -20px;
   z-index: 1;
 }
 .toggle-grid, .home-button, .chat-button {
