@@ -16,7 +16,7 @@ button:focus {
   left: 0;
   z-index: 2;
 }
-.grid {
+.grid, .colour-picker-canvas {
   position: absolute;
   border: 1px solid black;
 }
@@ -29,6 +29,11 @@ button:focus {
   position: absolute;
   border: 1px solid black;
   cursor: url('/images/eraser-cursor.png') 5 38, auto;
+}
+.board-colorpick {
+  position: absolute;
+  border: 1px solid black;
+  cursor: url('/images/color-picker-cursor.png') 5 38, auto;
 }
 .canvases {
   z-index: 1;
