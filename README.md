@@ -1,4 +1,4 @@
-VARY-PIXEL PROJECT
+#VARY-PIXEL PROJECT
 
 Our project is a collaborative pixel drawing web application. As a user, you can register and draw in real time with other users in any of the rooms on our website. Each room also has a chat so you can interact with those you are drawing with. If none of the exisiting canvases interest you, then you can create your own, give it a name and start having fun with pixel art. You could even invite your friends! Visit our website:
 
