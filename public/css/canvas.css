@@ -33,7 +33,7 @@ button:focus {
 .canvases {
   z-index: 1;
 }
-.toggle-grid, .home-button, .chat-button {
+.toggle-grid, .home-button, .chat-button, .colour-picker {
   float: left;
   background: none;
   margin-top: 10px;
