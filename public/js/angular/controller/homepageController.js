@@ -41,15 +41,10 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
   $scope.showContributors = function(id) {
     CanvasProvider.getContributors(id).then(function(results) {
       var cap = 6;
-<<<<<<< HEAD
-      $scope.contributors = results.reverse();
-      if (results.length < 6) { cap = results.length; }
-=======
       $scope.contributors = results;
       if (results.length < 6) {
         cap = results.length;
       }
->>>>>>> 5b990c9ac37cc9069342a71c6a2d5bfd6021401c
       for (var i = 0; i < cap; i++) {
         angular.element('.contributors').append(angular.element('<li>').text($scope.contributors[i].get("username")));
       }
