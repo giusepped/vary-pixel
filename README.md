@@ -7,3 +7,8 @@ VARY-PIXEL PROJECT
 * Created a canvas
 * Implemented a canvas where pixels can be drawn with a click
 * Testing with jasmine, jasmine-jquery, protractor
+
+==================
+##[v2.0](https://github.com/giusepped/vary-pixel/releases/tag/v2.0)
+
+*
