@@ -7,29 +7,24 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
   $scope.saveUser = function(username, email, password, rePassword) {
     var user = new Parse.User();
     if(password.match(rePassword)){
-    user.set("username", username);
-    user.set("password", password);
-    user.set("email", email);
-    user.signUp(null, {
-      success: function(user) {
-        $scope.userAction('completed');
-        $scope.toggleButton();
-      },
-      error: function(user) {
-        angular.element('.invalidSignUp').show();
-        $timeout(function() {
-          angular.element('.invalidSignUp').hide()
-        }, 2000);
-      }
-    }).then(function(user) {
-      $scope.setUsername();
-      $scope.$apply();
-    });
-  } else {
-    angular.element('.passwordUnmatch').show();
-    $timeout(function() {
-      angular.element('.passwordUnmatch').hide()
-    }, 2000);
+      user.set("username", username);
+      user.set("password", password);
+      user.set("email", email);
+      user.signUp(null, {
+        success: function(user) {
+          $scope.userAction('completed');
+          $scope.toggleButton();
+        },
+        error: function(error) {
+          flashElementMessage('.invalidSignUp');
+        }
+      }).then(function(user) {
+        $scope.setUsername();
+        $scope.$apply();
+      });
+    }
+    else {
+      flashElementMessage('.passwordUnmatch');
     }
   }
 
@@ -40,10 +35,7 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
         $scope.toggleButton();
       },
       error: function(user) {
-        angular.element('.invalidLogin').show();
-        $timeout(function() {
-          angular.element('.invalidLogin').hide()
-        }, 2000);
+        flashElementMessage('.invalidLogin');
       }
     }).then(function(user) {
       $scope.setUsername();
@@ -96,4 +88,10 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
   $scope.toggleButton();
   $scope.setUsername();
 
+  function flashElementMessage(HTMLelement) {
+    angular.element(HTMLelement).show();
+    $timeout(function() {
+      angular.element(HTMLelement).hide()
+    }, 2000);
+  }
 }]);
