@@ -80,7 +80,7 @@
         <li ng-repeat="board in boards" ng-mouseenter="getContributors(board.id)" ng-mouseleave="clearContributors()">
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg();" ui-sref="canvas">
             <div class="image-container">
-              <img class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
+              <img alt="pixel art canvas" class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
               <div class="after">
                 <h4>Recent Contributors</h4><br>
                 <ul class="contributors"></ul>
