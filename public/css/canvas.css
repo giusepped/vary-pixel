@@ -44,6 +44,10 @@ button:focus {
   padding: 0;
   border: none;
 }
+.colour-picker {
+  height: 52px;
+  width: 52px;
+}
 .colour-palette-toggle {
   float: left;
   margin-top: 10px;
