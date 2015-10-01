@@ -16,7 +16,7 @@ button:focus {
   left: 0;
   z-index: 2;
 }
-.grid {
+.grid, .colour-picker-canvas {
   position: absolute;
   border: 1px solid black;
 }
@@ -30,10 +30,15 @@ button:focus {
   border: 1px solid black;
   cursor: url('/images/eraser-cursor.png') 5 38, auto;
 }
+.board-colorpick {
+  position: absolute;
+  border: 1px solid black;
+  cursor: url('/images/color-picker-cursor.png') 5 38, auto;
+}
 .canvases {
   z-index: 1;
 }
-.toggle-grid, .home-button, .chat-button {
+.toggle-grid, .home-button, .chat-button, .colour-picker {
   float: left;
   background: none;
   margin-top: 10px;
@@ -43,6 +48,10 @@ button:focus {
   width: 50px;
   padding: 0;
   border: none;
+}
+.colour-picker {
+  height: 52px;
+  width: 52px;
 }
 .colour-palette-toggle {
   float: left;

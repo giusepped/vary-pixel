@@ -10,6 +10,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
     action = action || 'draw';
     if ($scope.userAction === 'erase') {
       $scope.userAction = 'draw';
+    } else if ($scope.userAction === 'colorpick') {
+      $scope.userAction = 'draw';
     } else {
       $scope.userAction = action;
     };
@@ -28,6 +30,8 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
   var paletteCanvas = $('.colour-palette')[0];
   var paletteCtx = paletteCanvas.getContext('2d');
   var pixelColor = 'rgba(0,0,0,255)';
+
+  var pickingColour = false;
 
   var opts = {
     distance: pixelSize
@@ -135,6 +139,18 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
   $('.onoffswitch-checkbox').click(function() {
     $('.grid').toggle();
   });
+
+  $('.colour-picker').click(function() {
+    pickingColour = !pickingColour;
+  })
+
+  $(board).click(function() {
+    if(pickingColour === true){
+      var x = event.offsetX;
+      var y = event.offsetY;
+      pixelColor = PixelFactory.whatColour(boardCtx, x, y);
+    }
+  })
 
   $('.colour-palette-toggle').click(function() {
     $('.colour-palette').fadeToggle('slow');
