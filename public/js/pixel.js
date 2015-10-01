@@ -30,7 +30,7 @@ var WhatColour = (function() {
   function pickColour(ctx, x, y) {
     var a = ctx.getImageData(x, y, 1, 1).data;
     var rgb = 'rgba(' + a[0] + ',' + a[1] + ',' + a[2] + ',' + a[3] + ')';
-    return rgb
+    return rgb;
   }
 
   return {

@@ -53,6 +53,7 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
 
   $scope.clearContributors = function() {
     angular.element('.contributors').empty();
+    $scope.contributors = [];
   }
 
 }]);
