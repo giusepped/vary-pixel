@@ -126,13 +126,16 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', '$timeout',
   $('.chat').submit(function() {
     socket.emit('chat message', [$('.msg').val(), username, imgID()]);
     $('.msg').val('');
-    $('.chat-alert').show();
+
     return false;
   });
 
   socket.on('chat message', appendMessage);
 
   function appendMessage(msg) {
+    if ($('.chat-alert').css('display') === 'none' && $('.chatbox').css('display') === 'none') {
+      $('.chat-alert').show();
+    }
     $('.messages').append($('<li>').text(msg));
   }
 
