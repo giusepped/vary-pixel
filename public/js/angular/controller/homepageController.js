@@ -9,6 +9,10 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     }
   })
 
+  CanvasProvider.fetch().then(function(results) {
+    $scope.boards = results;
+  });
+
   $scope.checkUserReg = function() {
     if (Parse.User.current() === null) {
       angular.element('.userRegistrationBox').show();
@@ -34,15 +38,13 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     })
   }
 
-  CanvasProvider.fetch().then(function(results) {
-    $scope.boards = results;
-  });
-
   $scope.showContributors = function(id) {
     CanvasProvider.getContributors(id).then(function(results) {
       var cap = 6;
       $scope.contributors = results;
-      if (results.length < 6) { cap = results.length; }
+      if (results.length < 6) {
+        cap = results.length;
+      }
       for (var i = 0; i < cap; i++) {
         angular.element('.contributors').append(angular.element('<li>').text($scope.contributors[i].get("username")));
       }
