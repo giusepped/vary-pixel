@@ -44,10 +44,10 @@ homepage.controller('HomeController', ['$scope', '$q', 'CanvasProvider', '$rootS
     })
   }
 
-  $scope.showContributors = function(id) {
+  $scope.getContributors = function(id) {
     CanvasProvider.getContributors(id).then(function(results) {
       var cap = 6;
-      $scope.contributors = results;
+      $scope.contributors = results.reverse();
       if (results.length < 6) {
         cap = results.length;
       }
