@@ -77,12 +77,12 @@
       </div>
 
       <ul class="board-list">
-        <li ng-repeat="board in boards">
+        <li ng-repeat="board in boards" ng-mouseenter="getContributors(board.id)" ng-mouseleave="clearContributors()">
           <a ng-click="setCurrent(board.id, board.get('description')); checkUserReg();" ui-sref="canvas">
             <div class="image-container">
-              <img ng-mouseover="showContributors(board.id)" ng-mouseleave="clearContributors()" class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
+              <img alt="pixel art canvas" class="board-thumbnail" data-ng-src="{{board.attributes.Base64}}"/>
               <div class="after">
-                <h4>Contributors</h4><br>
+                <h4>Recent Contributors</h4><br>
                 <ul class="contributors"></ul>
               </div>
             </div>

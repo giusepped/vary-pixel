@@ -87,6 +87,9 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
   };
 
   function appendMessage(msg) {
+    if ($('.chat-alert').css('display') === 'none' && $('.chatbox').css('display') === 'none') {
+      $('.chat-alert').show();
+    }
     $('.messages').append($('<li>').text(msg));
   }
 
@@ -122,6 +125,12 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
       };
     })
   })
+
+  $(board).dblclick(function() {
+    $scope.userAction = 'erase';
+    drawOn();
+    $scope.userAction = 'draw';
+  });
 
   $(board).mouseup(function() {
     $(board).off("mousemove");
@@ -162,6 +171,7 @@ homepage.controller('CanvasController', ['$scope', 'CanvasProvider', 'PixelFacto
 
   $('.chat-button').click(function() {
     $('.chatbox').toggle();
+    $('.chat-alert').hide();
   });
 
   $('.chat').submit(function() {

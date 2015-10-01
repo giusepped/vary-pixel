@@ -48,7 +48,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
         description: description
       }, {
         success: function(canvas) {
-          console.log('saved');
           setCurrent(canvas.id);
           $state.go('canvas', {});
         },
@@ -92,7 +91,6 @@ homepage.factory('CanvasProvider', ['$q', '$state', function($q, $state) {
           },
           error: function(error) {
             deferred.reject(error.message);
-            console.log('not updated');
           }
         })
       }
