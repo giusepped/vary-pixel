@@ -11,14 +11,9 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
     user.set("password", password);
     user.set("email", email);
     user.signUp(null, {
-<<<<<<< HEAD
-      success:function(user){
-        console.log('signed up');
-=======
       success: function(user) {
         $scope.userAction('completed');
         $scope.toggleButton();
->>>>>>> 26cb6c28ee77d0858e3579152be3f0196f127cf2
       },
       error: function(user) {
         angular.element('.invalidSignUp').show();
@@ -90,10 +85,6 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
     }
   }
 
-<<<<<<< HEAD
-  function toggleUserReg(username) {
-    if(username === "Logged in") {
-=======
   $scope.setUsername = function() {
     if (Parse.User.current() !== null) {
       $scope.username = "Have fun " + Parse.User.current().get("username") + "!";
@@ -104,8 +95,5 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
   }
   $scope.toggleButton();
   $scope.setUsername();
->>>>>>> 26cb6c28ee77d0858e3579152be3f0196f127cf2
 
-    }
-  }
 }]);
