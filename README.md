@@ -44,3 +44,25 @@ Visit http://localhost:3000/
 * Added a search bar to search by title
 * Canvases are filtered by most recently updated
 * Optimised styling on both the home and the canvas
+
+=================
+## Technologies Used
+
+* HTML5 Canvas
+* Jade
+* JQuery
+* Angular.js
+* Parse
+* Node.js
+* Express
+* Socket.io
+* Heroku
+
+=================
+## Plans for the future
+
+* Adding the ability to like a canvas
+* Adding avatars for users
+* Edit the title of canvases and deleting them
+* Make a mobile application for iOS and Android
+* Be awesome!
