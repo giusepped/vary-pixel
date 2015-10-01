@@ -19,7 +19,7 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
         angular.element('.invalidSignUp').show();
         $timeout(function() {
           angular.element('.invalidSignUp').hide()
-        }, 1500);
+        }, 2000);
       }
     }).then(function(user) {
       $scope.setUsername();
@@ -29,7 +29,7 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
     angular.element('.passwordUnmatch').show();
     $timeout(function() {
       angular.element('.passwordUnmatch').hide()
-    }, 1500);
+    }, 2000);
     }
   }
 
@@ -43,7 +43,7 @@ homepage.controller('UserController', ['$scope', '$timeout', function($scope, $t
         angular.element('.invalidLogin').show();
         $timeout(function() {
           angular.element('.invalidLogin').hide()
-        }, 1500);
+        }, 2000);
       }
     }).then(function(user) {
       $scope.setUsername();
