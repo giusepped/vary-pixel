@@ -304,13 +304,16 @@ MOBILE
   }
 }
 
-
 @media only screen and (max-width: 768px) {
   .username {
     display: inline;
   }
   .navbar-brand{
     font-size: 20px;
+  }
+  .signOutButton{
+    padding-bottom: 15px;
+    padding-right: 35px;
   }
   .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
     margin-right: 0px !important;
@@ -333,8 +336,15 @@ MOBILE
   .navbar-collapse .nav-forms {
     padding-bottom: 10px;
     padding-top: 37px;
-    margin-left: 10%;
-    margin-right: 33%;
+    float: center;
+    padding-left: 5px !important;
+  }
+  .nav-forms .searchbox{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .searchInput{
+    width: 140px;
   }
   .navbar-form {
     box-shadow: none;
